@@ -1,4 +1,4 @@
-Package: rtata
+Package: rata
 Title: Manipulate Datasets Using A Stata-like Syntax
 Version: 0.0.1
 Authors@R: person("Zach", "Flynn", email = "zlflynn@gmail.com", role = c("aut", "cre"))
