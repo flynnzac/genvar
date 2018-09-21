@@ -1,0 +1,87 @@
+#' reshapes a data set from wide to long or from long to wide formats
+#'
+#' @param data a data set.  On exit, it will be reshaped.
+#' @param direction either "long" or "wide" to indicate the direction to reorient the data set
+#' @param form if direction="long", then the argument should have the form:
+#'
+#' id1+id2+..~newvar|stub
+#'
+#' where there are variables in the data set named "stubXXXX" and "newvar" is the name of the new variable that will be added to the data set which will contain the various values of "stubXXXX" on exit.  The variable "stub" on exit will contain the value of "XXXX".  Variables (id1,id2,...) will also be included in the dataset on exit.  The command behaves like "reshape long stub, i(id1 id2 ...) j(newvar)" in Stata.
+#'
+#' If direction="wide", then the argument should have the form,
+#'
+#' id1+id2+...~values1+values2+...|byvar1+byvar2+...
+#'
+#' The variables (id1,id2,...,byvar1,byvar2,...) should uniqely identify observations in the data.  On exit the dataset will contain (id1,id2,...) in addition to values1byvar1.byvar2, values2byvar1.byvar2, ... for each unique value of (byvar1,byvar2,...).  The command behaves like "reshape wide values1 values2 ..., i(id1 id2 ...) j(byvar1...)
+#' @export
+shape <- function (data, form, direction="long")
+{
+  if (!is.element(direction,c("long","wide")))
+    stop("Direction should be either 'long' or 'wide'.")
+  
+  if (direction=="wide")
+  {
+    eval.parent(substitute(long_to_wide(data, form)))
+  } else {
+    eval.parent(substitute(wide_to_long(data, form)))
+  }
+}
+
+
+
+long_to_wide <- function (data, form)
+{
+  if ("_reshape" %in% names(data))
+    stop("Special variable 'reshape' already in dataset.  Please rename.")
+
+  form <- as.Formula(form)
+  by.data <- model.frame(formula(form, lhs=0,rhs=2),data=data)
+  id.data <- model.frame(formula(form,lhs=1,rhs=0),data=data)
+  
+
+  id.data[,"reshape"] <- interaction(id.data)
+
+  if (length(unique(interaction(by.data,id.data$reshape))) != nrow(data))
+    stop("id variables do not uniquely identify observations.")
+
+  values.data <- cbind(data.frame(reshape=id.data$reshape),model.frame(formula(form,lhs=0,rhs=1),data=data))
+  int <- interaction(by.data)
+  s <- split(values.data,int)
+  for (n in 1:length(s))
+  {
+    names(s[[n]])[-1] <- paste(names(s[[n]])[-1], names(s)[n],sep="")
+    for (ns in 2:ncol(s[[n]]))
+    {
+      id.data[match(s[[n]]$reshape,id.data$reshape),names(s[[n]])[ns]] <- s[[n]][,ns]
+    }
+  }
+
+  eval.parent(substitute(data <- id.data))
+  
+}
+
+
+## wide_to_long(data, id~newvar|stub)
+wide_to_long <- function (data, form)
+{
+  form <- as.Formula(form)
+  stub <- as.character(formula(form,lhs=0,rhs=2))[2]
+  newvar <- as.character(formula(form,lhs=0,rhs=1))[2]
+
+  names.long <- names(data)[which(substr(names(data),1,nchar(stub))==stub)]
+  fact.level <- substr(names.long,nchar(stub)+1,max(nchar(names(data))))
+
+  id.data <- model.frame(formula(form,lhs=1,rhs=0),data=data)
+  if (nrow(unique(id.data)) != nrow(id.data))
+    stop("id variables do not uniquely identify observations.")
+
+  s <- lapply (1:length(names.long), function (i)
+  {
+    new.data <- id.data
+    new.data[,newvar] <- fact.level[i]
+    new.data[,stub] <- data[,names.long[i]]
+  })
+
+  eval.parent(substitute(data <- do.call("rbind", s)))
+}
+
