@@ -3,31 +3,38 @@
 #' @return a value that can be passed to \code{restore} to restore the data set later
 #' @examples
 #' require(stats)
-#' data <- cars
-#' p <- preserve(data)
-#' collapse(data,~mean(dist)|speed)
-#' data <- restore(p)
+#' use(cars)
+#' p <- preserve()
+#' collapse(~mean(dist)|speed)
+#' list()
+#' restore(p)
+#' list()
 #' @export
-preserve <- function (data)
+preserve <- function (data=NULL)
 {
+  if (is.null(data))
+    data <- get("data", envir=data.env)
+
   envir <- new.env()
   assign("data", data, envir=envir)
 
   return(envir)
 }
 
-#' restore a dataset from a previous preserve
+#' restore a dataset from a previous preserve to be currently used
 #' @param envir a previous preserve value.
 #' @return the preserved data set
 #' @examples
 #' require(stats)
-#' data <- cars
-#' p <- preserve(data)
-#' collapse(data,~mean(dist)|speed)
-#' data <- restore(p)
+#' use(cars)
+#' p <- preserve()
+#' collapse(~mean(dist)|speed)
+#' list()
+#' restore(p)
+#' list()
 #' @export
 restore <- function (envir)
 {
-  return (get("data", envir=envir))
+  assign("data", get("data", envir=envir), envir=data.env)
 }
 

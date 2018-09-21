@@ -4,11 +4,9 @@
 \alias{shape}
 \title{reshapes a data set from wide to long or from long to wide formats}
 \usage{
-shape(data, form, direction = "long")
+shape(form, direction = "long")
 }
 \arguments{
-\item{data}{a data set.  On exit, it will be reshaped.}
-
 \item{form}{if direction="long", then the argument should have the form:
 
 id1+id2+..~newvar|stub

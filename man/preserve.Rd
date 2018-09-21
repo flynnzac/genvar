@@ -4,7 +4,7 @@
 \alias{preserve}
 \title{preserve a data set before modification}
 \usage{
-preserve(data)
+preserve(data = NULL)
 }
 \arguments{
 \item{data}{a data set to preserve}
@@ -17,8 +17,10 @@ preserve a data set before modification
 }
 \examples{
 require(stats)
-data <- cars
-p <- preserve(data)
-collapse(data,~mean(dist)|speed)
-data <- restore(p)
+use(cars)
+p <- preserve()
+collapse(~mean(dist)|speed)
+list()
+restore(p)
+list()
 }

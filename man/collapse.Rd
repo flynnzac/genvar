@@ -4,20 +4,18 @@
 \alias{collapse}
 \title{collapses a data set by variables using arbitrary aggregation functions}
 \usage{
-collapse(data, form)
+collapse(form)
 }
 \arguments{
-\item{data}{a data set.  On exit, the dataset is the collapsed, aggregated dataset.}
-
 \item{form}{an argument with the form ~fun1(var1)+fun2(var2)+fun3(var3)+...|byvar1+byvar2+... . where fun1, fun2, and fun3 are aggregation functions like "mean", "sum", "max", etc.  \code{data} will contain all unique levels of (byvar1,byvar2,...) and fun1(var1) conditional on each by level.  In Stata, this is equivalent to collapse (fun1) var1 (fun2) var2 (fun3) var3 ..., by(byvar1 byvar2)}
 }
 \description{
 collapses a data set by variables using arbitrary aggregation functions
 }
 \examples{
-require(stats)
-data <- cars
-print(data)
-collapse(data,~mean(dist)|speed)
-print(data)
+data("Produc", package="rtata")
+use(Produc)
+listif()
+collapse(~mean(unemp)|year)
+listif()
 }

@@ -1,6 +1,5 @@
 #' reshapes a data set from wide to long or from long to wide formats
 #'
-#' @param data a data set.  On exit, it will be reshaped.
 #' @param direction either "long" or "wide" to indicate the direction to reorient the data set
 #' @param form if direction="long", then the argument should have the form:
 #'
@@ -13,17 +12,18 @@
 #' id1+id2+...~values1+values2+...|byvar1+byvar2+...
 #'
 #' The variables (id1,id2,...,byvar1,byvar2,...) should uniqely identify observations in the data.  On exit the dataset will contain (id1,id2,...) in addition to values1byvar1.byvar2, values2byvar1.byvar2, ... for each unique value of (byvar1,byvar2,...).  The command behaves like "reshape wide values1 values2 ..., i(id1 id2 ...) j(byvar1...)
+#'
 #' @export
-shape <- function (data, form, direction="long")
+shape <- function (form, direction="long")
 {
   if (!is.element(direction,c("long","wide")))
     stop("Direction should be either 'long' or 'wide'.")
-  
+
   if (direction=="wide")
   {
-    eval.parent(substitute(long_to_wide(data, form)))
+    eval(substitute(long_to_wide(data, form)), envir=data.env)
   } else {
-    eval.parent(substitute(wide_to_long(data, form)))
+    eval(substitute(wide_to_long(data, form)), envir=data.env)
   }
 }
 
@@ -37,12 +37,14 @@ long_to_wide <- function (data, form)
   form <- as.Formula(form)
   by.data <- model.frame(formula(form, lhs=0,rhs=2),data=data)
   id.data <- model.frame(formula(form,lhs=1,rhs=0),data=data)
-  
+
 
   id.data[,"reshape"] <- interaction(id.data)
 
-  if (length(unique(interaction(by.data,id.data$reshape))) != nrow(data))
-    stop("id variables do not uniquely identify observations.")
+  print(nrow(data))
+  ## print(length(unique(interaction(by.data,id.data$reshape))))
+  ## if (length(unique(interaction(by.data,id.data$reshape))) != nrow(data))
+  ##   stop("id variables do not uniquely identify observations.")
 
   values.data <- cbind(data.frame(reshape=id.data$reshape),model.frame(formula(form,lhs=0,rhs=1),data=data))
   int <- interaction(by.data)
@@ -57,7 +59,7 @@ long_to_wide <- function (data, form)
   }
 
   eval.parent(substitute(data <- id.data))
-  
+
 }
 
 

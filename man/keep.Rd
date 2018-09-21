@@ -4,11 +4,9 @@
 \alias{keep}
 \title{keeps some variables or rows in the dataset and drops the rest}
 \usage{
-keep(data, vars = NULL, rows = NULL)
+keep(x)
 }
 \arguments{
-\item{data}{a data frame.  On exit, the data frame will not have the variable or rows that do not satisfy the keep conditions.}
-
 \item{vars}{an optional argument with form, ~var1+var2+var3... Variables var1, var2, var3, ... are kept.  This works like the Stata command: "keep var1 var2 var3 ...".}
 
 \item{rows}{an optional argument which provides a condition that, if true, keeps the row in the dataset (otherwise, the row is dropped).  For example, keep(data,rows="female==1") would keep all women in the data set and drop all men from it.}

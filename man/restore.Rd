@@ -2,7 +2,7 @@
 % Please edit documentation in R/preserve.r
 \name{restore}
 \alias{restore}
-\title{restore a dataset from a previous preserve}
+\title{restore a dataset from a previous preserve to be currently used}
 \usage{
 restore(envir)
 }
@@ -13,12 +13,14 @@ restore(envir)
 the preserved data set
 }
 \description{
-restore a dataset from a previous preserve
+restore a dataset from a previous preserve to be currently used
 }
 \examples{
 require(stats)
-data <- cars
-p <- preserve(data)
-collapse(data,~mean(dist)|speed)
-data <- restore(p)
+use(cars)
+p <- preserve()
+collapse(~mean(dist)|speed)
+list()
+restore(p)
+list()
 }
