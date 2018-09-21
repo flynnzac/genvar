@@ -4,6 +4,8 @@ library(tools)
 #' @importFrom tools "file_ext"
 #' @importFrom readstata13 "read.dta13"
 #' @importFrom foreign "read.dta"
+#' @importFrom utils "read.csv"
+#' @importFrom utils "read.table"
 #' @export
 use <- function (x,...)
 {
