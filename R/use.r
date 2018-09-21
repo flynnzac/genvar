@@ -18,6 +18,7 @@ data.env <- new.env()
 use.data.frame <- function (x,...)
 {
   assign("data", x, envir=data.env)
+  postuse()
 }
 
 #' @export
@@ -42,5 +43,15 @@ use.character <- function (x, type=NULL, ...)
 
   if (!exists("data", envir=data.env))
     stop("Could not determine type of data. Did not load data.")
+  else
+    postuse()
+}
 
+postuse <- function()
+{
+  if (!("rownum" %in% describe()))
+  {
+    eval(substitute({data$rownum <- 1:nrow(data) }),
+         envir=data.env)
+  }
 }

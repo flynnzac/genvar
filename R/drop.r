@@ -10,16 +10,18 @@ drop <- function (x)
 }
 
 #'@export
-drop.character <- function (rows)
+drop.character <- function (x)
 {
-  rows <- with(data, which(eval(parse(text=rows))))
-  eval(substitute({data <- data[-rows,]}), envir=data.env)
+
+  eval(substitute({
+    rows <- with(data, which(eval(parse(text=x))))
+    data <- data[-rows,]}), envir=data.env)
 }
 
 #'@export
-drop.formula <- function (vars)
+drop.formula <- function (x)
 {
-  form <- as.Formula(vars)
+  form <- as.Formula(x)
   vars <- attr(terms(formula(form,lhs=0,rhs=1)), "term.labels")
   eval(substitute({data[,vars] <- NULL}),envir=data.env)
 }
@@ -35,15 +37,15 @@ keep <- function (x)
   UseMethod("drop",x)
 }
 
-keep.character <- function (rows)
+keep.character <- function (x)
 {
-  rows <- with(data, which(eval(parse(text=rows))))
+  rows <- with(data, which(eval(parse(text=x))))
   eval(substitute({data <- data[rows,]}), envir=data.env)
 }
 
-keep.formula <- function (vars)
+keep.formula <- function (x)
 {
-  form <- as.Formula(vars)
+  form <- as.Formula(x)
   vars <- attr(terms(formula(form,lhs=0,rhs=1)), "term.labels")
   eval(substitute({data <- data[,vars]}),envir=data.env)
 }
