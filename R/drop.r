@@ -34,7 +34,7 @@ drop.formula <- function (x)
 
 keep <- function (x)
 {
-  UseMethod("drop",x)
+  UseMethod("keep",x)
 }
 
 keep.character <- function (x)
