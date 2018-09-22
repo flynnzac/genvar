@@ -1,7 +1,29 @@
+## This file is part of rtata.
+
+## rtata is free software: you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation, under version 3 of the License.
+
+## rtata is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+
+## You should have received a copy of the GNU General Public License
+## along with rtata.  If not, see <https://www.gnu.org/licenses/>.
+
+
 #' drops variables or rows from the dataset
 #'
-#' @param vars an optional argument with form, ~var1+var2+var3... Variables var1, var2, var3, ... are dropped.  This works like the Stata command: "drop var1 var2 var3 ...".
-#' @param rows an optional argument which provides a condition that, if true, drops the row from the dataset.  For example, drop("female==1") would drop all women from the data set.
+#' @param x either a variable list in the format - ~var1+var2+var3 - in which case the listed variables are removed from the dataset, or a condition like: "var1==2" in which case observations that satisfy the condition are removed.
+#' @examples
+#' use(cars)
+#' listif()
+#' drop(~speed)
+#' listif()
+#' use(cars)
+#' drop("speed <= 20")
+#' listif()
 #'@export
 #'
 drop <- function (x)
@@ -28,9 +50,17 @@ drop.formula <- function (x)
 
 #' keeps some variables or rows in the dataset and drops the rest
 #'
-#' @param vars an optional argument with form, ~var1+var2+var3... Variables var1, var2, var3, ... are kept.  This works like the Stata command: "keep var1 var2 var3 ...".
-#' @param rows an optional argument which provides a condition that, if true, keeps the row in the dataset (otherwise, the row is dropped).  For example, keep(data,rows="female==1") would keep all women in the data set and drop all men from it.
-#'@export
+#' 
+#' @param x either a variable list in the format - ~var1+var2+var3 - in which case the listed variables are kept in the dataset, the other variables removed, or a condition like: "var1==2" in which case observations that satisfy the condition are kept and all others are removed.
+#' @examples
+#' use(cars)
+#' listif()
+#' keep(~speed)
+#' listif()
+#' use(cars)
+#' keep("speed <= 20")
+#' listif()
+#' @export
 
 keep <- function (x)
 {

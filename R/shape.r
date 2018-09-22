@@ -1,3 +1,18 @@
+## This file is part of rtata.
+
+## rtata is free software: you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation, under version 3 of the License.
+
+## rtata is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+
+## You should have received a copy of the GNU General Public License
+## along with rtata.  If not, see <https://www.gnu.org/licenses/>.
+
+
 #' reshapes a data set from wide to long or from long to wide formats
 #'
 #' @param direction either "long" or "wide" to indicate the direction to reorient the data set
@@ -58,7 +73,7 @@ long_to_wide <- function (data, form)
     }
   }
 
-  eval.parent(substitute(data <- na.omit(id.data)))
+  eval.parent(use(na.omit(id.data)))
 
 }
 
@@ -85,6 +100,6 @@ wide_to_long <- function (data, form)
     return(new.data)
   })
 
-  eval.parent(substitute(data <- do.call("rbind", s)))
+  eval.parent(substitute(use(do.call("rbind", s))))
 }
 

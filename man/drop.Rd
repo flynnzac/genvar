@@ -7,10 +7,17 @@
 drop(x)
 }
 \arguments{
-\item{vars}{an optional argument with form, ~var1+var2+var3... Variables var1, var2, var3, ... are dropped.  This works like the Stata command: "drop var1 var2 var3 ...".}
-
-\item{rows}{an optional argument which provides a condition that, if true, drops the row from the dataset.  For example, drop("female==1") would drop all women from the data set.}
+\item{x}{either a variable list in the format - ~var1+var2+var3 - in which case the listed variables are removed from the dataset, or a condition like: "var1==2" in which case observations that satisfy the condition are removed.}
 }
 \description{
 drops variables or rows from the dataset
+}
+\examples{
+use(cars)
+listif()
+drop(~speed)
+listif()
+use(cars)
+drop("speed <= 20")
+listif()
 }

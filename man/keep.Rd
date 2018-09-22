@@ -7,10 +7,17 @@
 keep(x)
 }
 \arguments{
-\item{vars}{an optional argument with form, ~var1+var2+var3... Variables var1, var2, var3, ... are kept.  This works like the Stata command: "keep var1 var2 var3 ...".}
-
-\item{rows}{an optional argument which provides a condition that, if true, keeps the row in the dataset (otherwise, the row is dropped).  For example, keep(data,rows="female==1") would keep all women in the data set and drop all men from it.}
+\item{x}{either a variable list in the format - ~var1+var2+var3 - in which case the listed variables are kept in the dataset, the other variables removed, or a condition like: "var1==2" in which case observations that satisfy the condition are kept and all others are removed.}
 }
 \description{
 keeps some variables or rows in the dataset and drops the rest
+}
+\examples{
+use(cars)
+listif()
+keep(~speed)
+listif()
+use(cars)
+keep("speed <= 20")
+listif()
 }

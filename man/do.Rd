@@ -12,3 +12,7 @@ do(expr)
 \description{
 Executes an R expression using variables from the dataset.
 }
+\examples{
+use(cars)
+do({coef(lm(speed~dist))})
+}

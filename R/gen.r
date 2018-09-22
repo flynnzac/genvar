@@ -1,21 +1,41 @@
+## This file is part of rtata.
+
+## rtata is free software: you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation, under version 3 of the License.
+
+## rtata is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+
+## You should have received a copy of the GNU General Public License
+## along with rtata.  If not, see <https://www.gnu.org/licenses/>.
+
+
 #' generates a new variable that is a transformation of existing variables in the dataset or replaces one
 #'
-#' @param form this argument gives the name of the variable to generate, and, optionally, a set of variables to generate by in the following format: newvar~byvar1+byvar2+....
-#' @param value the transformation of the dataset to replace the "newvar" in option \code{form} with.  For example, form="femalewage~year" and value="sum(wage*female)" to get a variable which has yearly wages if female and a zero if the observation is not female.  In Stata, the same command would be: "by year: egen femalewage = total(wage*female)".
+#' @param var the name of the variable to be generated
+#' @param value the transformation of the dataset to replace the "newvar" in option \code{form} with.  For example,  value="sum(wage*female)" to get a variable which has total female wages.  In Stata, the same command would be: "egen femalewage = total(wage*female)".
+#' @param byvar apply the value for each level of the by variables, specified either as a formula, like ~byvar1+byvar2+... or as a varlist "byvar1 byvar2 byvar3...".
 #' @param subset only generate values if the condition provided in subset is true.  Make sure to enclose the expression in quotes, like so: subset="female==1 & highschool==1" to generate the values only for women who graduated from highschool.  This option is used like the "if" in Stata.
 #' @param replace either TRUE or FALSE.  If FALSE (default), the code refuses to alter the variable if the variable already exists.  Otherwise, if replace=TRUE, then the values will be replaced.
 #' @importFrom stats "formula"
 #' @importFrom stats "model.frame"
 #' @importFrom stats "terms"
 #' @export
-gen <- function (form, value, subset=NULL, replace=FALSE)
+gen <- function (var, value, byvar=NULL, subset=NULL, replace=FALSE)
 {
-  form <- as.Formula(form)
-  repvar <- as.character(formula(form,lhs=1,rhs=0))[2]
-  if (replace==FALSE && repvar %in% eval(substitute({names(data)}, env=data.env)))
+  ## replace this clunky formula syntax with gen("varname", value, by=NULL,..) because by is an infrequent option and it makes string manipulation difficult
+  if (replace==FALSE && var %in% describe())
   {
     stop(paste("replace=FALSE and variable ", repvar, " already in data. Call with option replace=TRUE to replace data.",sep=""))
   }
+
+  ## evaluate function arguments to ensure done in correct environment
+  var <- var
+  value <- value
+  byvar <- byvar
   
   subsetexpr <- subset
   rm(subset)
@@ -27,19 +47,20 @@ gen <- function (form, value, subset=NULL, replace=FALSE)
       subs <- with(data, eval(parse(text=subsetexpr)))
     }
 
-    
-    val <- tryCatch({
-      formula(form,lhs=0,rhs=1)
-      TRUE
-    }, warning=function(w) FALSE)
-    if (val)
-    {
-      by.level.data <- model.frame(formula(form,lhs=0,rhs=1), data=data, na.action=NULL)
-      by.level <- subset(by.level.data, subs)
-    } else {
-      by.level.data <- data.frame(by=1:nrow(data))
-      by.level <- subset(by.level.data,subs)
+    if (is.null(byvar))
+      byvar.use <- ~rownum
+    else {
+      if (inherits(byvar, "formula"))
+      {
+        byvar.use <- byvar
+      } else {
+        byvar.use <- varlist(byvar)
+      }
     }
+    
+    by.level.data <- model.frame(byvar.use, data=data, na.action=NULL)
+    by.level <- subset(by.level.data, subs)
+    
     int <- as.character(interaction(by.level.data))
     s <- split(subset(data,subs),interaction(by.level))
     res <- sapply(s,
@@ -47,7 +68,7 @@ gen <- function (form, value, subset=NULL, replace=FALSE)
                   {
                     return(with(u,eval(parse(text=value))))
                   })
-    data[,repvar] <- res[match(int,names(s))]
+    data[,var] <- res[match(int,names(s))]
   }), envir=data.env)
 
   ls.res <- ls(all=TRUE, envir=data.env)

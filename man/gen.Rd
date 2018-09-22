@@ -4,12 +4,14 @@
 \alias{gen}
 \title{generates a new variable that is a transformation of existing variables in the dataset or replaces one}
 \usage{
-gen(form, value, subset = NULL, replace = FALSE)
+gen(var, value, byvar = NULL, subset = NULL, replace = FALSE)
 }
 \arguments{
-\item{form}{this argument gives the name of the variable to generate, and, optionally, a set of variables to generate by in the following format: newvar~byvar1+byvar2+....}
+\item{var}{the name of the variable to be generated}
 
-\item{value}{the transformation of the dataset to replace the "newvar" in option \code{form} with.  For example, form="femalewage~year" and value="sum(wage*female)" to get a variable which has yearly wages if female and a zero if the observation is not female.  In Stata, the same command would be: "by year: egen femalewage = total(wage*female)".}
+\item{value}{the transformation of the dataset to replace the "newvar" in option \code{form} with.  For example,  value="sum(wage*female)" to get a variable which has total female wages.  In Stata, the same command would be: "egen femalewage = total(wage*female)".}
+
+\item{byvar}{apply the value for each level of the by variables, specified either as a formula, like ~byvar1+byvar2+... or as a varlist "byvar1 byvar2 byvar3...".}
 
 \item{subset}{only generate values if the condition provided in subset is true.  Make sure to enclose the expression in quotes, like so: subset="female==1 & highschool==1" to generate the values only for women who graduated from highschool.  This option is used like the "if" in Stata.}
 

@@ -29,3 +29,16 @@ listif()
 
 ## list emp by year just for Wyoming
 listif("state == 'WYOMING'")
+
+describe()
+## year is a character so destring it
+destring("year")
+
+
+## generate emp*year for no reason
+gen("empyear", "emp*year")
+
+listif()
+
+count()
+count("emp <= 1000")
