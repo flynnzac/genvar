@@ -16,30 +16,32 @@ gen <- function (form, value, subset=NULL, replace=FALSE)
   {
     stop(paste("replace=FALSE and variable ", repvar, " already in data. Call with option replace=TRUE to replace data.",sep=""))
   }
-
+  
   subsetexpr <- subset
   rm(subset)
   eval(substitute({
     if (is.null(subsetexpr))
     {
-      sub <- rep(TRUE, times=nrow(data))
+      subs <- rep(TRUE, times=nrow(data))
     } else {
-      sub <- with(data, eval(parse(text=subsetexpr)))
+      subs <- with(data, eval(parse(text=subsetexpr)))
     }
 
-
-    test <- tryCatch({formula(form,lhs=0,rhs=1)
-      return(TRUE)}, warning=function(w) FALSE)
-    if (test)
+    
+    val <- tryCatch({
+      formula(form,lhs=0,rhs=1)
+      TRUE
+    }, warning=function(w) FALSE)
+    if (val)
     {
       by.level.data <- model.frame(formula(form,lhs=0,rhs=1), data=data, na.action=NULL)
-      by.level <- subset(by.level.data, sub)
+      by.level <- subset(by.level.data, subs)
     } else {
       by.level.data <- data.frame(by=1:nrow(data))
-      by.level <- subset(by.level.data,sub)
+      by.level <- subset(by.level.data,subs)
     }
     int <- as.character(interaction(by.level.data))
-    s <- split(subset(data,sub),interaction(by.level))
+    s <- split(subset(data,subs),interaction(by.level))
     res <- sapply(s,
                   function (u)
                   {

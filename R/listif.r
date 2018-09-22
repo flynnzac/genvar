@@ -1,7 +1,8 @@
+#' @return the part of the dataset that satisfies the condition and contains the specified columns
 #' @export
 listif <- function (cond=NULL, ...)
 {
-  if (is.null(const))
+  if (is.null(cond))
     eval(substitute({data}), envir=data.env)
   else
     UseMethod("listif", cond)

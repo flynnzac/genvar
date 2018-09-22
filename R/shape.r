@@ -31,7 +31,7 @@ shape <- function (form, direction="long")
 
 long_to_wide <- function (data, form)
 {
-  if ("_reshape" %in% names(data))
+  if ("reshape" %in% names(data))
     stop("Special variable 'reshape' already in dataset.  Please rename.")
 
   form <- as.Formula(form)
@@ -58,7 +58,7 @@ long_to_wide <- function (data, form)
     }
   }
 
-  eval.parent(substitute(data <- id.data))
+  eval.parent(substitute(data <- na.omit(id.data)))
 
 }
 
@@ -82,6 +82,7 @@ wide_to_long <- function (data, form)
     new.data <- id.data
     new.data[,newvar] <- fact.level[i]
     new.data[,stub] <- data[,names.long[i]]
+    return(new.data)
   })
 
   eval.parent(substitute(data <- do.call("rbind", s)))

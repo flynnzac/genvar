@@ -37,12 +37,14 @@ keep <- function (x)
   UseMethod("keep",x)
 }
 
+#'@export
 keep.character <- function (x)
 {
   rows <- with(data, which(eval(parse(text=x))))
   eval(substitute({data <- data[rows,]}), envir=data.env)
 }
 
+#'@export
 keep.formula <- function (x)
 {
   form <- as.Formula(x)
