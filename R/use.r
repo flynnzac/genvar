@@ -1,21 +1,25 @@
-## This file is part of rtata.
+## This file is part of rata.
 
-## rtata is free software: you can redistribute it and/or modify
+## rata is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
 ## the Free Software Foundation, under version 3 of the License.
 
-## rtata is distributed in the hope that it will be useful,
+## rata is distributed in the hope that it will be useful,
 ## but WITHOUT ANY WARRANTY; without even the implied warranty of
 ## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ## GNU General Public License for more details.
 
 ## You should have received a copy of the GNU General Public License
-## along with rtata.  If not, see <https://www.gnu.org/licenses/>.
+## along with rata.  If not, see <https://www.gnu.org/licenses/>.
 
 
 library(foreign)
 library(readstata13)
 library(tools)
+
+#' uses a dataset, marking it as the active dataset
+#'
+#' @param x either a data.frame or a csv/dta filename to be imported
 #' @importFrom tools "file_ext"
 #' @importFrom readstata13 "read.dta13"
 #' @importFrom foreign "read.dta"

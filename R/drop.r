@@ -1,38 +1,28 @@
-## This file is part of rtata.
+## This file is part of rata.
 
-## rtata is free software: you can redistribute it and/or modify
+## rata is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
 ## the Free Software Foundation, under version 3 of the License.
 
-## rtata is distributed in the hope that it will be useful,
+## rata is distributed in the hope that it will be useful,
 ## but WITHOUT ANY WARRANTY; without even the implied warranty of
 ## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ## GNU General Public License for more details.
 
 ## You should have received a copy of the GNU General Public License
-## along with rtata.  If not, see <https://www.gnu.org/licenses/>.
+## along with rata.  If not, see <https://www.gnu.org/licenses/>.
 
 
-#' drops variables or rows from the dataset
+#' drops rows from the dataset
 #'
-#' @param x either a variable list in the format - ~var1+var2+var3 - in which case the listed variables are removed from the dataset, or a condition like: "var1==2" in which case observations that satisfy the condition are removed.
+#' @param x a condition like (ex: "var1==2") describing the observations that should be removed from the data set.
 #' @examples
 #' use(cars)
 #' listif()
-#' drop(~speed)
-#' listif()
-#' use(cars)
-#' drop("speed <= 20")
+#' dropif("speed <= 20")
 #' listif()
 #'@export
-#'
-drop <- function (x)
-{
-  UseMethod("drop",x)
-}
-
-#'@export
-drop.character <- function (x)
+dropif <- function (x)
 {
 
   eval(substitute({
@@ -43,40 +33,63 @@ drop.character <- function (x)
 #'@export
 drop.formula <- function (x)
 {
+}
+
+#' drops variables in varlist format from the dataset
+#' @param x a varlist either in "var1 var2 var3" format or ~var1+var2+var3 format.
+#' @examples
+#' use(cars)
+#' listif()
+#' dropvar("speed")
+#' listif()
+#' use(cars)
+#' dropvar(~speed)
+#' listif()
+#' @export
+dropvar <- function (x)
+{
+  if (!inherits(x,"formula"))
+  {
+    x <- varlist(x)
+  }
+
   form <- as.Formula(x)
   vars <- attr(terms(formula(form,lhs=0,rhs=1)), "term.labels")
   eval(substitute({data[,vars] <- NULL}),envir=data.env)
 }
 
-#' keeps some variables or rows in the dataset and drops the rest
+#' keeps some rows in the dataset and drops the rest
 #'
 #' 
-#' @param x either a variable list in the format - ~var1+var2+var3 - in which case the listed variables are kept in the dataset, the other variables removed, or a condition like: "var1==2" in which case observations that satisfy the condition are kept and all others are removed.
+#' @param x a condition like: "var1==2" in which case observations that satisfy the condition are kept and all others are removed.
 #' @examples
 #' use(cars)
-#' listif()
-#' keep(~speed)
-#' listif()
-#' use(cars)
-#' keep("speed <= 20")
+#' keepif("speed <= 20")
 #' listif()
 #' @export
-
-keep <- function (x)
-{
-  UseMethod("keep",x)
-}
-
-#'@export
-keep.character <- function (x)
+keepif <- function (x)
 {
   rows <- with(data, which(eval(parse(text=x))))
   eval(substitute({data <- data[rows,]}), envir=data.env)
 }
 
+#' keeps some variables in the dataset and drops the others
+#'
+#' @param x a varlist either of the form "var1 var2 var3" or in the form ~var1+var2+var3.
+#' @examples
+#' use(cars)
+#' keepvar("speed")
+#' listif()
+#' use(cars)
+#' keepvar(~speed)
+#' listif()
 #'@export
-keep.formula <- function (x)
+keepvar <- function (x)
 {
+  if (!inherits(x,"formula"))
+  {
+    x <- varlist(x)
+  }
   form <- as.Formula(x)
   vars <- attr(terms(formula(form,lhs=0,rhs=1)), "term.labels")
   eval(substitute({data <- data[,vars]}),envir=data.env)

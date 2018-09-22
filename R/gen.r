@@ -1,16 +1,16 @@
-## This file is part of rtata.
+## This file is part of rata.
 
-## rtata is free software: you can redistribute it and/or modify
+## rata is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
 ## the Free Software Foundation, under version 3 of the License.
 
-## rtata is distributed in the hope that it will be useful,
+## rata is distributed in the hope that it will be useful,
 ## but WITHOUT ANY WARRANTY; without even the implied warranty of
 ## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ## GNU General Public License for more details.
 
 ## You should have received a copy of the GNU General Public License
-## along with rtata.  If not, see <https://www.gnu.org/licenses/>.
+## along with rata.  If not, see <https://www.gnu.org/licenses/>.
 
 
 #' generates a new variable that is a transformation of existing variables in the dataset or replaces one
@@ -23,13 +23,15 @@
 #' @importFrom stats "formula"
 #' @importFrom stats "model.frame"
 #' @importFrom stats "terms"
+#' @importFrom stats "as.formula"
+#' @importFrom stats "na.omit"
 #' @export
 gen <- function (var, value, byvar=NULL, subset=NULL, replace=FALSE)
 {
   ## replace this clunky formula syntax with gen("varname", value, by=NULL,..) because by is an infrequent option and it makes string manipulation difficult
   if (replace==FALSE && var %in% describe())
   {
-    stop(paste("replace=FALSE and variable ", repvar, " already in data. Call with option replace=TRUE to replace data.",sep=""))
+    stop(paste("replace=FALSE and variable ", var, " already in data. Call with option replace=TRUE to replace data.",sep=""))
   }
 
   ## evaluate function arguments to ensure done in correct environment
@@ -71,6 +73,4 @@ gen <- function (var, value, byvar=NULL, subset=NULL, replace=FALSE)
     data[,var] <- res[match(int,names(s))]
   }), envir=data.env)
 
-  ls.res <- ls(all=TRUE, envir=data.env)
-  rm(list=ls.res[ls.res!="data"],envir=data.env)
 }
