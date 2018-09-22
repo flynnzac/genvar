@@ -2,8 +2,10 @@ rm(list=ls(all=TRUE))
 library(rata)
 data(Produc)
 
+## "use" loads the data set Produc into memory
 use(Produc)
 listif()
+
 ## preserve data set
 p <- preserve()
 

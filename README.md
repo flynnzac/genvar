@@ -14,6 +14,7 @@ data(Produc)
 ## "use" loads the data set Produc into memory
 use(Produc)
 listif()
+
 ## preserve data set
 p <- preserve()
 
@@ -22,7 +23,6 @@ describe()
 
 ## sum over emp by year
 collapse(~sum(emp)|year)
-listif()
 
 ## restore original data
 restore(p)
@@ -40,6 +40,19 @@ listif()
 
 ## list emp by year just for Wyoming
 listif("state == 'WYOMING'")
+
+describe()
+## year is a character so destring it
+destring("year")
+
+
+## generate emp*year for no reason
+gen("empyear", "emp*year")
+
+listif()
+
+count()
+count("emp <= 1000")
 ```
 
 In vanilla R, the same, common data manipulations are a bit more cumbersome.
