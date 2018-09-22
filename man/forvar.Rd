@@ -11,7 +11,7 @@ forvar(varlist, action, macro = "\%var")
 
 \item{action}{a quoted expression to apply to each variable where the word specified in \code{macro}.}
 
-\item{macro}{an expression that will be replaced in \code{action} for each variable, by default $$var.}
+\item{macro}{an expression that will be replaced in \code{action} for each variable, by default %var.}
 }
 \description{
 apply a function to each of a list of variables and store the results

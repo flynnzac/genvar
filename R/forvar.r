@@ -16,7 +16,7 @@
 #' @export
 #' @param varlist a list of variables in the format ~var1+var2+var3+... or as a vector of names like "var1 var2 var3".
 #' @param action a quoted expression to apply to each variable where the word specified in \code{macro}.
-#' @param macro an expression that will be replaced in \code{action} for each variable, by default $$var.
+#' @param macro an expression that will be replaced in \code{action} for each variable, by default %var.
 #' @examples
 #' use(cars)
 #' forvar("speed dist", "gen('%var2', '%var^2')")
