@@ -4,19 +4,19 @@
 \alias{forvar}
 \title{apply a function to each of a list of variables and store the results}
 \usage{
-forvar(varlist, action, ...)
+forvar(varlist, action, macro = "\%var")
 }
 \arguments{
-\item{varlist}{a list of variables in the format ~var1+var2+var3+... or as a vector of names like c("var1", "var2", "var3",...).}
+\item{varlist}{a list of variables in the format ~var1+var2+var3+... or as a vector of names like "var1 var2 var3".}
 
-\item{action}{an R function to apply to each variable, taking the variable name as its first argument.}
+\item{action}{a quoted expression to apply to each variable where the word specified in \code{macro}.}
 
-\item{...}{any other options specified are passed to the action function.}
+\item{macro}{an expression that will be replaced in \code{action} for each variable, by default $$var.}
 }
 \description{
 apply a function to each of a list of variables and store the results
 }
 \examples{
 use(cars)
-
+forvar("speed dist", "gen('\%var2', '\%var^2')")
 }

@@ -14,13 +14,13 @@
 
 #' apply a function to each of a list of variables and store the results
 #' @export
-#' @param varlist a list of variables in the format ~var1+var2+var3+... or as a vector of names like c("var1", "var2", "var3",...).
-#' @param action an R function to apply to each variable, taking the variable name as its first argument.
-#' @param ... any other options specified are passed to the action function.
+#' @param varlist a list of variables in the format ~var1+var2+var3+... or as a vector of names like "var1 var2 var3".
+#' @param action a quoted expression to apply to each variable where the word specified in \code{macro}.
+#' @param macro an expression that will be replaced in \code{action} for each variable, by default $$var.
 #' @examples
 #' use(cars)
-#' 
-forvar <- function (varlist, action, ...)
+#' forvar("speed dist", "gen('%var2', '%var^2')")
+forvar <- function (varlist, action, macro="%var")
 {
   if (!inherits(varlist,"formula"))
   {
@@ -30,10 +30,10 @@ forvar <- function (varlist, action, ...)
   varlist <- as.Formula(varlist)
   varlist <- attr(terms(formula(varlist,lhs=0,rhs=1)), "term.labels")
 
-  assign("action", action, envir=data.env)
   for (var in varlist)
   {
-    eval(substitute(parse(text=paste("action(",var,",...)",sep=""))),
+    expr <- gsub(macro, var, action)
+    eval(parse(text=expr),
          envir=data.env)
   }
 }

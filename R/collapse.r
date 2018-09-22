@@ -16,7 +16,11 @@ library(Formula)
 
 #' collapses a data set by variables using arbitrary aggregation functions
 #'
-#' @param form an argument with the form ~fun1(var1)+fun2(var2)+fun3(var3)+...|byvar1+byvar2+... . where fun1, fun2, and fun3 are aggregation functions like "mean", "sum", "max", etc.  \code{data} will contain all unique levels of (byvar1,byvar2,...) and fun1(var1),fun2(var2) evaluated on the subset of the data set with that value of the by variables.  The equivalent Stata is: collapse (fun1) var1 (fun2) var2 (fun3) var3 ..., by(byvar1 byvar2)
+#' @param form an argument with the form
+#'
+#' \code{~fun1(var1)+fun2(var2)+fun3(var3)+...|byvar1+byvar2+...}
+#'
+#' where fun1, fun2, and fun3 are aggregation functions like "mean", "sum", "max", etc.  \code{data} will contain all unique levels of (byvar1,byvar2,...) and fun1(var1),fun2(var2) evaluated on the subset of the data set with that value of the by variables.  The equivalent Stata is: collapse (fun1) var1 (fun2) var2 (fun3) var3 ..., by(byvar1 byvar2)
 #' @examples
 #' data(Produc)
 #' use(Produc)
