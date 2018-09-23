@@ -66,9 +66,16 @@ count("emp <= 1000")
 
 ## test out regression
 use(Produc)
-xtset(timevar="year")
-r = reg("emp", "unemp")
+
+## Regression with heteroskedastic robust standard error
+r = reg("emp", "unemp", robust=TRUE)
 r
+
+## Regression with heteroskedastic and auto-correlated standard errors
+
+## Set time variable
+xtset(timevar="year")
+
 r = reg("emp", "unemp", hac="andrews")
 r
 ```
