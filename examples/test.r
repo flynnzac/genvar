@@ -49,3 +49,4 @@ count("emp <= 1000")
 use(Produc)
 xtset(timevar="year")
 r = reg("emp", "unemp")
+r
