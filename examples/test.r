@@ -7,7 +7,7 @@ use(Produc)
 listif()
 
 ## preserve data set
-p <- preserve()
+p = preserve()
 
 ## list variables in dataset
 describe()
@@ -44,3 +44,8 @@ listif()
 
 count()
 count("emp <= 1000")
+
+## test out regression
+use(Produc)
+xtset(timevar="year")
+r = reg("emp", "unemp")
