@@ -69,6 +69,7 @@ use(Produc)
 xtset(timevar="year")
 r = reg("emp", "unemp")
 r
+r = reg("emp", "unemp", hac="andrews")
 ```
 
 In vanilla R, the same, common data manipulations are a bit more cumbersome.
