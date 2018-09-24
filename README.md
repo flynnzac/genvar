@@ -1,4 +1,4 @@
-# rata: an R package for data manipulation in a Stata-like way
+# rata: an R package for data manipulation in a Stata-like, "command-on-data" way
 
 ## Installation
 
@@ -86,20 +86,5 @@ In vanilla R, the same, common data manipulations are a bit more cumbersome.
 
 I started writing the package on September 20, 2018.  The package is under active development, but is not yet ready for error-free use and it is not fully-documented.
 
-The following functions alongside their Stata equivalents have been implemented so far:
-
-1. `collapse` (Stata equivalent: `collapse`) produces summary statistics from a dataset.
-2. `count` (Stata equivalent: `count`) counts how many observations satisfy some conditions.
-3. `describe` (Stata equivalent: `describe`) lists variables in the dataset. Currently, it just gives the name, but I may add Stata-like documentation capabilities at some point.
-4. `do` executes an arbitrary piece of R code using the active dataset.
-5. `drop` (Stata equivalent: `drop`) drops variables or observations from the dataset. `keep` is also included.
-6. `forvar` (Stata equivalent: `foreach var of varlist`) executes code for each variable in variable list.
-7. `gen` (Stata equivalent: `generate` and `replace`) generates new variable or replaces variables that are transformations of other variables in the dataset.
-8. `listif` (Stata equivalent: `list`) lists observations and variables that satisfy certain conditions.
-9. `preserve` (Stata equivalent: `preserve`) preserves a data set as it is before modification.
-10. `shape` (Stata equivalent: `reshape`) reshapes data from long to wide or from wide to long formats. Unlike other R packages that implement reshaping, the syntax is intuitive to people with experience using Stata.
-11. `use` (Stata equivalent: `use`) uses a data set and puts it into memory.
-
-
-
+The end goal is to develop a "command-on-data" environment for R and to develop a more complete regression package for common models that incorporates robust and clustered standard errors, time series operators, and fixed effects all into one estimation command (this is mostly tying together other R packages which use a function-object interface into a command-on-data interface)
 
