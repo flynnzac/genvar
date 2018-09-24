@@ -6,6 +6,9 @@
 #' @export
 varlist <- function (x)
 {
-  as.formula(paste("~",gsub(" ", "+",x),sep=""))
+  n <- describe()
+  x <- strsplit(x, " ")[[1]]
+  x <- as.vector(sapply(x, function (u) n[grepl(u,n)]))
+  as.formula(paste("~",paste0(x,collapse="+"),sep=""))
 }
 

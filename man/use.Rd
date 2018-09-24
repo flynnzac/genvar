@@ -7,8 +7,15 @@
 use(x, ...)
 }
 \arguments{
-\item{x}{either a data.frame or a csv/dta filename to be imported}
+\item{x}{usually either a data.frame or a csv/dta filename to be imported.  An R function which returns a data.frame can also be specified.}
 }
 \description{
 uses a dataset, marking it as the active dataset
+}
+\examples{
+Produc
+use(Produc)
+savedata("Produc.csv")
+listif()
+dropvar(".*")
 }

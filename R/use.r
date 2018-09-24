@@ -19,12 +19,18 @@ library(tools)
 
 #' uses a dataset, marking it as the active dataset
 #'
-#' @param x either a data.frame or a csv/dta filename to be imported
+#' @param x usually either a data.frame or a csv/dta filename to be imported.  An R function which returns a data.frame can also be specified.
 #' @importFrom tools "file_ext"
 #' @importFrom readstata13 "read.dta13"
 #' @importFrom foreign "read.dta"
 #' @importFrom utils "read.csv"
 #' @importFrom utils "read.table"
+#' @examples
+#' Produc
+#' use(Produc)
+#' savedata("Produc.csv")
+#' listif()
+#' dropvar(".*")
 #' @export
 use <- function (x,...)
 {
@@ -47,23 +53,31 @@ use.character <- function (x, type=NULL, ...)
     type <- file_ext(x)
 
   if (type=="csv")
-    assign("data", read.csv(x,...), envir=data.env)
+    eval(substitute({ data <- read.csv(x,...) }), envir=data.env)
 
   if (type=="dta")
-    tryCatch({assign("data", read.dta(x,...), envir=data.env)},
-             error=function (e)
-             { assign("data", read.dta13(x), envir=data.env)})
-
+    eval(substitute({ tryCatch({ data <-  read.dta(x,...)},
+                               error=function(e) data <- read.dta13(x,...))}),
+         envir=data.env)
   if (type=="txt")
-    assign("data", read.table(x,...), envir=data.env)
+    eval(substitute({ data <- read.table(x,...) }),
+         envir=data.env)
 
   if (type=="tab")
-    assign("data", read.csv(x,sep="\t",...), envir=data.env)
+    eval(substitute({data <- read.csv(x,sep="\t",...) }),
+         envir=data.env)
 
   if (!exists("data", envir=data.env))
     stop("Could not determine type of data. Did not load data.")
   else
     postuse()
+}
+
+#' @export
+use.function <- function (x, ...)
+{
+  eval(substitute({data <- x(...) }), envir=data.env)
+  postuse()
 }
 
 postuse <- function()

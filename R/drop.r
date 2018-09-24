@@ -30,11 +30,6 @@ dropif <- function (x)
     data <- data[-rows,]}), envir=data.env)
 }
 
-#'@export
-drop.formula <- function (x)
-{
-}
-
 #' drops variables in varlist format from the dataset
 #' @param x a varlist either in "var1 var2 var3" format or ~var1+var2+var3 format.
 #' @examples
