@@ -20,13 +20,13 @@
 #' @param by a variable list in either "var1 var2 var3" format or in ~var1+var2+var3 format.  The R expression will be applied separately for the data subsetted to each level of the variable list.
 #' @examples
 #' use(cars)
-#' do({coef(lm(speed~dist))})
+#' do("{coef(lm(speed~dist))}")
 #' @export
 do <- function(expr, by=NULL)
 {
   if (is.null(by))
   {
-    eval(substitute({with(data, expr)}),
+    eval(substitute({with(data, parse(text=expr))}),
          envir=data.env)
   } else {
     if (!inherits(by,"formula"))
@@ -35,7 +35,7 @@ do <- function(expr, by=NULL)
     }
     eval(substitute({
       s <- split(data,interaction(model.frame(by)))
-      lst <- lapply(s, function (u) with(u, expr))
+      lst <- lapply(s, function (u) with(u, parse(text=expr)))
       names(lst) <- names(s)
       lst
     }), envir=data.env)
