@@ -86,5 +86,5 @@ In vanilla R, the same, common data manipulations are a bit more cumbersome.
 
 I started writing the package on September 20, 2018.  The package is under active development, but is not yet ready for error-free use and it is not fully-documented.
 
-The end goal is to develop a "command-on-data" environment for R and to develop a more complete regression package for common models that incorporates robust and clustered standard errors, time series operators, and fixed effects all into one estimation command (this is mostly tying together other R packages which use a function-object interface into a command-on-data interface)
+The end goal is to develop a "command-on-data" environment for R and to develop a more complete regression package for common models that incorporates robust and clustered standard errors, time series operators, and fixed effects all into one estimation command (this is mostly tying together other R packages which use a function-object interface into a command-on-data interface).  The goal is not just to replicate Stata's environment, but to offer an improved command-on-data environment that takes advantage of the additional flexibility of R.
 

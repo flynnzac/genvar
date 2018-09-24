@@ -13,16 +13,32 @@
 ## You should have received a copy of the GNU General Public License
 ## along with rata.  If not, see <https://www.gnu.org/licenses/>.
 
-#' Executes code on the dataset
+#' Executes R code on the dataset
 #'
-#' Executes an R expression using variables from the dataset.
+#' Executes an R expression using variables from the dataset, possibly separately for each level of a given varlist (like the \code{by} prefix in Stata).
 #' @param expr an R expression which can use any of the variable names in the current dataset
+#' @param by a variable list in either "var1 var2 var3" format or in ~var1+var2+var3 format.  The R expression will be applied separately for the data subsetted to each level of the variable list.
 #' @examples
 #' use(cars)
 #' do({coef(lm(speed~dist))})
 #' @export
-do <- function(expr)
+do <- function(expr, by=NULL)
 {
-  eval(substitute({with(data, expr)}),
-       envir=data.env)
+  if (is.null(by))
+  {
+    eval(substitute({with(data, expr)}),
+         envir=data.env)
+  } else {
+    if (!inherits(by,"formula"))
+    {
+      by <- varlist(by)
+    }
+    eval(substitute({
+      s <- split(data,interaction(model.frame(by)))
+      lst <- lapply(s, function (u) with(u, expr))
+      names(lst) <- names(s)
+      lst
+    }), envir=data.env)
+  }
 }
+
