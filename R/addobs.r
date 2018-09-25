@@ -17,10 +17,8 @@ addobs <- function (obs)
 addobs.character <- function(obs)
 {
   lst <- eval(parse(text=paste0("list(",obs,")")))
-  print(lst)
   lst$rownum <- eval(substitute({max(data[,"rownum"])}),
                      envir=data.env)+1
-  print(lst)
   eval(substitute({
     data <- rbind(data, lst)
   }),envir=data.env)

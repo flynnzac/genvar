@@ -4,12 +4,10 @@
 \alias{varlist}
 \title{creates a formula object from a varlist, mostly for internal use.}
 \usage{
-varlist(x, regex = FALSE)
+varlist(x)
 }
 \arguments{
 \item{x}{the varlist to be converted in "var1 var2 var3" format.  Can be specified using the \emph{globbing} characters "*" (match zero or more of any character) or "?" (match any single character) like "var*" or "var?" for "var1 var2 var3" or using regular expressions if \code{regex=TRUE} ("var[0-9]+" = "var1 var2 var3").}
-
-\item{regex}{if TRUE, evaluate each string in the varlist \code{x} as a regular expression.  By default, allow for the wildcard character * which matches zero or more of any character or ? which matches any single character (default: FALSE).}
 }
 \value{
 a formula object which can be passed to \code{model.frame}
