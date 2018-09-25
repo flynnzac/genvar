@@ -4,7 +4,12 @@
 \alias{listif}
 \title{prints the part of the dataset that satisfies certain conditions}
 \usage{
-listif(cond = NULL, ...)
+listif(cond = NULL, vars = NULL, ...)
+}
+\arguments{
+\item{cond}{a conditional expression; only observations that satisfy the condition will be returned.}
+
+\item{vars}{a variable list; only variables in the list will be returned.}
 }
 \value{
 the part of the dataset that satisfies the condition and contains the specified columns

@@ -13,7 +13,7 @@ p = preserve()
 describe()
 
 ## sum over emp by year
-collapse(~sum(emp)|year)
+collapse("sum(emp)", "year")
 
 ## restore original data
 restore(p)

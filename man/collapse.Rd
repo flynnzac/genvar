@@ -4,22 +4,20 @@
 \alias{collapse}
 \title{collapses a data set by variables using arbitrary aggregation functions}
 \usage{
-collapse(form)
+collapse(values, byvar = NULL)
 }
 \arguments{
-\item{form}{an argument with the form
+\item{values}{an argument with the form \code{fun1(var1) fun2(var2) fun3(var3,var4)} describe the aggregations to be performed where fun1, fun2, fun3 are most likely aggregation functions like "sum", "mean", "max", "median", etc. But could also be "reg" to perform regressions on different subsets, for example.}
 
-\code{~fun1(var1)+fun2(var2)+fun3(var3)+...|byvar1+byvar2+...}
-
-where fun1, fun2, and fun3 are aggregation functions like "mean", "sum", "max", etc.  \code{data} will contain all unique levels of (byvar1,byvar2,...) and fun1(var1),fun2(var2) evaluated on the subset of the data set with that value of the by variables.  The equivalent Stata is: collapse (fun1) var1 (fun2) var2 (fun3) var3 ..., by(byvar1 byvar2)}
+\item{byvar}{a variable list giving the variables to collapse by.  The resulting dataset will have as many rows as there are unique levels of the \code{byvar} variable list.}
 }
 \description{
-collapses a data set by variables using arbitrary aggregation functions
+collapse a data set to produce summary statistics possibly by a set of variables as in the Stata code: collapse (fun1) var1 (fun2) var2, by(byvar1 byvar2).  But this function is more flexible than the Stata version because any arbitrary function can be used in collapse not just traditional aggregation functions.
 }
 \examples{
 data(Produc)
 use(Produc)
 listif()
-collapse(~sum(emp)|year)
+collapse("sum(emp)","year")
 listif()
 }

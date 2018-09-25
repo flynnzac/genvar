@@ -13,30 +13,24 @@
 ## along with rata.  If not, see <https://www.gnu.org/licenses/>.
 
 #' prints the part of the dataset that satisfies certain conditions
-#' 
+#'
+#' @param cond a conditional expression; only observations that satisfy the condition will be returned.
+#' @param vars a variable list; only variables in the list will be returned.
 #' @return the part of the dataset that satisfies the condition and contains the specified columns
 #' @export
-listif <- function (cond=NULL, ...)
+listif <- function (cond=NULL, vars=NULL, ...)
 {
+  if (is.null(vars))
+    vars <- describe()
+  else
+  {
+    if (!inherits(vars,"formula"))
+      vars <- varlist(vars)
+    vars <- attr(terms(vars), "term.labels")
+  }
   if (is.null(cond))
-    eval(substitute({data}), envir=data.env)
+    eval(substitute({data[,vars]}), envir=data.env)
   else
-    UseMethod("listif", cond)
+    eval(substitute({subset(data[,vars],with(data,eval(parse(text=cond))))}), envir=data.env)
 }
 
-#' @export
-listif.character <- function (cond)
-{
-  eval(substitute({subset(data,with(data,eval(parse(text=cond))))}), envir=data.env)
-}
-
-#' @export
-listif.formula <- function (cond, ifstmt=NULL)
-{
-  cond <- as.Formula(cond)
-  vars <- attr(terms(formula(cond,lhs=0,rhs=1)), "term.labels")
-  if (is.null(ifstmt))
-    eval(substitute({data[,vars]}),envir=data.env)
-  else
-    eval(substitute({subset(data[,vars],with(data,eval(parse(text=ifstmt))))}), envir=data.env)
-}

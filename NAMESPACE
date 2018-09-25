@@ -3,8 +3,6 @@
 S3method(addobs,character)
 S3method(addobs,data.frame)
 S3method(coef,reg)
-S3method(listif,character)
-S3method(listif,formula)
 S3method(print,reg)
 S3method(subset,varlist)
 S3method(use,"function")

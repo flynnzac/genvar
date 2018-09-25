@@ -2,9 +2,9 @@
 % Please edit documentation in R/xtset.r
 \name{xtset}
 \alias{xtset}
-\title{prepares a panel or time series dataset for lag operations}
+\title{prepares a panel dataset for lag operations}
 \usage{
-xtset(timevar = NULL, obsvar = NULL)
+xtset(timevar, obsvar)
 }
 \arguments{
 \item{timevar}{the name of the variable to for the time dimension}
@@ -12,11 +12,13 @@ xtset(timevar = NULL, obsvar = NULL)
 \item{obsvar}{the name of the variable to use for the observation dimension}
 }
 \description{
-prepares a panel or time series dataset for lag operations
+prepares a panel dataset for lag operations.  The lag function in R is simply "lag(var,numlags)".  After calling \code{xtset}, this lag function will work on the panel in the way you would expect.
 }
 \examples{
 use(Produc)
 xtset("year", "state")
+gen("Lemp", "lag(emp)")
+listif(vars="emp Lemp")
 reg("emp", "unemp", effect="twoway")
 reg("emp", "unemp", effect="obs")
 reg("emp", "unemp", effect="time")
