@@ -28,6 +28,7 @@ dropif <- function (x)
   eval(substitute({
     rows <- with(data, which(eval(parse(text=x))))
     data <- data[-rows,]}), envir=data.env)
+  postuse()
 }
 
 #' drops variables in varlist format from the dataset
@@ -51,6 +52,7 @@ dropvar <- function (x)
   form <- as.Formula(x)
   vars <- attr(terms(formula(form,lhs=0,rhs=1)), "term.labels")
   eval(substitute({data[,vars] <- NULL}),envir=data.env)
+  postuse()
 }
 
 #' keeps some rows in the dataset and drops the rest
@@ -66,6 +68,7 @@ keepif <- function (x)
 {
   rows <- with(data, which(eval(parse(text=x))))
   eval(substitute({data <- data[rows,]}), envir=data.env)
+  postuse()
 }
 
 #' keeps some variables in the dataset and drops the others
@@ -87,5 +90,7 @@ keepvar <- function (x)
   }
   form <- as.Formula(x)
   vars <- attr(terms(formula(form,lhs=0,rhs=1)), "term.labels")
+
   eval(substitute({data <- data[,vars]}),envir=data.env)
+  postuse()
 }

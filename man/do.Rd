@@ -2,17 +2,19 @@
 % Please edit documentation in R/do.r
 \name{do}
 \alias{do}
-\title{Executes code on the dataset}
+\title{Executes R code on the dataset}
 \usage{
-do(expr)
+do(expr, by = NULL)
 }
 \arguments{
 \item{expr}{an R expression which can use any of the variable names in the current dataset}
+
+\item{by}{a variable list in either "var1 var2 var3" format or in ~var1+var2+var3 format.  The R expression will be applied separately for the data subsetted to each level of the variable list.}
 }
 \description{
-Executes an R expression using variables from the dataset.
+Executes an R expression using variables from the dataset, possibly separately for each level of a given varlist (like the \code{by} prefix in Stata).
 }
 \examples{
 use(cars)
-do({coef(lm(speed~dist))})
+do("{coef(lm(speed~dist))}")
 }

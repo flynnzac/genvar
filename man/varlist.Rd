@@ -4,14 +4,16 @@
 \alias{varlist}
 \title{creates a formula object from a varlist, mostly for internal use.}
 \usage{
-varlist(x)
+varlist(x, regex = FALSE)
 }
 \arguments{
-\item{x}{the varlist to be converted in "var1 var2 var3" format.  Will eventually work with globbing so that "var*" can be used to refer to all variables that begin with var}
+\item{x}{the varlist to be converted in "var1 var2 var3" format.  Can be specified using the \emph{globbing} characters "*" (match zero or more of any character) or "?" (match any single character) like "var*" or "var?" for "var1 var2 var3" or using regular expressions if \code{regex=TRUE} ("var[0-9]+" = "var1 var2 var3").}
+
+\item{regex}{if TRUE, evaluate each string in the varlist \code{x} as a regular expression.  By default, allow for the wildcard character * which matches zero or more of any character or ? which matches any single character (default: FALSE).}
 }
 \value{
 a formula object which can be passed to \code{model.frame}
 }
 \description{
-creates a formula object from a varlist, mostly for internal use.
+A varlist in \code{rata} is either a space-separated string with wildcard characters, "var1 var2 var3 x*", or an R formula object ~var1+var2+var3+x1+x2....  This function converts from the more user-friendly space-separated string format to the formula format.
 }

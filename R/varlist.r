@@ -16,7 +16,7 @@ varlist <- function (x, regex=FALSE)
     x <- gsub("\\?", "\\.", x)
   }
 
-  x <- unique(as.vector(sapply(x, function (u) n[grepl(u,n)])))
+  x <- unique(unlist(as.vector(sapply(x, function (u) n[grepl(u,n)]))))
   as.formula(paste("~",paste0(x,collapse="+"),sep=""))
 }
 

@@ -47,6 +47,14 @@ count("emp <= 1000")
 
 ## test out regression
 use(Produc)
-xtset(timevar="year")
+
 r = reg("emp", "unemp")
 r
+
+xtset(timevar="year")
+r = reg("emp", "unemp", hac="andrews")
+r
+
+keepvar("state year emp unemp")
+
+addobs("state=NA,year=1990,emp=NA,unemp=NA")
