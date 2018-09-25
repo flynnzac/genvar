@@ -38,7 +38,7 @@ gen <- function (var, value, byvar=NULL, subset=NULL, replace=FALSE)
   var <- var
   value <- value
   byvar <- byvar
-  
+
   subsetexpr <- subset
   rm(subset)
   eval(substitute({
@@ -49,28 +49,29 @@ gen <- function (var, value, byvar=NULL, subset=NULL, replace=FALSE)
       subs <- with(data, eval(parse(text=subsetexpr)))
     }
 
-    if (is.null(byvar))
-      byvar.use <- ~rownum
-    else {
+    if (!is.null(byvar))
+    {
       if (inherits(byvar, "formula"))
       {
         byvar.use <- byvar
       } else {
         byvar.use <- varlist(byvar)
       }
+      by.level.data <- model.frame(byvar.use, data=data, na.action=NULL)
+      by.level <- subset(by.level.data, subs)
+      int <- as.character(interaction(by.level.data))
+      s <- split(subset(data,subs),interaction(by.level))
+      res <- sapply(s,
+                    function (u)
+                    {
+                      return(with(u,eval(parse(text=value))))
+                    })
+      data[,var] <- res[match(int,names(s))]
+    } else {
+      data[,var] <- with(data, eval(parse(text=value)))
     }
-    
-    by.level.data <- model.frame(byvar.use, data=data, na.action=NULL)
-    by.level <- subset(by.level.data, subs)
-    
-    int <- as.character(interaction(by.level.data))
-    s <- split(subset(data,subs),interaction(by.level))
-    res <- sapply(s,
-                  function (u)
-                  {
-                    return(with(u,eval(parse(text=value))))
-                  })
-    data[,var] <- res[match(int,names(s))]
+
+
   }), envir=data.env)
 
 }

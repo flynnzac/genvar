@@ -12,11 +12,14 @@
 #' reg("emp", "unemp", effect="twoway")
 #' reg("emp", "unemp", effect="obs")
 #' reg("emp", "unemp", effect="time")
+#' @importFrom "plm" pdata.frame
 #' @export
 xtset <- function (timevar, obsvar)
 {
-  eval(substitute({data <- pdata.frame(data, index=c(obsvar,timevar))}))
+  eval(substitute({data <- pdata.frame(data, index=c(obsvar,timevar))}),
+       envir=data.env)
   eval(substitute({attr(data,"timevar") <- timevar}), envir=data.env)
   eval(substitute({attr(data, "obsvar") <- obsvar}), envir=data.env)
+  postuse()
 }
 

@@ -20,7 +20,7 @@
 #' @examples
 #' use(cars)
 #' describe()
-#' describe("^s")
+#' describe("s*")
 #' @export
 describe <- function(pattern=NULL)
 {
@@ -30,7 +30,10 @@ describe <- function(pattern=NULL)
   if (is.null(pattern))
     names
   else
-    names[grepl(pattern,names)]
+  {
+    toret <- attr(terms(varlist(pattern)),"term.labels")
+    subset(names,toret)
+  }
 }
 
 #' @export

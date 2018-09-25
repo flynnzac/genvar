@@ -20,6 +20,8 @@
 #' @export
 listif <- function (cond=NULL, vars=NULL, ...)
 {
+  cond <- cond
+  vars <- vars
   if (is.null(vars))
     vars <- describe()
   else
