@@ -9,6 +9,7 @@
 #' gen("Lemp", "L(emp)")
 #' gen("L2emp", "L(emp,2)")
 #' headdata(10)
+#' @importFrom "plm" lag
 #' @export
 L <- function (x,k=1,...)
 {

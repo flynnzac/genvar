@@ -15,5 +15,5 @@ lists the names of the variables in the dataset
 \examples{
 use(cars)
 describe()
-describe("^s")
+describe("s*")
 }
