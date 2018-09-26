@@ -8,7 +8,8 @@ Depends: R (>= 3.5.1),
 	       foreign,
          readstata13,
          sandwich,
-         plm
+         plm,
+	 clubSandwich
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

@@ -1,5 +1,5 @@
 library(sandwich)
-
+library(clubSandwich)
 #' regress y on x with robust standard errors, clustered standard errors, HAC standard errors, panel fixed effects, etc
 #'
 #' @param y name of the dependent variable
@@ -7,13 +7,15 @@ library(sandwich)
 #' @param subset conditions to subset the data
 #' @param effect either "twoway", "obs", or "time" for fixed effects,
 #' @param robust whether to use robust standard errors
-#' @param hac which kernel to use for heteroskedastic and auto correlation standard errors
-#' @param cluster the name of the variable to use for clustered standard errors
+#' @param hac which variable to order by to compute heteroskedastic and auto correlation standard errors (if unspecified, do not do HAC correction)
+#' @param cluster a variable list giving the names of the variables to cluster by in producing clustered standard errors
+#' @param rtype gives the type of heteroskedasticity correction to make.  By default, it is "1" to implement HC1 which is the same as Stata's small sample corrected standard errors.  rtype can be any integer from 0 to 3 with each value corresponding to a different heteroskedastic correction (HCx).  See documention for \code{vcovHC} in package \code{sandwich}.
 #' @return b coefficient vector
 #' @return V covariance matrix of coefficients
 #' @importFrom sandwich "vcovHC"
+#' @importFrom clubSandwich "vcovCR"
 #' @export
-reg <- function (y, x, subset=NULL, effect=NULL, robust=TRUE, hac=NULL,cluster=NULL)
+reg <- function (y, x, subset=NULL, effect=NULL, robust=TRUE, hac=NULL,cluster=NULL,rtype=1)
 {
   if (!inherits(x, "formula"))
   {
@@ -30,6 +32,12 @@ reg <- function (y, x, subset=NULL, effect=NULL, robust=TRUE, hac=NULL,cluster=N
   if (!is.null(cluster))
   {
     covtype <- "cluster"
+    if (!inherits(cluster,"formula"))
+    {
+      cluster <- varlist(cluster)
+    }
+
+    cluster <- attr(terms(cluster),"term.labels")
   }
 
   if (!is.null(hac))
@@ -49,37 +57,53 @@ reg <- function (y, x, subset=NULL, effect=NULL, robust=TRUE, hac=NULL,cluster=N
 
     if (covtype=="robust")
     {
-      eval(substitute({v <- vcovHC(model)}),
+      eval(substitute({v <- vcovHC(model,type=paste0("HC",rtype))}),
            envir=data.env)
     }
 
     if (covtype=="hac")
     {
       eval(substitute({v <- vcovHAC(model,
-                                    order.by=varlist(attr(data,"timevar")),data=data)}),
+                                    order.by=data[,hac],
+                                    data=data)}),
            envir=data.env)
     }
-    ret <- eval(substitute({list(b=model$coef, V=v)}), envir=data.env)
-    class(ret) <- "reg"
-    return (ret)
-    
+    if (covtype=="cluster")
+    {
+      eval(substitute({v <- vcovCR(model,
+                                   cluster=interaction(data[,cluster]),
+                                   type=paste0("CR",rtype))}),
+           envir=data.env)
+    }
+
+    if (covtype=="homoskedastic")
+    {
+      eval(substitute({ v <- vcov(model) }),
+           envir=data.env)
+    }
+
+    eval(substitute({
+      last_estimates <- list(b=model$coef, V=v)
+      class(last_estimates) <- "rata_est"
+      last_estimates
+    }), envir=data.env)
   }
 }
 
 #' @export
-print.reg <- function (x,...)
+print.rata_est<- function (x,...)
 {
   print(data.frame(coef=x$b, stddev=sqrt(diag(x$V))))
 }
 
 #' @export
-coef.reg <- function (object,...)
+coef.rata_est<- function (object,...)
 {
   object$b
 }
 
 #' @export
-vcov.reg <- function (object,...)
+vcov.rata_est<- function (object,...)
 {
   object$V
 }

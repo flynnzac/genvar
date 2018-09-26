@@ -17,3 +17,8 @@ capture(expr, silent = FALSE)
 \description{
 captures an expression, returning 1 if there was an error and zero otherwise
 }
+\examples{
+capture({log(1)})
+capture({log(-1)})
+capture({log(x)}) # where x is not an already-created variable
+}

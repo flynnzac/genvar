@@ -5,7 +5,7 @@
 \title{regress y on x with robust standard errors, clustered standard errors, HAC standard errors, panel fixed effects, etc}
 \usage{
 reg(y, x, subset = NULL, effect = NULL, robust = TRUE, hac = NULL,
-  cluster = NULL)
+  cluster = NULL, rtype = 1)
 }
 \arguments{
 \item{y}{name of the dependent variable}
@@ -21,6 +21,8 @@ reg(y, x, subset = NULL, effect = NULL, robust = TRUE, hac = NULL,
 \item{hac}{which kernel to use for heteroskedastic and auto correlation standard errors}
 
 \item{cluster}{the name of the variable to use for clustered standard errors}
+
+\item{rtype}{gives the type of heteroskedasticity correction to make.  By default, it is "1" to implement HC1 which is the same as Stata's small sample corrected standard errors.  rtype can be any integer from 0 to 3 with each value corresponding to a different heteroskedastic correction (HCx).  See documention for \code{vcovHC} in package \code{sandwich}.}
 }
 \value{
 b coefficient vector
