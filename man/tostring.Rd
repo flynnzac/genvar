@@ -2,7 +2,7 @@
 % Please edit documentation in R/convert.r
 \name{tostring}
 \alias{tostring}
-\title{turn a variable of another type into a string variable}
+\title{convert a variable of another type into a string variable}
 \usage{
 tostring(varlist)
 }
@@ -10,5 +10,5 @@ tostring(varlist)
 \item{varlist}{variables to convert, either in the form "var1 var2 var3" or in the form ~var1+var2+var3.}
 }
 \description{
-turn a variable of another type into a string variable
+convert a variable of another type into a string variable
 }

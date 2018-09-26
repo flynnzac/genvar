@@ -2,7 +2,7 @@
 % Please edit documentation in R/convert.r
 \name{destring}
 \alias{destring}
-\title{turn a variable with string type into a numeric value}
+\title{convert a variable with string type into a numeric value}
 \usage{
 destring(varlist)
 }
@@ -10,5 +10,5 @@ destring(varlist)
 \item{varlist}{variables to convert, either in the form "var1 var2 var3" or in the form ~var1+var2+var3.}
 }
 \description{
-turn a variable with string type into a numeric value
+convert a variable with string type into a numeric value
 }
