@@ -26,6 +26,12 @@ fillin <- function (varlist)
   }
 
   eval(substitute({
+    ispanel <- "timevar" %in% names(attributes(data))
+    if (ispanel)
+    {
+      timevar <- attr(data,"timevar")
+      obsvar <- attr(data,"obsvar")
+    }
     vars <- attr(terms(varlist),"term.labels")
     grid.list <- lapply(vars, function (v) 1:length(unique(data[,v])))
     grid <- expand.grid(grid.list)
@@ -41,9 +47,14 @@ fillin <- function (varlist)
     names(filldata) <- vars
     data <- merge(data,filldata,by=vars,all=TRUE)
     postuse()
+    if (ispanel)
+    {
+      xtset(timevar,obsvar)
+    }
     rm(filldata)
     rm(grid)
     rm(grid.list)
     rm(vars)
+
   }), envir=data.env)
 }

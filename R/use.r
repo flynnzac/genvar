@@ -82,6 +82,21 @@ use.function <- function (x, ...)
 
 postuse <- function()
 {
-  eval(substitute({data$rownum <- 1:nrow(data) }),
-       envir=data.env)
+  eval(substitute({
+    data$rownum <- 1:nrow(data)
+  }),
+  envir=data.env)
+}
+
+stringify <- function()
+{
+  eval(substitute({
+    for (i in 1:ncol(data))
+    {
+      if (is.factor(data[,i]))
+      {
+        data[,i] <- as.character(data[,i])
+      }
+    }
+  }), envir=data.env)
 }
