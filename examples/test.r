@@ -57,10 +57,13 @@ r
 r = reg("emp", "unemp", cluster="year")
 r
 
-r = reg("emp", "unemp", effect="twoways", cluster="year")
-r
+##r = reg("emp", "unemp", effect="twoways", cluster="year")
+##r
 
 keepvar("state year emp unemp")
 
-addobs("state=NA,year=1990,emp=NA,unemp=NA")
+addobs("state='Puerto Rico',year=1990,emp=NA,unemp=NA")
 fillin("state year")
+
+r = reg("emp", "unemp", effect="twoways", cluster="year")
+r

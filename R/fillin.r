@@ -24,7 +24,7 @@ fillin <- function (varlist)
   {
     varlist <- varlist(varlist)
   }
-
+  stringify()
   eval(substitute({
     ispanel <- "timevar" %in% names(attributes(data))
     if (ispanel)
