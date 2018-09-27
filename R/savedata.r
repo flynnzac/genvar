@@ -24,3 +24,4 @@ savedata <- function (file)
   eval(substitute({ write.csv(data, file=file, row.names=FALSE) }),
        envir=data.env)
 }
+
