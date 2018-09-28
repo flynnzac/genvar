@@ -30,11 +30,22 @@ addobs <- function (obs)
 #' @export
 addobs.character <- function(obs)
 {
+  stringify()
   lst <- eval(parse(text=paste0("list(",obs,")")))
   lst$rownum <- eval(substitute({max(data[,"rownum"])}),
                      envir=data.env)+1
   eval(substitute({
+    ispanel <-"timevar" %in% names(attributes(data))
+    if (ispanel)
+    {
+      timevar <- attr(data,"timevar")
+      obsvar <- attr(data,"obsvar")
+    }
     data <- rbind(data, lst)
+    if (ispanel)
+    {
+      xtset(timevar,obsvar)
+    }
   }),envir=data.env)
   postuse()
 }
