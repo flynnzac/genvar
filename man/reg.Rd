@@ -10,19 +10,19 @@ reg(y, x, subset = NULL, effect = NULL, robust = TRUE, hac = NULL,
 \arguments{
 \item{y}{name of the dependent variable}
 
-\item{x}{names of the independent variables in either "x1 x2 x3" format or ~x1+x2+x3 format.}
+\item{x}{names of the independent variables in either "x1 x2 x3" format or ~x1+x2+x3 format. To include a variable as a categorical variable (when you would use "i.state" to get state dummies in Stata), include it as "factor(state)".}
 
 \item{subset}{conditions to subset the data}
 
-\item{effect}{either "twoway", "obs", or "time" for fixed effects,}
+\item{effect}{either "twoways", "individual", or "time" for fixed effects.  Dataset must already have been \code{xtset}.}
 
 \item{robust}{whether to use robust standard errors}
 
 \item{hac}{which variable to order by to compute heteroskedastic and auto correlation standard errors (if unspecified, do not do HAC correction)}
 
-\item{cluster}{a variable list giving the names of the variables to cluster by in producing clustered standard errors}
-
 \item{rtype}{gives the type of heteroskedasticity correction to make.  By default, it is "1" to implement HC1 which is the same as Stata's small sample corrected standard errors.  rtype can be any integer from 0 to 3 with each value corresponding to a different heteroskedastic correction (HCx).  See documention for \code{vcovHC} in package \code{sandwich}.}
+
+\item{clustvar}{a variable list giving the names of the variables to cluster by in producing clustered standard errors}
 }
 \value{
 b coefficient vector
@@ -30,5 +30,5 @@ b coefficient vector
 V covariance matrix of coefficients
 }
 \description{
-regress y on x with robust standard errors, clustered standard errors, HAC standard errors, panel fixed effects, etc
+regress y on x with robust standard errors, clustered standard errors, HAC standard errors, panel fixed effects, etc.
 }
