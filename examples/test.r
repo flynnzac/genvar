@@ -46,7 +46,7 @@ count()
 count("emp <= 1000")
 
 ## test out regression
-use(Produc)
+use(Produc, clear=TRUE)
 
 r = reg("emp", "unemp")
 r
@@ -56,14 +56,15 @@ r = reg("emp", "unemp", hac="year")
 r
 r = reg("emp", "unemp", cluster="year")
 r
-
-##r = reg("emp", "unemp", effect="twoways", cluster="year")
-##r
-
+p <- preserve()
 keepvar("state year emp unemp")
 
-addobs("state='Puerto Rico',year=1990,emp=NA,unemp=NA")
+## add some garbage data to show addobs, not real data
+addobs("state='Puerto Rico',year=1990,emp=100,unemp=0.05")
 fillin("state year")
 
 r = reg("emp", "unemp", effect="twoways", cluster="year")
 r
+
+restore(p)
+

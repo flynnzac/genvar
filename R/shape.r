@@ -73,7 +73,7 @@ long_to_wide <- function (data, form)
     }
   }
 
-  eval.parent(use(na.omit(id.data)))
+  eval.parent(use(na.omit(id.data),clear=TRUE))
 
 }
 
@@ -100,6 +100,6 @@ wide_to_long <- function (data, form)
     return(new.data)
   })
 
-  eval.parent(substitute(use(do.call("rbind", s))))
+  eval.parent(substitute(use(do.call("rbind", s),clear=TRUE)))
 }
 

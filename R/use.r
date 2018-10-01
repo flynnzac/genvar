@@ -20,6 +20,7 @@ library(tools)
 #' uses a dataset, marking it as the active dataset
 #'
 #' @param x usually either a data.frame or a csv/dta filename to be imported.  An R function which returns a data.frame can also be specified.
+#' @param clear if TRUE, erase current data if it already exists (default: FALSE).
 #' @importFrom tools "file_ext"
 #' @importFrom readstata13 "read.dta13"
 #' @importFrom foreign "read.dta"
@@ -32,8 +33,16 @@ library(tools)
 #' listif()
 #' dropvar(".*")
 #' @export
-use <- function (x,...)
+use <- function (x,clear=FALSE, ...)
 {
+  if (exists("data", envir=data.env) & !clear)
+  {
+    if (eval(substitute({ is.data.frame(data) }), envir=data.env))
+    {
+      stop("data already exists in memory, will not delete (give option clear=TRUE to overwrite).")
+    }
+  }
+
   UseMethod("use", x)
 }
 

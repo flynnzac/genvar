@@ -4,10 +4,12 @@
 \alias{use}
 \title{uses a dataset, marking it as the active dataset}
 \usage{
-use(x, ...)
+use(x, clear = FALSE, ...)
 }
 \arguments{
 \item{x}{usually either a data.frame or a csv/dta filename to be imported.  An R function which returns a data.frame can also be specified.}
+
+\item{clear}{if TRUE, erase current data if it already exists (default: FALSE).}
 }
 \description{
 uses a dataset, marking it as the active dataset

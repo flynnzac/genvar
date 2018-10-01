@@ -58,7 +58,7 @@ collapse <- function(values, byvar=NULL)
     {
       by.data[,new.names[n]] <- res[n,match(as.character(int),names(s))]
     }
-    use(unique(by.data))
+    use(unique(by.data), clear=TRUE)
   }), envir=data.env)
 
 }
