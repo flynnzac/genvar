@@ -46,7 +46,6 @@ use <- function (x,clear=FALSE, ...)
   UseMethod("use", x)
 }
 
-data.env <- new.env()
 
 #' @export
 use.data.frame <- function (x,...)

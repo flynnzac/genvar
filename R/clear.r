@@ -8,6 +8,6 @@
 #' @export
 clear <- function ()
 {
-  rm(data, envir=data.env)
+  rm("data", envir=data.env)
 }
 

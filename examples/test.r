@@ -1,5 +1,6 @@
 rm(list=ls(all=TRUE))
 library(rata)
+clear()
 data(Produc)
 
 ## "use" loads the data set Produc into memory

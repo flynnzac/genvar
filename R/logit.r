@@ -37,7 +37,10 @@ logit <- function (y, x, subset=NULL, weights=NULL, linkfunc="logit", ...)
     model <- glm(form, family=binomial(link=link), data=data,
                  weights=ifelse(is.null(weights), NULL,
                                 data[,weights]),...)
-    last_estimates <- list(b=coef(model), V=vcov(model))
+    last_estimates <- list(b=coef(model), V=vcov(model),
+                           f=ifelse(linkfunc=="logit",
+                                    function (u) 1/(1+exp(-1*u)),
+                                    function (u) pnorm(u)))
     class(last_estimates) <- "rata_est"
     last_estimates
   }), envir=data.env)
