@@ -40,7 +40,8 @@ logit <- function (y, x, subset=NULL, weights=NULL, linkfunc="logit", ...)
     last_estimates <- list(b=coef(model), V=vcov(model),
                            f=ifelse(linkfunc=="logit",
                                     function (u) 1/(1+exp(-1*u)),
-                                    function (u) pnorm(u)))
+                                    function (u) pnorm(u)),
+                           model=model)
     class(last_estimates) <- "rata_est"
     last_estimates
   }), envir=data.env)

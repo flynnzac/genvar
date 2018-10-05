@@ -118,7 +118,7 @@ reg <- function (y, x, subset=NULL, effect=NULL, robust=TRUE, hac=NULL,cluster=N
   }
 
   eval(substitute({
-    last_estimates <- list(b=model$coef, V=v, f=I, rhs=x)
+    last_estimates <- list(b=model$coef, V=v, f=I, rhs=x, model=model)
     class(last_estimates) <- "rata_est"
     last_estimates
   }), envir=data.env)
