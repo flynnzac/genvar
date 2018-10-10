@@ -15,7 +15,7 @@ The goal of this package is to remove one barrier to using R, a free software st
 
 The package implements an environment where there is one active dataset and commands can be used to modify or reference variables from that dataset by issuing "commands" as opposed to R's standard environment (applying functions to modify objects).
 
-To get a feel for what `rata` looks like see the example in examples/test.r. The syntax is more intuitive than standard R to people who are used to thinking at the (observation, variable) level of a dataset.
+To get a feel for what `rata` looks like see the example in examples/test.r. The syntax is more intuitive (well, hopefully) than standard R to people who are used to thinking at the (observation, variable) level of a dataset.
 
 ## Current State
 
@@ -33,7 +33,7 @@ Variable lists in `rata` are specified by quoting the names of variables like, `
 
 ## Quoted Expressions
 
-Many `rata` commands work by using "quoted expressions" which are bits of code enclosed in quotation marks. For example, to use `rata`'s `gen` command to generate log wages, you might type `gen("lnwage", "log(wage)")`. The second argument is a quoted expression. The quotes are necessary so that `R` does not try to execute `log(wage)` outside of the `rata` environment.
+Many `rata` commands work by using "quoted expressions" which are bits of code enclosed in quotation marks. For example, to use `rata`'s `gen` command to generate log wages, you might type `gen("lnwage", "log(wage)")`. The second argument is a quoted expression. The quotes are necessary so that `R` does not try to execute `log(wage)` outside of the `rata` environment. If you need to use a quotation mark in a quoted expression, escape it like so: `gen("hello", "\"hello\"")` to generate a variable called `hello` that contains the string _hello_ for every observation.
 
 # Basic overview of currently available functions
 
@@ -52,4 +52,4 @@ The data can be reshaped from long-to-wide or from wide-to-long using the `shape
 
 # Licensing
 
-`rata` is licensed under version 3 of the GPL. You are free to use, modify, etc.  If you produce a modified version of `rata`, it too must be made available under the terms of the GPL. The text of the license is included as the file LICENSE in this repository and at https://www.gnu.org/licenses/gpl-3.0.txt.
+`rata` is Free Software. It is licensed under version 3 of the GPL. You are free to use, modify, and redistribute the code, but not without restriction. If you produce a modified version of `rata`, it too must be made available under the terms of the GPL (its source code must be made available and others must also be free to use, modify, and redistribute it). The text of the license is included as the file LICENSE in this repository and at https://www.gnu.org/licenses/gpl-3.0.txt.
