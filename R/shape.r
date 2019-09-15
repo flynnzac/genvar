@@ -56,7 +56,6 @@ long_to_wide <- function (data, form)
 
   id.data[,"reshape"] <- interaction(id.data)
 
-  print(nrow(data))
   ## print(length(unique(interaction(by.data,id.data$reshape))))
   ## if (length(unique(interaction(by.data,id.data$reshape))) != nrow(data))
   ##   stop("id variables do not uniquely identify observations.")

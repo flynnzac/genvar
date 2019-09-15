@@ -15,6 +15,7 @@ describe()
 
 ## sum over emp by year
 collapse("sum(emp)", "year")
+listif()
 
 ## restore original data
 restore(p)
@@ -57,7 +58,7 @@ r = reg("emp", "unemp", hac="year")
 r
 r = reg("emp", "unemp", cluster="year")
 r
-p <- preserve()
+p = preserve()
 keepvar("state year emp unemp")
 
 ## add some garbage data to show addobs, not real data
