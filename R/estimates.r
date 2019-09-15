@@ -1,21 +1,21 @@
-## This file is part of rata.
+## This file is part of arata.
 
-## rata is free software: you can redistribute it and/or modify
+## arata is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
 ## the Free Software Foundation, under version 3 of the License.
 
-## rata is distributed in the hope that it will be useful,
+## arata is distributed in the hope that it will be useful,
 ## but WITHOUT ANY WARRANTY; without even the implied warranty of
 ## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ## GNU General Public License for more details.
 
 ## You should have received a copy of the GNU General Public License
-## along with rata.  If not, see <https://www.gnu.org/licenses/>.
+## along with arata.  If not, see <https://www.gnu.org/licenses/>.
 
 
-#' store \code{rata} estimates
+#' store \code{arata} estimates
 #'
-#' @param name name to use to store current estimates from a \code{rata} estimation function like \code{reg}, \code{logit}, or \code{probit}.
+#' @param name name to use to store current estimates from a \code{arata} estimation function like \code{reg}, \code{logit}, or \code{probit}.
 #' @export
 estimates_store <- function (name)
 {
@@ -23,7 +23,7 @@ estimates_store <- function (name)
        envir=data.env)
 }
 
-#' save \code{rata} estimates
+#' save \code{arata} estimates
 #'
 #' @param file file to save current estimates to.
 #' @export
@@ -32,7 +32,7 @@ estimates_save <- function (file)
   save("last_estimates", file=file, envir=data.env)
 }
 
-#' restore \code{rata} estimates
+#' restore \code{arata} estimates
 #'
 #' @param name name of estimates to be restored
 #' @export
@@ -43,7 +43,7 @@ estimates_restore <- function (name)
   }), envir=data.env)
 }
 
-#' loads \code{rata} estimates from file
+#' loads \code{arata} estimates from file
 #'
 #' @param file file to load estimates from.
 #' @export

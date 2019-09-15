@@ -1,6 +1,6 @@
-#' gets fitted values from a rata regression object
+#' gets fitted values from a arata regression object
 #'
-#' Gets fitted values from a rata regression object.  For panel models, this predicts the non-fixed effects part of the regression.
+#' Gets fitted values from a arata regression object.  For panel models, this predicts the non-fixed effects part of the regression.
 #'
 #'
 #' Operates on the loaded estimation object, see \code{estimates_use}.

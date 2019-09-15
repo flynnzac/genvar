@@ -1,4 +1,4 @@
-Package: rata
+Package: arata
 Title: Manipulate Datasets Using A Stata-like Syntax
 Version: 0.0.1
 Authors@R: person("Zach", "Flynn", email = "zlflynn@gmail.com", role = c("aut", "cre"))
@@ -13,4 +13,4 @@ Depends: R (>= 3.5.1),
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1

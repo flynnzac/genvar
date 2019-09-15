@@ -13,5 +13,5 @@ varlist(x)
 a formula object which can be passed to \code{model.frame}
 }
 \description{
-A varlist in \code{rata} is either a space-separated string with wildcard characters, "var1 var2 var3 x*", or an R formula object ~var1+var2+var3+x1+x2....  This function converts from the more user-friendly space-separated string format to the formula format.
+A varlist in \code{arata} is either a space-separated string with wildcard characters, "var1 var2 var3 x*", or an R formula object ~var1+var2+var3+x1+x2....  This function converts from the more user-friendly space-separated string format to the formula format.
 }

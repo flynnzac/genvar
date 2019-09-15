@@ -2,13 +2,13 @@
 % Please edit documentation in R/estimates.r
 \name{estimates_store}
 \alias{estimates_store}
-\title{store \code{rata} estimates}
+\title{store \code{arata} estimates}
 \usage{
 estimates_store(name)
 }
 \arguments{
-\item{name}{name to use to store current estimates from a \code{rata} estimation function like \code{reg}, \code{logit}, or \code{probit}.}
+\item{name}{name to use to store current estimates from a \code{arata} estimation function like \code{reg}, \code{logit}, or \code{probit}.}
 }
 \description{
-store \code{rata} estimates
+store \code{arata} estimates
 }

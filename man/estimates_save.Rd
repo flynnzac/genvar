@@ -2,7 +2,7 @@
 % Please edit documentation in R/estimates.r
 \name{estimates_save}
 \alias{estimates_save}
-\title{save \code{rata} estimates}
+\title{save \code{arata} estimates}
 \usage{
 estimates_save(file)
 }
@@ -10,5 +10,5 @@ estimates_save(file)
 \item{file}{file to save current estimates to.}
 }
 \description{
-save \code{rata} estimates
+save \code{arata} estimates
 }

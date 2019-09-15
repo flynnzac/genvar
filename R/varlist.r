@@ -1,20 +1,20 @@
-## This file is part of rata.
+## This file is part of arata.
 
-## rata is free software: you can redistribute it and/or modify
+## arata is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
 ## the Free Software Foundation, under version 3 of the License.
 
-## rata is distributed in the hope that it will be useful,
+## arata is distributed in the hope that it will be useful,
 ## but WITHOUT ANY WARRANTY; without even the implied warranty of
 ## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ## GNU General Public License for more details.
 
 ## You should have received a copy of the GNU General Public License
-## along with rata.  If not, see <https://www.gnu.org/licenses/>.
+## along with arata.  If not, see <https://www.gnu.org/licenses/>.
 
 #' creates a formula object from a varlist, mostly for internal use.
 #'
-#' A varlist in \code{rata} is either a space-separated string with wildcard characters, "var1 var2 var3 x*", or an R formula object ~var1+var2+var3+x1+x2....  This function converts from the more user-friendly space-separated string format to the formula format.
+#' A varlist in \code{arata} is either a space-separated string with wildcard characters, "var1 var2 var3 x*", or an R formula object ~var1+var2+var3+x1+x2....  This function converts from the more user-friendly space-separated string format to the formula format.
 #' @param x the varlist to be converted in "var1 var2 var3" format.  Can be specified using the \emph{globbing} characters "*" (match zero or more of any character) or "?" (match any single character) like "var*" or "var?" for "var1 var2 var3" or using regular expressions if \code{regex=TRUE} ("var[0-9]+" = "var1 var2 var3").
 #' @return a formula object which can be passed to \code{model.frame}
 #' @export

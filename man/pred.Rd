@@ -2,12 +2,12 @@
 % Please edit documentation in R/pred.r
 \name{pred}
 \alias{pred}
-\title{gets fitted values from a rata regression object}
+\title{gets fitted values from a arata regression object}
 \usage{
 pred()
 }
 \description{
-Gets fitted values from a rata regression object.  For panel models, this predicts the non-fixed effects part of the regression.
+Gets fitted values from a arata regression object.  For panel models, this predicts the non-fixed effects part of the regression.
 }
 \details{
 Operates on the loaded estimation object, see \code{estimates_use}.
