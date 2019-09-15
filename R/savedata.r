@@ -16,7 +16,7 @@
 #'
 #' @param file a file name to save the current data to
 #' @examples
-#' use(Produc)
+#' use(Produc, clear=TRUE)
 #' savedata("Produc.csv")
 #' @export
 savedata <- function (file)

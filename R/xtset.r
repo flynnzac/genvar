@@ -18,12 +18,12 @@
 #' @param timevar the name of the variable to for the time dimension
 #' @param obsvar the name of the variable to use for the observation dimension
 #' @examples
-#' use(Produc)
+#' use(Produc, clear=TRUE)
 #' xtset("year", "state")
 #' gen("Lemp", "lag(emp)")
 #' listif(vars="emp Lemp")
 #' reg("emp", "unemp", effect="twoway")
-#' reg("emp", "unemp", effect="obs")
+#' reg("emp", "unemp", effect="individual")
 #' reg("emp", "unemp", effect="time")
 #' @importFrom "plm" pdata.frame
 #' @export

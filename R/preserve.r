@@ -18,9 +18,9 @@
 #' @return a value that can be passed to \code{restore} to restore the data set later
 #' @examples
 #' require(stats)
-#' use(cars)
+#' use(cars, clear=TRUE)
 #' p <- preserve()
-#' collapse(~mean(dist)|speed)
+#' collapse("mean(dist)", "speed")
 #' list()
 #' restore(p)
 #' list()
@@ -41,9 +41,9 @@ preserve <- function (data=NULL)
 #' @return the preserved data set
 #' @examples
 #' require(stats)
-#' use(cars)
+#' use(cars, clear=TRUE)
 #' p <- preserve()
-#' collapse(~mean(dist)|speed)
+#' collapse("mean(dist)","speed")
 #' list()
 #' restore(p)
 #' list()

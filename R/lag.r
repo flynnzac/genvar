@@ -17,8 +17,9 @@
 #' a function to take lags and leads with panel data, mostly a wrapper for \code{plm}'s lag function.
 #' @param x variable to lag
 #' @param k how many lags to take?  If a negative number, leads will be generated.
+#' @param ... other options to pass to \code{plm::lag}, does not need to be specified
 #' @examples
-#' use(Produc)
+#' use(Produc, clear=TRUE)
 #' xtset("year", "state")
 #' gen("Lemp", "L(emp)")
 #' gen("L2emp", "L(emp,2)")
@@ -30,7 +31,7 @@ L <- function (x,k=1,...)
   varname <- deparse(substitute(x))
   if ("index" %in% eval(substitute(names(attributes(data)))))
   {
-    return (lag(data[,varname],k,...))
+    eval(substitute(lag(data[,varname],k,...)), envir=data.env)
   } else {
     lag(x,k,...)
   }

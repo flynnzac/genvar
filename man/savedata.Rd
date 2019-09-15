@@ -13,6 +13,6 @@ savedata(file)
 saves data to a CSV file
 }
 \examples{
-use(Produc)
+use(Produc, clear=TRUE)
 savedata("Produc.csv")
 }

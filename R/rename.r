@@ -18,7 +18,7 @@
 #' @param var the name of the variable to rename
 #' @param newvar the new name of the variable
 #' @examples
-#' use(cars)
+#' use(cars, clear=TRUE)
 #' listif()
 #' rename("speed","velocity")
 #' listif()

@@ -17,9 +17,9 @@ restore a dataset from a previous preserve to be currently used
 }
 \examples{
 require(stats)
-use(cars)
+use(cars, clear=TRUE)
 p <- preserve()
-collapse(~mean(dist)|speed)
+collapse("mean(dist)","speed")
 list()
 restore(p)
 list()

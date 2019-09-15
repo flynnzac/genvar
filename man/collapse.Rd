@@ -16,7 +16,7 @@ collapse a data set to produce summary statistics possibly by a set of variables
 }
 \examples{
 data(Produc)
-use(Produc)
+use(Produc, clear=TRUE)
 listif()
 collapse("sum(emp)","year")
 listif()

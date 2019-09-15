@@ -18,7 +18,7 @@
 #' @param action a quoted expression to apply to each variable where the variable is represented in the expression by \code{macro}.
 #' @param macro an expression that will be replaced in \code{action} for each variable, by default \%var.
 #' @examples 
-#' use(cars)
+#' use(cars, clear=TRUE)
 #' forvar("speed dist", "gen('%var2', '%var^2')")
 #' listif()
 #' @export

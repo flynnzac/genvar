@@ -19,7 +19,7 @@
 #' @param expr an R expression which can use any of the variable names in the current dataset
 #' @param by a variable list in either "var1 var2 var3" format or in ~var1+var2+var3 format.  The R expression will be applied separately for the data subsetted to each level of the variable list.
 #' @examples
-#' use(cars)
+#' use(cars, clear=TRUE)
 #' do("{coef(lm(speed~dist))}")
 #' @export
 do <- function(expr, by=NULL)

@@ -10,12 +10,14 @@ L(x, k = 1, ...)
 \item{x}{variable to lag}
 
 \item{k}{how many lags to take?  If a negative number, leads will be generated.}
+
+\item{...}{other options to pass to \code{plm::lag}, does not need to be specified}
 }
 \description{
 a function to take lags and leads with panel data, mostly a wrapper for \code{plm}'s lag function.
 }
 \examples{
-use(Produc)
+use(Produc, clear=TRUE)
 xtset("year", "state")
 gen("Lemp", "L(emp)")
 gen("L2emp", "L(emp,2)")

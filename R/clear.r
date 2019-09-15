@@ -1,7 +1,7 @@
 #' clears the dataset in memory
 #'
 #' @examples
-#' use(cars)
+#' use(cars, clear=TRUE)
 #' listif()
 #' clear()
 #' listif()

@@ -17,7 +17,7 @@ forvar(varlist, action, macro = "\%var")
 apply a function to each of a list of variables
 }
 \examples{
-use(cars)
+use(cars, clear=TRUE)
 forvar("speed dist", "gen('\%var2', '\%var^2')")
 listif()
 }

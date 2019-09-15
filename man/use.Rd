@@ -4,19 +4,23 @@
 \alias{use}
 \title{uses a dataset, marking it as the active dataset}
 \usage{
-use(x, clear = FALSE, ...)
+use(x, clear = FALSE, type = NULL, ...)
 }
 \arguments{
 \item{x}{usually either a data.frame or a csv/dta filename to be imported.  An R function which returns a data.frame can also be specified.}
 
 \item{clear}{if TRUE, erase current data if it already exists (default: FALSE).}
+
+\item{type}{either "csv" or "dta" for loading csv or dta data set}
+
+\item{...}{other options to pass to \code{read.csv} in case x is a csv file or to \code{read.dta} or \code{read.dta13} depending on the type of file being loaded}
 }
 \description{
 uses a dataset, marking it as the active dataset
 }
 \examples{
 Produc
-use(Produc)
+use(Produc, clear=TRUE)
 savedata("Produc.csv")
 listif()
 dropvar(".*")

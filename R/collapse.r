@@ -22,7 +22,7 @@ library(Formula)
 #'
 #' @examples
 #' data(Produc)
-#' use(Produc)
+#' use(Produc, clear=TRUE)
 #' listif()
 #' collapse("sum(emp)","year")
 #' listif()

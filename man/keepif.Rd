@@ -13,7 +13,7 @@ keepif(x)
 keeps some rows in the dataset and drops the rest
 }
 \examples{
-use(cars)
+use(cars, clear=TRUE)
 keepif("speed <= 20")
 listif()
 }

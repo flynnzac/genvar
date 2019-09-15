@@ -5,7 +5,7 @@
 #'
 #' Operates on the loaded estimation object, see \code{estimates_use}.
 #' @examples
-#' use(cars)
+#' use(cars, clear=TRUE)
 #' listif()
 #' reg("dist", "speed")
 #' gen("fit", "pred()")

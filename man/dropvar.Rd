@@ -13,11 +13,11 @@ dropvar(x)
 drops variables in varlist format from the dataset
 }
 \examples{
-use(cars)
+use(cars, clear=TRUE)
 listif()
 dropvar("speed")
 listif()
-use(cars)
+use(cars, clear=TRUE)
 dropvar(~speed)
 listif()
 }

@@ -3,13 +3,13 @@ Title: Manipulate Datasets Using A Stata-like Syntax
 Version: 0.0.1
 Authors@R: person("Zach", "Flynn", email = "zlflynn@gmail.com", role = c("aut", "cre"))
 Description: This package implements tools for manipulating rectangular data sets (data sets with observations and variables) in a way that is familiar to users of a popular, but proprietary, statistical package commonly used in the social sciences.
-Depends: R (>= 3.5.1),
+Depends: R (>= 3.5.1.0),
          Formula,
 	       foreign,
          readstata13,
          sandwich,
          plm,
-	 clubSandwich
+         clubSandwich
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

@@ -13,7 +13,7 @@ count(ifstmt = NULL)
 Counts how many observations (optionally, satisfying a condition)
 }
 \examples{
-use(cars)
+use(cars, clear=TRUE)
 count()
 count("speed <= 20")
 }

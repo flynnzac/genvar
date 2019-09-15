@@ -13,7 +13,7 @@ dropif(x)
 drops rows from the dataset
 }
 \examples{
-use(cars)
+use(cars, clear=TRUE)
 listif()
 dropif("speed <= 20")
 listif()

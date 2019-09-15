@@ -15,11 +15,11 @@ xtset(timevar, obsvar)
 prepares a panel dataset for lag operations.  The lag function in R is simply "lag(var,numlags)".  After calling \code{xtset}, this lag function will work on the panel in the way you would expect.
 }
 \examples{
-use(Produc)
+use(Produc, clear=TRUE)
 xtset("year", "state")
 gen("Lemp", "lag(emp)")
 listif(vars="emp Lemp")
 reg("emp", "unemp", effect="twoway")
-reg("emp", "unemp", effect="obs")
+reg("emp", "unemp", effect="individual")
 reg("emp", "unemp", effect="time")
 }

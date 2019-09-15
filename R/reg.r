@@ -24,7 +24,7 @@ library(clubSandwich)
 #' @param effect either "twoways", "individual", or "time" for fixed effects.  Dataset must already have been \code{xtset}.
 #' @param robust whether to use robust standard errors
 #' @param hac which variable to order by to compute heteroskedastic and auto correlation standard errors (if unspecified, do not do HAC correction)
-#' @param clustvar a variable list giving the names of the variables to cluster by in producing clustered standard errors
+#' @param cluster a variable list giving the names of the variables to cluster by in producing clustered standard errors
 #' @param rtype gives the type of heteroskedasticity correction to make.  By default, it is "1" to implement HC1 which is the same as Stata's small sample corrected standard errors.  rtype can be any integer from 0 to 3 with each value corresponding to a different heteroskedastic correction (HCx).  See documention for \code{vcovHC} in package \code{sandwich}.
 #' @return b coefficient vector
 #' @return V covariance matrix of coefficients

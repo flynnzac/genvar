@@ -15,6 +15,6 @@ do(expr, by = NULL)
 Executes an R expression using variables from the dataset, possibly separately for each level of a given varlist (like the \code{by} prefix in Stata).
 }
 \examples{
-use(cars)
+use(cars, clear=TRUE)
 do("{coef(lm(speed~dist))}")
 }

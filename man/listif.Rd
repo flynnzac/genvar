@@ -10,6 +10,8 @@ listif(cond = NULL, vars = NULL, ...)
 \item{cond}{a conditional expression; only observations that satisfy the condition will be returned.}
 
 \item{vars}{a variable list; only variables in the list will be returned.}
+
+\item{...}{other options, currently ignored}
 }
 \value{
 the part of the dataset that satisfies the condition and contains the specified columns

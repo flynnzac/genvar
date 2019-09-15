@@ -13,10 +13,10 @@ keepvar(x)
 keeps some variables in the dataset and drops the others
 }
 \examples{
-use(cars)
+use(cars, clear=TRUE)
 keepvar("speed")
 listif()
-use(cars)
+use(cars, clear=TRUE)
 keepvar(~speed)
 listif()
 }

@@ -11,13 +11,13 @@ forval(values, expr, macro = "\%val")
 
 \item{expr}{a quoted expression to evaluate in the loop which (presumably) uses the macro expression}
 
-\item{macro}{a word to replace in the quoted expression with the values we are looping over (default: "%val")}
+\item{macro}{a word to replace in the quoted expression with the values we are looping over (default: "\%val")}
 }
 \description{
 Execute code in the datasets environment for all values of a vector, replacing a macro with the value in each iteration
 }
 \examples{
-use(cars)
+use(cars, clear=TRUE)
 listif()
 forval (2:4, "gen('speed\%val', 'speed^\%val')")
 listif()

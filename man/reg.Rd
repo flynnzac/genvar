@@ -20,9 +20,9 @@ reg(y, x, subset = NULL, effect = NULL, robust = TRUE, hac = NULL,
 
 \item{hac}{which variable to order by to compute heteroskedastic and auto correlation standard errors (if unspecified, do not do HAC correction)}
 
-\item{rtype}{gives the type of heteroskedasticity correction to make.  By default, it is "1" to implement HC1 which is the same as Stata's small sample corrected standard errors.  rtype can be any integer from 0 to 3 with each value corresponding to a different heteroskedastic correction (HCx).  See documention for \code{vcovHC} in package \code{sandwich}.}
+\item{cluster}{a variable list giving the names of the variables to cluster by in producing clustered standard errors}
 
-\item{clustvar}{a variable list giving the names of the variables to cluster by in producing clustered standard errors}
+\item{rtype}{gives the type of heteroskedasticity correction to make.  By default, it is "1" to implement HC1 which is the same as Stata's small sample corrected standard errors.  rtype can be any integer from 0 to 3 with each value corresponding to a different heteroskedastic correction (HCx).  See documention for \code{vcovHC} in package \code{sandwich}.}
 }
 \value{
 b coefficient vector

@@ -21,6 +21,8 @@ library(tools)
 #'
 #' @param x usually either a data.frame or a csv/dta filename to be imported.  An R function which returns a data.frame can also be specified.
 #' @param clear if TRUE, erase current data if it already exists (default: FALSE).
+#' @param type either "csv" or "dta" for loading csv or dta data set
+#' @param ... other options to pass to \code{read.csv} in case x is a csv file or to \code{read.dta} or \code{read.dta13} depending on the type of file being loaded
 #' @importFrom tools "file_ext"
 #' @importFrom readstata13 "read.dta13"
 #' @importFrom foreign "read.dta"
@@ -28,12 +30,12 @@ library(tools)
 #' @importFrom utils "read.table"
 #' @examples
 #' Produc
-#' use(Produc)
+#' use(Produc, clear=TRUE)
 #' savedata("Produc.csv")
 #' listif()
 #' dropvar(".*")
 #' @export
-use <- function (x,clear=FALSE, ...)
+use <- function (x,clear=FALSE, type=NULL, ...)
 {
   if (exists("data", envir=data.env) & !clear)
   {
@@ -55,7 +57,7 @@ use.data.frame <- function (x,...)
 }
 
 #' @export
-use.character <- function (x, type=NULL, ...)
+use.character <- function (x, clear=TRUE, type=NULL, ...)
 {
   if (is.null(type))
     type <- file_ext(x)

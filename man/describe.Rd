@@ -13,7 +13,7 @@ describe(pattern = NULL)
 lists the names of the variables in the dataset
 }
 \examples{
-use(cars)
+use(cars, clear=TRUE)
 describe()
 describe("s*")
 }

@@ -15,7 +15,7 @@ rename(var, newvar)
 renames variables in the dataset
 }
 \examples{
-use(cars)
+use(cars, clear=TRUE)
 listif()
 rename("speed","velocity")
 listif()
