@@ -13,10 +13,6 @@
 ## along with arata.  If not, see <https://www.gnu.org/licenses/>.
 
 
-library(foreign)
-library(readstata13)
-library(tools)
-
 #' uses a dataset, marking it as the active dataset
 #'
 #' @param x usually either a data.frame or a csv/dta filename to be imported.  An R function which returns a data.frame can also be specified.

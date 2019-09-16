@@ -19,9 +19,9 @@ The package implements an environment where there is one active dataset and comm
 
 To get a feel for what `arata` looks like see the example in examples/test.r. The syntax is more intuitive (well, hopefully) than standard R to people who are used to thinking at the (observation, variable) level of a dataset.
 
-## Current State
+## Bug Reporting
 
-I started writing the package on September 20, 2018 so it is very much a work-in-progress, but it should mostly work. Report any bugs or feature requests  (if there are features from Stata that you would like to be ported to this environment in R) to the Github repo https://github.com/flynnzac/arata.
+Report any bugs or feature requests  (if there are features from Stata that you would like to be ported to this environment in R) to the Github repo https://github.com/flynnzac/arata.
 
 See below for the basic concepts and the reference manual for a list of commands.
 

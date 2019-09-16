@@ -12,9 +12,6 @@
 ## You should have received a copy of the GNU General Public License
 ## along with arata.  If not, see <https://www.gnu.org/licenses/>.
 
-
-library(sandwich)
-library(clubSandwich)
 #' regress y on x with robust standard errors, clustered standard errors, HAC standard errors, panel fixed effects, etc
 #'
 #' regress y on x with robust standard errors, clustered standard errors, HAC standard errors, panel fixed effects, etc.
@@ -30,6 +27,7 @@ library(clubSandwich)
 #' @return V covariance matrix of coefficients
 #' @importFrom sandwich "vcovHC"
 #' @importFrom clubSandwich "vcovCR"
+#' @importFrom plm "plm"
 #' @export
 reg <- function (y, x, subset=NULL, effect=NULL, robust=TRUE, hac=NULL,cluster=NULL,rtype=1)
 {

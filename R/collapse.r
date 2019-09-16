@@ -12,8 +12,6 @@
 ## You should have received a copy of the GNU General Public License
 ## along with arata.  If not, see <https://www.gnu.org/licenses/>.
 
-library(Formula)
-
 #' collapses a data set by variables using arbitrary aggregation functions
 #'
 #' collapse a data set to produce summary statistics possibly by a set of variables as in the Stata code: collapse (fun1) var1 (fun2) var2, by(byvar1 byvar2).  But this function is more flexible than the Stata version because any arbitrary function can be used in collapse not just traditional aggregation functions.

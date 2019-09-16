@@ -8,6 +8,7 @@
 #' @export
 clear <- function ()
 {
-  rm("data", envir=data.env)
+  if (isloaded())
+    rm("data", envir=data.env)
 }
 
