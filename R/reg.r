@@ -26,6 +26,7 @@
 #' @return b coefficient vector
 #' @return V covariance matrix of coefficients
 #' @importFrom sandwich "vcovHC"
+#' @importFrom sandwich "vcovHAC"
 #' @importFrom clubSandwich "vcovCR"
 #' @importFrom plm "plm"
 #' @export

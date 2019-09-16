@@ -34,9 +34,14 @@ logit <- function (y, x, subset=NULL, weights=NULL, linkfunc="logit", ...)
   form <- as.formula(paste0(y, paste0(x,collapse="")))
 
   eval(substitute({
-    model <- glm(form, family=binomial(link=link), data=data,
-                 weights=ifelse(is.null(weights), NULL,
-                                data[,weights]),...)
+    if (is.null(weights))
+    {
+      model <- glm(form, family=binomial(link=linkfunc), data=data, ...)
+    } else {
+      model <- glm(form, family=binomial(link=linkfunc), data=data,
+                   weights=data[,weights], ...)
+    }
+    
     last_estimates <- list(b=coef(model), V=vcov(model),
                            f=ifelse(linkfunc=="logit",
                                     function (u) 1/(1+exp(-1*u)),

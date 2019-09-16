@@ -24,7 +24,7 @@
 #' @export
 capture <- function (expr, silent=FALSE)
 {
-  val <- try(expr,silent=silent)
+  val <- eval(substitute(try(expr,silent=silent)), envir=data.env)
   return (ifelse(class(val)=="try-error", 1, 0))
 }
 
