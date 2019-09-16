@@ -1,21 +1,21 @@
-## This file is part of arata.
+## This file is part of genvar.
 
-## arata is free software: you can redistribute it and/or modify
+## genvar is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
 ## the Free Software Foundation, under version 3 of the License.
 
-## arata is distributed in the hope that it will be useful,
+## genvar is distributed in the hope that it will be useful,
 ## but WITHOUT ANY WARRANTY; without even the implied warranty of
 ## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ## GNU General Public License for more details.
 
 ## You should have received a copy of the GNU General Public License
-## along with arata.  If not, see <https://www.gnu.org/licenses/>.
+## along with genvar.  If not, see <https://www.gnu.org/licenses/>.
 
 
-#' store \code{arata} estimates
+#' store \code{genvar} estimates
 #'
-#' @param name name to use to store current estimates from a \code{arata} estimation function like \code{reg}, \code{logit}, or \code{probit}.
+#' @param name name to use to store current estimates from a \code{genvar} estimation function like \code{reg}, \code{logit}, or \code{probit}.
 #' @export
 estimates_store <- function (name)
 {
@@ -23,7 +23,7 @@ estimates_store <- function (name)
        envir=data.env)
 }
 
-#' save \code{arata} estimates
+#' save \code{genvar} estimates
 #'
 #' @param file file to save current estimates to.
 #' @export
@@ -32,7 +32,7 @@ estimates_save <- function (file)
   save("last_estimates", file=file, envir=data.env)
 }
 
-#' restore \code{arata} estimates
+#' restore \code{genvar} estimates
 #'
 #' @param name name of estimates to be restored
 #' @export
@@ -43,7 +43,7 @@ estimates_restore <- function (name)
   }), envir=data.env)
 }
 
-#' loads \code{arata} estimates from file
+#' loads \code{genvar} estimates from file
 #'
 #' @param file file to load estimates from.
 #' @export

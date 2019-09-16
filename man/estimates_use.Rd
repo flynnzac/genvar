@@ -2,7 +2,7 @@
 % Please edit documentation in R/estimates.r
 \name{estimates_use}
 \alias{estimates_use}
-\title{loads \code{arata} estimates from file}
+\title{loads \code{genvar} estimates from file}
 \usage{
 estimates_use(file)
 }
@@ -10,5 +10,5 @@ estimates_use(file)
 \item{file}{file to load estimates from.}
 }
 \description{
-loads \code{arata} estimates from file
+loads \code{genvar} estimates from file
 }

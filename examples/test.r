@@ -1,5 +1,5 @@
 rm(list=ls(all=TRUE))
-library(arata)
+library(genvar)
 clear()
 data(Produc)
 

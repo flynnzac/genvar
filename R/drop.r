@@ -1,16 +1,16 @@
-## This file is part of arata.
+## This file is part of genvar.
 
-## arata is free software: you can redistribute it and/or modify
+## genvar is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
 ## the Free Software Foundation, under version 3 of the License.
 
-## arata is distributed in the hope that it will be useful,
+## genvar is distributed in the hope that it will be useful,
 ## but WITHOUT ANY WARRANTY; without even the implied warranty of
 ## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ## GNU General Public License for more details.
 
 ## You should have received a copy of the GNU General Public License
-## along with arata.  If not, see <https://www.gnu.org/licenses/>.
+## along with genvar.  If not, see <https://www.gnu.org/licenses/>.
 
 
 #' drops rows from the dataset
@@ -57,7 +57,7 @@ dropvar <- function (x)
 
 #' keeps some rows in the dataset and drops the rest
 #'
-#' 
+#'
 #' @param x a condition like: "var1==2" in which case observations that satisfy the condition are kept and all others are removed.
 #' @examples
 #' use(cars, clear=TRUE)

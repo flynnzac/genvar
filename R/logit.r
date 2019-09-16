@@ -1,16 +1,16 @@
-## This file is part of arata.
+## This file is part of genvar.
 
-## arata is free software: you can redistribute it and/or modify
+## genvar is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
 ## the Free Software Foundation, under version 3 of the License.
 
-## arata is distributed in the hope that it will be useful,
+## genvar is distributed in the hope that it will be useful,
 ## but WITHOUT ANY WARRANTY; without even the implied warranty of
 ## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ## GNU General Public License for more details.
 
 ## You should have received a copy of the GNU General Public License
-## along with arata.  If not, see <https://www.gnu.org/licenses/>.
+## along with genvar.  If not, see <https://www.gnu.org/licenses/>.
 
 
 #' estimate a logistic regression
@@ -42,7 +42,7 @@ logit <- function (y, x, subset=NULL, weights=NULL, linkfunc="logit", ...)
                                     function (u) 1/(1+exp(-1*u)),
                                     function (u) pnorm(u)),
                            model=model)
-    class(last_estimates) <- "arata_est"
+    class(last_estimates) <- "genvar_est"
     last_estimates
   }), envir=data.env)
 }

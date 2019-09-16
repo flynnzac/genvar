@@ -1,3 +1,17 @@
+## This file is part of genvar.
+
+## genvar is free software: you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation, under version 3 of the License.
+
+## genvar is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+
+## You should have received a copy of the GNU General Public License
+## along with genvar.  If not, see <https://www.gnu.org/licenses/>.
+
 #' Execute code in the datasets environment for all values of a vector, replacing a macro with the value in each iteration
 #'
 #' @param values the vector of values to loop over.  For example, specifying 1:5 would loop over integers from 1 to 5.

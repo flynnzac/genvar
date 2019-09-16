@@ -1,23 +1,23 @@
-## This file is part of arata.
+## This file is part of genvar.
 
-## arata is free software: you can redistribute it and/or modify
+## genvar is free software: you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
 ## the Free Software Foundation, under version 3 of the License.
 
-## arata is distributed in the hope that it will be useful,
+## genvar is distributed in the hope that it will be useful,
 ## but WITHOUT ANY WARRANTY; without even the implied warranty of
 ## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ## GNU General Public License for more details.
 
 ## You should have received a copy of the GNU General Public License
-## along with arata.  If not, see <https://www.gnu.org/licenses/>.
+## along with genvar.  If not, see <https://www.gnu.org/licenses/>.
 
-#' apply a function to each of a list of variables 
+#' apply a function to each of a list of variables
 #'
 #' @param varlist a list of variables in the format ~var1+var2+var3+... or as a vector of names like "var1 var2 var3".
 #' @param action a quoted expression to apply to each variable where the variable is represented in the expression by \code{macro}.
 #' @param macro an expression that will be replaced in \code{action} for each variable, by default \%var.
-#' @examples 
+#' @examples
 #' use(cars, clear=TRUE)
 #' forvar("speed dist", "gen('%var2', '%var^2')")
 #' listif()

@@ -2,7 +2,7 @@
 % Please edit documentation in R/estimates.r
 \name{estimates_restore}
 \alias{estimates_restore}
-\title{restore \code{arata} estimates}
+\title{restore \code{genvar} estimates}
 \usage{
 estimates_restore(name)
 }
@@ -10,5 +10,5 @@ estimates_restore(name)
 \item{name}{name of estimates to be restored}
 }
 \description{
-restore \code{arata} estimates
+restore \code{genvar} estimates
 }

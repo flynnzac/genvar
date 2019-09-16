@@ -1,6 +1,20 @@
-#' gets fitted values from a arata regression object
+## This file is part of genvar.
+
+## genvar is free software: you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation, under version 3 of the License.
+
+## genvar is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+
+## You should have received a copy of the GNU General Public License
+## along with genvar.  If not, see <https://www.gnu.org/licenses/>.
+
+#' gets fitted values from a genvar regression object
 #'
-#' Gets fitted values from a arata regression object.  For panel models, this predicts the non-fixed effects part of the regression.
+#' Gets fitted values from a genvar regression object.  For panel models, this predicts the non-fixed effects part of the regression.
 #'
 #'
 #' Operates on the loaded estimation object, see \code{estimates_use}.
