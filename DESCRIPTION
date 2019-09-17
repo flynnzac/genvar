@@ -2,7 +2,7 @@ Package: genvar
 Title: Manipulates Datasets and Performs Regressions Using an Imperative Syntax
 Version: 0.0.1.0
 Authors@R: person("Zach", "Flynn", email = "zlflynn@gmail.com", role = c("aut", "cre"))
-Description: This package implements tools for manipulating data sets and performing regressions in a way that is familiar to users of a popular, but proprietary, statistical package commonly used in the social sciences. It loads a single dataset into memory and implements a set of imperative commands to modify that data and perform regressions and other analysis on the dataset. This package offers an alternative to standard R's function-based approach to data manipulation.
+Description: Implements tools for manipulating data sets and performing regressions in a way that is familiar to users of a popular, but proprietary, statistical package commonly used in the social sciences. Loads a single dataset into memory and implements a set of imperative commands to modify that data and perform regressions and other analysis on the dataset. Offers an alternative to standard R's function-based approach to data manipulation.
 Depends: R (>= 3.5.1.0)
 Imports: Formula,
 	       foreign,
