@@ -2,12 +2,17 @@
 
 local Linux (Debian), R 3.5.2
 local Windows 10, R 3.5.2
+win-builder R-devel
 
 * R CMD check results
 
 There were no Errors or Warnings.
 
-There were no Notes.
+There were no notes except the Maintainer note:
+NOTE
+Maintainer: Zach Flynn <zlflynn@gmail.com>
+
+
 
 
 
