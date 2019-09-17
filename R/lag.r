@@ -19,6 +19,8 @@
 #' @param k how many lags to take?  If a negative number, leads will be generated.
 #' @param ... other options to pass to \code{plm::lag}, does not need to be specified
 #' @examples
+#' library(plm)
+#' data(Produc)
 #' use(Produc, clear=TRUE)
 #' xtset("year", "state")
 #' gen("Lemp", "L(emp)")

@@ -15,6 +15,7 @@ collapse(values, byvar = NULL)
 collapse a data set to produce summary statistics possibly by a set of variables as in the Stata code: collapse (fun1) var1 (fun2) var2, by(byvar1 byvar2).  But this function is more flexible than the Stata version because any arbitrary function can be used in collapse not just traditional aggregation functions.
 }
 \examples{
+library(plm)
 data(Produc)
 use(Produc, clear=TRUE)
 listif()

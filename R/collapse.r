@@ -19,6 +19,7 @@
 #' @param byvar a variable list giving the variables to collapse by.  The resulting dataset will have as many rows as there are unique levels of the \code{byvar} variable list.
 #'
 #' @examples
+#' library(plm)
 #' data(Produc)
 #' use(Produc, clear=TRUE)
 #' listif()

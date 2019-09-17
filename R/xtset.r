@@ -18,6 +18,8 @@
 #' @param timevar the name of the variable to for the time dimension
 #' @param obsvar the name of the variable to use for the observation dimension
 #' @examples
+#' library(plm)
+#' data(Produc)
 #' use(Produc, clear=TRUE)
 #' xtset("year", "state")
 #' gen("Lemp", "lag(emp)")

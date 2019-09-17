@@ -17,6 +17,8 @@ L(x, k = 1, ...)
 a function to take lags and leads with panel data, mostly a wrapper for \code{plm}'s lag function.
 }
 \examples{
+library(plm)
+data(Produc)
 use(Produc, clear=TRUE)
 xtset("year", "state")
 gen("Lemp", "L(emp)")

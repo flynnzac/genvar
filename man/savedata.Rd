@@ -13,6 +13,8 @@ savedata(file)
 saves data to a CSV file
 }
 \examples{
+library(plm)
+data(Produc)
 use(Produc, clear=TRUE)
 savedata("Produc.csv")
 }

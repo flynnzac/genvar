@@ -19,7 +19,8 @@ use(x, clear = FALSE, type = NULL, ...)
 uses a dataset, marking it as the active dataset
 }
 \examples{
-Produc
+library(plm)
+data(Produc)
 use(Produc, clear=TRUE)
 savedata("Produc.csv")
 listif()

@@ -25,7 +25,8 @@
 #' @importFrom utils "read.csv"
 #' @importFrom utils "read.table"
 #' @examples
-#' Produc
+#' library(plm)
+#' data(Produc)
 #' use(Produc, clear=TRUE)
 #' savedata("Produc.csv")
 #' listif()
