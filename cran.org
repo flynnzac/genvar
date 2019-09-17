@@ -8,12 +8,10 @@ win-builder R-devel
 
 There were no Errors or Warnings.
 
-There was 1 Note:
+There were no notes except the Maintainer note:
+NOTE
+Maintainer: Zach Flynn <zlflynn@gmail.com>
 
->   Maintainer: 'Zach Flynn <zlflynn@gmail.com>'
->   New submission
-
-Which I assume is just a note that I am a new submitter or that the package is new.
 
 
 

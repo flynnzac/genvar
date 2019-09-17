@@ -15,11 +15,6 @@
 #' saves data to a CSV file
 #'
 #' @param file a file name to save the current data to
-#' @examples
-#' library(plm)
-#' data(Produc)
-#' use(Produc, clear=TRUE)
-#' savedata("Produc.csv")
 #' @export
 savedata <- function (file)
 {
