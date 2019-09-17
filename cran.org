@@ -2,12 +2,20 @@
 
 local Linux (Debian), R 3.5.2
 local Windows 10, R 3.5.2
+win-builder R-devel
 
 * R CMD check results
 
 There were no Errors or Warnings.
 
-There were no Notes.
+There was 1 Note:
+
+>   Maintainer: 'Zach Flynn <zlflynn@gmail.com>'
+>   New submission
+
+Which I assume is just a note that I am a new submitter or that the package is new.
+
+
 
 
 
