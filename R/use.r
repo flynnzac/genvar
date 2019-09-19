@@ -28,7 +28,6 @@
 #' library(plm)
 #' data(Produc)
 #' use(Produc, clear=TRUE)
-#' savedata("Produc.csv")
 #' listif()
 #' dropvar(".*")
 #' @export
