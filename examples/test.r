@@ -1,6 +1,7 @@
 rm(list=ls(all=TRUE))
 library(genvar)
 clear()
+library(plm)
 data(Produc)
 
 ## "use" loads the data set Produc into memory
