@@ -74,3 +74,6 @@ restore(p)
 gen("empmedian", "emp > median(emp)")
 
 r = logit("empmedian", "unemp")
+
+data = getdata()
+
