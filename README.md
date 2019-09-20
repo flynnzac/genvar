@@ -11,7 +11,7 @@ library(genvar)
 ```
 
 ## Motivation
-The goal of this package is to remove one barrier to using R, a free software statistical package, for researchers in the social sciences who are used to Stata's data model and imperative syntax.  Stata assumes a rectangular model for data (there are observations and variables) while R allow for more flexible data structures. Stata also uses an imperative language where commands intentionally modify the state of the dataset while R uses a more function-based syntax. There are advantages to R's additional flexibility, but in the social sciences, data is almost always in the (observation, variable) framework, the Stata way of working with data is ingrained, and the additional flexibility of R can make things that are routine in Stata more difficult because the user has to know a much wider variety of functions to get the desired result.  This package solves the problem by implementing a Stata-like method for manipulating data in R so that this data model (which I will call the "command-on-data" model) is available in a free software package. 
+The goal of this package is to remove one barrier to using R, a free software statistical package, for researchers in the social sciences who are used to Stata's data model and imperative syntax.  Stata assumes a rectangular model for data (there are observations and variables) while R allow for more flexible data structures. Stata also uses an imperative language where commands intentionally modify the state of the dataset while R uses a more function-based syntax. There are advantages to R's additional flexibility, but in the social sciences, data is almost always in the (observation, variable) framework, the Stata way of working with data is ingrained, and the additional flexibility of R can make things that are routine in Stata more difficult because the user has to know a much wider variety of functions to get the desired result.  This package solves the problem by implementing a Stata-like method for manipulating data in R so that this data modification approach (which I will call the "imperative" approach because it involves issuing commands to modify state) is available in a free software package. 
 
 The package implements an environment where there is one active dataset and commands can be used to modify or reference variables from that dataset by issuing "commands" as opposed to R's standard environment (applying functions to objects and returning values).
 
@@ -55,7 +55,4 @@ Let me know if you have any feature requests!
 
 Check out the `examples` folder for examples. `test.r` shows most of the features.
 
-# Licensing
-
-`genvar` is Free Software. It is licensed under version 3 of the GPL. You are free to use, modify, and redistribute the code, but not without restriction. If you produce and publicly release a modified version of `genvar`, it too must be made available under the terms of the GPL (its source code must be made available and others must also be free to use, modify, and redistribute it). The text of the license is included as the file LICENSE in this repository and at https://www.gnu.org/licenses/gpl-3.0.txt.
 

@@ -22,7 +22,6 @@ uses a dataset, marking it as the active dataset
 library(plm)
 data(Produc)
 use(Produc, clear=TRUE)
-savedata("Produc.csv")
 listif()
 dropvar(".*")
 }
