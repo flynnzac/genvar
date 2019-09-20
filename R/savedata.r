@@ -12,13 +12,18 @@
 ## You should have received a copy of the GNU General Public License
 ## along with genvar.  If not, see <https://www.gnu.org/licenses/>.
 
-#' saves data to a CSV file
+#' saves data to a CSV or RDS file
 #'
 #' @param file a file name to save the current data to
+#' @param rds whether to save the file to an RDS file (default: FALSE)
 #' @export
-savedata <- function (file)
+savedata <- function (file, rds=FALSE)
 {
-  eval(substitute({ write.csv(data, file=file, row.names=FALSE) }),
-       envir=data.env)
+  if (rds)
+    eval(substitute({ saveRDS(data, file=file) }),
+         envir=data.env)
+  else
+    eval(substitute({ write.csv(data, file=file, row.names=FALSE) }),
+         envir=data.env)
 }
 

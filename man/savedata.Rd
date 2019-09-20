@@ -2,13 +2,15 @@
 % Please edit documentation in R/savedata.r
 \name{savedata}
 \alias{savedata}
-\title{saves data to a CSV file}
+\title{saves data to a CSV or RDS file}
 \usage{
-savedata(file)
+savedata(file, rds = FALSE)
 }
 \arguments{
 \item{file}{a file name to save the current data to}
+
+\item{rds}{whether to save the file to an RDS file (default: FALSE)}
 }
 \description{
-saves data to a CSV file
+saves data to a CSV or RDS file
 }
