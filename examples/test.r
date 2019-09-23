@@ -71,6 +71,22 @@ r
 
 restore(p)
 
+## Binary regression
+
 gen("empmedian", "emp > median(emp)")
 
 r = logit("empmedian", "unemp")
+
+## Show a graph of fraction employment over time
+
+### Prepare data
+
+gen("laborforce", "emp/(1-unemp/100)")
+empfrac = function(emp, laborforce) sum(emp)/sum(laborforce)
+collapse("empfrac(emp,laborforce)", "year")
+rename("empfrac(emp, laborforce)", "empfrac")
+destring("year")
+
+### Plot data
+
+bigraph("connected", xvars="year", yvars="empfrac", title="Employment Percentage over Time", style="solid", color="black", size="3")

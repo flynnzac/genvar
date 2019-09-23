@@ -52,7 +52,7 @@ destring <- function (varlist)
     }
 
     gen(vars[v],
-        paste("as.numeric(", vars[v], ")",sep=""),
+        paste("as.numeric(as.character(", vars[v], "))",sep=""),
         replace=TRUE)
 
   }

@@ -1,11 +1,20 @@
+#' command to graph bivariate relationships
+#'
+#' bigraph plots bivariate relationships.  it can plot multiple relationships on the same graph.
+#' @param type a quoted list of plot types ("line" for line graphs, "connected" for line graphs with points indicating data points, and "scatter" for graphs with points for the data points)
+#' 
 #' @export
-bigraph <- function (type, yvars, xvars, by=NULL,
+bigraph <- function (type, xvars, yvars,
                      xlines=NULL, ylines=NULL,
                      title=NULL, xlabel=NULL, ylabel=NULL,
-                     xrange=NULL, yrange=NULL,
+                     xrange, yrange,
                      style=NULL, color=NULL, size=NULL,
-                     output="screen", resolution="480x480")
+                     output="screen", resolution="480x480",
+                     file)
 {
+  if (!isloaded())
+    stop("Data not loaded.")
+  
   if (!is.null(xlines))
   {
     if (inherits(xlines, "character"))
@@ -30,14 +39,22 @@ bigraph <- function (type, yvars, xvars, by=NULL,
     }
   }
 
-  if (!is.null(xrange))
+  if (!missing(xrange))
   {
     xrange <- as.numeric(strsplit(xrange, " ")[[1]])
+    if (length(xrange) != 2)
+    {
+      stop("xrange should have two elements.")
+    }
   }
 
-  if (!is.null(yrange))
+  if (!missing(yrange))
   {
     yrange <- as.numeric(strsplit(yrange, " ")[[1]])
+    if (length(yrange) != 2)
+    {
+      stop("yrange should have two elements.")
+    }
   }
 
   type <- strsplit(type, " ")[[1]]
@@ -45,7 +62,7 @@ bigraph <- function (type, yvars, xvars, by=NULL,
   if (!is.null(style))
   {
     style <- strsplit(style, " ")[[1]]
-  }
+  } 
 
   if (!is.null(color))
   {
@@ -70,8 +87,9 @@ bigraph <- function (type, yvars, xvars, by=NULL,
         {
           panel.lines(data[,xvars[tp]],
                       data[,yvars[tp]],
-                      lty=style[tp],
-                      lwd=size[tp], col=color[tp])
+                      lty=ifelse(is.null(style), quote(expr =), style[tp]),
+                      lwd=ifelse(is.null(size), quote(expr =), size[tp]),
+                      col=ifelse(is.null(color), quote(expr =), color[tp]))
         }
 
         if (type[tp] == "connected")
@@ -79,16 +97,17 @@ bigraph <- function (type, yvars, xvars, by=NULL,
           panel.lines(data[,xvars[tp]],
                       data[,yvars[tp]],
                       type="b",
-                      lty=style[tp],
-                      lwd=size[tp], col=color[tp])
+                      lty=ifelse(is.null(style), quote(expr =), style[tp]),
+                      lwd=ifelse(is.null(size), quote(expr =), size[tp]),
+                      col=ifelse(is.null(color), quote(expr =), color[tp]))
         }
 
-        if (type[tp] == "points")
+        if (type[tp] == "scatter")
         {
           panel.points(data[,xvars[tp]],
                        data[,yvars[tp]],
-                       cex=size[tp],
-                       col=color[tp])
+                       cex=ifelse(is.null(size), quote(expr =), size[tp]),
+                       col=ifelse(is.null(color), quote(expr =), color[tp]))
         }
                        
       }
@@ -105,18 +124,31 @@ bigraph <- function (type, yvars, xvars, by=NULL,
       {
         for (i in 1:length(ylines))
         {
-          panel.abline(v=ylines[i])
+          panel.abline(h=ylines[i])
         }
       }
 
-      
-
     }
+
+    curplot <- xyplot(form, data=data, panel=plot_function,
+                      xlab=xlabel, ylab=ylabel, main=title,
+                      xlim=xrange, ylim=yrange)
+
+    if (output=="screen")
+    {
+      print(curplot)
+    }
+
+    if (output=="png")
+    {
+      res <- as.numeric(strsplit(resolution, "x")[[1]])
+      png(file, width=res[1], height=res[2])
+      print(curplot)
+      dev.off()
+    }
+
     
-    curplot <- xyplot(form, data=data, panel=plot_function)
-    print(curplot)
   }), envir=data.env)
   
 }
 
-##    showgraph  - a function to show graph with other font, resolution, output options from xyplot object
