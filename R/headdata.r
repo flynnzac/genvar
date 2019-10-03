@@ -18,6 +18,7 @@
 #'@export
 headdata <- function (num)
 {
+  assert_loaded()
   listif(paste0("rownum <= ", num))
 }
 
@@ -27,6 +28,7 @@ headdata <- function (num)
 #'@export
 taildata <- function (num)
 {
+  assert_loaded()
   maxr <- eval(substitute({nrow(data)}), envir=data.env)
   listif(paste0("rownum > ", maxr-num))
 }

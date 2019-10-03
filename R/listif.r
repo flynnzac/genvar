@@ -21,22 +21,21 @@
 #' @export
 listif <- function (cond=NULL, vars=NULL, ...)
 {
-  if (isloaded())
+  assert_loaded()
+  cond <- cond
+  vars <- vars
+  if (is.null(vars))
+    vars <- describe()
+  else
   {
-    cond <- cond
-    vars <- vars
-    if (is.null(vars))
-      vars <- describe()
-    else
-    {
-      if (!inherits(vars,"formula"))
-        vars <- varlist(vars)
-      vars <- attr(terms(vars), "term.labels")
-    }
-    if (is.null(cond))
-      eval(substitute({data[,vars]}), envir=data.env)
-    else
-      eval(substitute({subset(data[,vars],with(data,eval(parse(text=cond))))}), envir=data.env)
+    if (!inherits(vars,"formula"))
+      vars <- varlist(vars)
+    vars <- attr(terms(vars), "term.labels")
   }
+  if (is.null(cond))
+    eval(substitute({data[,vars]}), envir=data.env)
+  else
+    eval(substitute({subset(data[,vars],with(data,eval(parse(text=cond))))}), envir=data.env)
+
 }
 

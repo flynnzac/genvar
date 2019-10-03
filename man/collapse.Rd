@@ -11,6 +11,9 @@ collapse(values, byvar = NULL)
 
 \item{byvar}{a variable list giving the variables to collapse by.  The resulting dataset will have as many rows as there are unique levels of the \code{byvar} variable list.}
 }
+\value{
+returns NULL, invisibly
+}
 \description{
 collapse a data set to produce summary statistics possibly by a set of variables as in the Stata code: collapse (fun1) var1 (fun2) var2, by(byvar1 byvar2).  But this function is more flexible than the Stata version because any arbitrary function can be used in collapse not just traditional aggregation functions.
 }

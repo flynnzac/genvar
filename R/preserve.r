@@ -27,6 +27,7 @@
 #' @export
 preserve <- function (data=NULL)
 {
+  assert_loaded()
   if (is.null(data))
     data <- get("data", envir=data.env)
 
@@ -38,6 +39,7 @@ preserve <- function (data=NULL)
 
 #' restore a dataset from a previous preserve to be currently used
 #' @param envir a previous preserve value.
+#' @param replace if TRUE, restore even if another dataset is in memory.  If FALSE, do not. 
 #' @return the preserved data set
 #' @examples
 #' require(stats)
@@ -48,8 +50,12 @@ preserve <- function (data=NULL)
 #' restore(p)
 #' list()
 #' @export
-restore <- function (envir)
+restore <- function (envir, replace=FALSE)
 {
+  if (is_loaded() && !replace)
+  {
+    stop("Dataset already in memory. Use replace=TRUE to overwrite.")
+  }
   assign("data", get("data", envir=envir), envir=data.env)
 }
 

@@ -1,6 +1,6 @@
 rm(list=ls(all=TRUE))
 library(genvar)
-clear()
+capture(clear())
 library(plm)
 data(Produc)
 
@@ -19,7 +19,7 @@ collapse("sum(emp)", "year")
 listif()
 
 ## restore original data
-restore(p)
+restore(p, replace=TRUE)
 
 ## reshape dataset from (state,year,emp) to (state,emp1970,emp1971,...)
 shape(state~emp|year, direction="wide")
@@ -69,7 +69,7 @@ fillin("state year")
 r = reg("emp", "unemp", effect="twoways", cluster="year")
 r
 
-restore(p)
+restore(p, replace=TRUE)
 
 ## Binary regression
 

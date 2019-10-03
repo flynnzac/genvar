@@ -9,6 +9,9 @@ count(ifstmt = NULL)
 \arguments{
 \item{ifstmt}{an optional argument which gives an condition that must be met for the observation to be counted}
 }
+\value{
+returns NULL, invisibly
+}
 \description{
 Counts how many observations (optionally, satisfying a condition)
 }

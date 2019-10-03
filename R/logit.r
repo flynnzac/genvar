@@ -26,6 +26,8 @@
 #' @export
 logit <- function (y, x, subset=NULL, weights=NULL, linkfunc="logit", ...)
 {
+  assert_loaded()
+  
   if (!inherits(x, "formula"))
   {
     x <- varlist(x)

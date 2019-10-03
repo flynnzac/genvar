@@ -17,7 +17,7 @@
 #' collapse a data set to produce summary statistics possibly by a set of variables as in the Stata code: collapse (fun1) var1 (fun2) var2, by(byvar1 byvar2).  But this function is more flexible than the Stata version because any arbitrary function can be used in collapse not just traditional aggregation functions.
 #' @param values an argument with the form \code{fun1(var1) fun2(var2) fun3(var3,var4)} describe the aggregations to be performed where fun1, fun2, fun3 are most likely aggregation functions like "sum", "mean", "max", "median", etc. But could also be "reg" to perform regressions on different subsets, for example.
 #' @param byvar a variable list giving the variables to collapse by.  The resulting dataset will have as many rows as there are unique levels of the \code{byvar} variable list.
-#'
+#' @return returns NULL, invisibly
 #' @examples
 #' library(plm)
 #' data(Produc)
@@ -29,6 +29,7 @@
 #' @export
 collapse <- function(values, byvar=NULL)
 {
+  assert_loaded()
   if (!inherits(values, "formula"))
   {
     values <- varlist(values)
@@ -59,5 +60,7 @@ collapse <- function(values, byvar=NULL)
     }
     use(unique(by.data), clear=TRUE)
   }), envir=data.env)
+
+  invisible(NULL)
 
 }

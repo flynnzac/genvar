@@ -31,6 +31,7 @@
 #' @export
 xtset <- function (timevar, obsvar)
 {
+  assert_loaded()
   eval(substitute({data <- pdata.frame(data, index=c(obsvar,timevar))}),
        envir=data.env)
   eval(substitute({attr(data,"timevar") <- timevar}), envir=data.env)

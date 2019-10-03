@@ -25,6 +25,7 @@
 #' @export
 rename <- function (var, newvar)
 {
+  assert_loaded()
   eval(substitute({
     names(data)[names(data)==var] <- newvar
   }), envir=data.env)

@@ -12,19 +12,22 @@
 ## You should have received a copy of the GNU General Public License
 ## along with genvar.  If not, see <https://www.gnu.org/licenses/>.
 
-#' captures an expression, returning 1 if there was an error and zero otherwise
+#' captures an expression, setting \code{getret("error")} to TRUE if there was an error and FALSE otherwise
 #'
 #' @param expr an expression to be evaluated
 #' @param silent if TRUE,  suppress error messages from printing (default: FALSE)
-#' @return 0 if the expression successfully ran and 1 otherwise
+#' @return FALSE if the expression successfully ran and TRUE otherwise also sets getret("error") to TRUE or FALSE as well
 #' @examples
 #' capture({log(1)})
+#' getret("error")
 #' capture({log(-1)})
-#' capture({log(x)}) # where x is not an already-created variable
+#' getret("error")
 #' @export
 capture <- function (expr, silent=FALSE)
 {
   val <- eval(substitute(try(expr,silent=silent)), envir=data.env)
-  return (ifelse(class(val)=="try-error", 1, 0))
+  setret("error", class(val)=="try-error")
+
+  class(val)=="try-error"
 }
 

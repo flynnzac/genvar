@@ -12,7 +12,22 @@
 ## You should have received a copy of the GNU General Public License
 ## along with genvar.  If not, see <https://www.gnu.org/licenses/>.
 
-isloaded <- function ()
+#' a command to determine whether data is loaded
+#'
+#' @return returns TRUE if dataset is loaded in genvar and FALSE otherwise
+#' @export
+is_loaded <- function ()
 {
   eval(substitute({is.data.frame(data)}), envir=data.env)
 }
+
+#' assert a dataset is loaded in genvar and error otherwise
+#' @export
+assert_loaded <- function ()
+{
+  if (!is_loaded())
+  {
+    stop("Dataset not loaded.")
+  }
+}
+

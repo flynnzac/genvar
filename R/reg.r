@@ -32,6 +32,7 @@
 #' @export
 reg <- function (y, x, subset=NULL, effect=NULL, robust=TRUE, hac=NULL,cluster=NULL,rtype=1)
 {
+  assert_loaded()
   if (!inherits(x, "formula"))
   {
     x <- varlist(x)

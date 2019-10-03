@@ -31,6 +31,7 @@
 #' @export
 shape <- function (form, direction="long")
 {
+  assert_loaded()
   if (!is.element(direction,c("long","wide")))
     stop("Direction should be either 'long' or 'wide'.")
 

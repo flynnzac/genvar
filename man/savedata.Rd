@@ -11,6 +11,14 @@ savedata(file, rds = FALSE)
 
 \item{rds}{whether to save the file to an RDS file (default: FALSE)}
 }
+\value{
+returns \code{NULL}
+}
 \description{
 saves data to a CSV or RDS file
+}
+\examples{
+use(cars, clear=TRUE)
+savedata(file.path(tempdir(), "cars.csv"))
+savedata(file.path(tempdir(), "cars.rds"), rds=TRUE)
 }

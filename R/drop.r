@@ -24,7 +24,7 @@
 #'@export
 dropif <- function (x)
 {
-
+  assert_loaded()
   eval(substitute({
     rows <- with(data, which(eval(parse(text=x))))
     data <- data[-rows,]}), envir=data.env)
@@ -44,6 +44,7 @@ dropif <- function (x)
 #' @export
 dropvar <- function (x)
 {
+  assert_loaded()
   if (!inherits(x,"formula"))
   {
     x <- varlist(x)
@@ -66,6 +67,7 @@ dropvar <- function (x)
 #' @export
 keepif <- function (x)
 {
+  assert_loaded()
   rows <- eval(substitute(with(data, which(eval(parse(text=x))))),
                envir=data.env)
   eval(substitute({data <- data[rows,]}), envir=data.env)
@@ -85,6 +87,7 @@ keepif <- function (x)
 #'@export
 keepvar <- function (x)
 {
+  assert_loaded()
   if (!inherits(x,"formula"))
   {
     x <- varlist(x)

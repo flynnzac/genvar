@@ -6,8 +6,11 @@
 \usage{
 clear()
 }
+\value{
+returns NULL invisibly
+}
 \description{
-clears the dataset in memory
+removes a dataset from memory, errors if no dataset is loaded
 }
 \examples{
 use(cars, clear=TRUE)

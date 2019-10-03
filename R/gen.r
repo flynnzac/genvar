@@ -28,7 +28,7 @@
 #' @export
 gen <- function (var, value, byvar=NULL, subset=NULL, replace=FALSE)
 {
-  ## replace this clunky formula syntax with gen("varname", value, by=NULL,..) because by is an infrequent option and it makes string manipulation difficult
+  assert_loaded()
   if (replace==FALSE && var %in% describe())
   {
     stop(paste("replace=FALSE and variable ", var, " already in data. Call with option replace=TRUE to replace data.",sep=""))

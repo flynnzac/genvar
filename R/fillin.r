@@ -20,6 +20,7 @@
 #' @export
 fillin <- function (varlist)
 {
+  assert_loaded()
   if (!inherits(varlist,"formula"))
   {
     varlist <- varlist(varlist)

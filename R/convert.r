@@ -16,9 +16,15 @@
 #' convert a variable of another type into a string variable
 #'
 #' @param varlist variables to convert, either in the form "var1 var2 var3" or in the form ~var1+var2+var3.
+#' @return returns NULL, invisibly
+#' @examples
+#' use(cars, clear=TRUE)
+#' tostring("speed")
+#' listif()
 #' @export
 tostring <- function (varlist)
 {
+  assert_loaded()
   if (!inherits(varlist,"formula"))
   {
     varlist <- varlist(varlist)
@@ -29,14 +35,26 @@ tostring <- function (varlist)
     gen(v,paste("as.character(",v,")",sep=""),
         replace=TRUE)
   }
+
+  invisible(NULL)
 }
 
 #' convert a variable with string type into a numeric value
 #'
 #' @param varlist variables to convert, either in the form "var1 var2 var3" or in the form ~var1+var2+var3.
+#' @return returns NULL, invisibly
+#' @examples
+#' use(cars, replace=TRUE)
+#' tostring("speed")
+#' listif()
+#' describe()
+#' destring("speed")
+#' listif()
+#' describe()
 #' @export
 destring <- function (varlist)
 {
+  assert_loaded()
   if (!inherits(varlist,"formula"))
   {
     varlist <- varlist(varlist)

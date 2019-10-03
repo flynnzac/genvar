@@ -20,6 +20,7 @@
 #' @export
 summarize <- function (varlist, detail=FALSE)
 {
+  assert_loaded()
   if (!inherits(varlist, "formula"))
   {
     varlist <- varlist(varlist)

@@ -17,3 +17,16 @@ addobs(obs)
 \description{
 Add observations to the data set, similar in functionality to Stata's append command
 }
+\examples{
+library(plm)
+data(Produc)
+use(Produc)
+addobs(10)
+listif()
+keepvar("state year emp unemp")
+addobs("state='Puerto Rico',year=1990,emp=100,unemp=5")
+listif()
+df <- data.frame(state=rep("Puerto Rico", times=2), year=1991:1992,emp=c(102,104),unemp=c(4.9,5.1))
+addobs(df)
+listif()
+}

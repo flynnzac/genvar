@@ -21,9 +21,22 @@
 #' \item A comma-separated string in the following format: "var1=1,var2=2,var3=3" which inputs a single observation.
 #' \item An integer in which case \code{obs} entirely missing observation are added to the dataset
 #' }
+#' @examples
+#' library(plm)
+#' data(Produc)
+#' use(Produc)
+#' addobs(10)
+#' listif()
+#' keepvar("state year emp unemp")
+#' addobs("state='Puerto Rico',year=1990,emp=100,unemp=5")
+#' listif()
+#' df <- data.frame(state=rep("Puerto Rico", times=2), year=1991:1992,emp=c(102,104),unemp=c(4.9,5.1))
+#' addobs(df)
+#' listif()
 #' @export
 addobs <- function (obs)
 {
+  assert_loaded()
   UseMethod("addobs",obs)
 }
 

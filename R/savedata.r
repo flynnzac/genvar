@@ -16,14 +16,22 @@
 #'
 #' @param file a file name to save the current data to
 #' @param rds whether to save the file to an RDS file (default: FALSE)
+#' @return returns \code{NULL}
+#' @examples
+#' use(cars, clear=TRUE)
+#' savedata(file.path(tempdir(), "cars.csv"))
+#' savedata(file.path(tempdir(), "cars.rds"), rds=TRUE)
 #' @export
 savedata <- function (file, rds=FALSE)
 {
+  assert_loaded()
   if (rds)
     eval(substitute({ saveRDS(data, file=file) }),
          envir=data.env)
   else
     eval(substitute({ write.csv(data, file=file, row.names=FALSE) }),
          envir=data.env)
+
+  NULL
 }
 

@@ -88,6 +88,7 @@ use.function <- function (x, ...)
 
 postuse <- function()
 {
+  assert_loaded()
   eval(substitute({
     data$rownum <- 1:nrow(data)
   }),
@@ -96,6 +97,7 @@ postuse <- function()
 
 stringify <- function()
 {
+  assert_loaded()
   eval(substitute({
     for (i in 1:ncol(data))
     {

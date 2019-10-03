@@ -24,6 +24,7 @@
 #' @export
 do <- function(expr, by=NULL)
 {
+  assert_loaded()
   if (is.null(by))
   {
     eval(substitute({with(data, parse(text=expr))}),

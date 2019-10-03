@@ -12,26 +12,16 @@
 ## You should have received a copy of the GNU General Public License
 ## along with genvar.  If not, see <https://www.gnu.org/licenses/>.
 
-
-
-#' Counts how many observations (optionally, satisfying a condition)
-#' @param ifstmt an optional argument which gives an condition that must be met for the observation to be counted
-#' @return returns NULL, invisibly
-#' @examples
-#' use(cars, clear=TRUE)
-#' count()
-#' count("speed <= 20")
 #' @export
-count <- function (ifstmt=NULL)
+getret <- function (code)
 {
-  assert_loaded()
-  if (is.null(ifstmt))
-    eval(substitute({nrow(data)}), envir=data.env)
-  else
-    eval(substitute({
-      with(data, sum(eval(parse(text=ifstmt))))}),
-      envir=data.env)
+  get(code, envir=ret.cache)
+}
 
-  invisible(NULL)
+
+#' @export
+setret <- function (code, val)
+{
+  assign(code, val, envir=ret.cache)
 }
 

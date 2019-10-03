@@ -1,8 +1,14 @@
 #' command to graph bivariate relationships
 #'
 #' bigraph plots bivariate relationships.  it can plot multiple relationships on the same graph.
-#' @param type a quoted list of plot types ("line" for line graphs, "connected" for line graphs with points indicating data points, and "scatter" for graphs with points for the data points)
-#' 
+#' @param type a quoted list of plot types ("line" for line graphs, "connected" for line graphs with points indicating data points, and "scatter" for graphs with points for the data points).  For example, to plot two lines and one scatter plot on the same graph: "line line scatter".
+#' @param xvars a varlist in "x1 x2 x3" form giving the variables to plot on the horizontal axis.
+#' @param yvars a varlist in "y1 y2 y3" form giving the variables to plot on the vertical axis
+#' @param ... other options passed to directly to \code{xyplot} from the \code{lattice} package
+#' @importFrom lattice xyplot
+#' @importFrom lattice panel.lines
+#' @importFrom lattice panel.points
+#' @importFrom lattice panel.abline
 #' @export
 bigraph <- function (type, xvars, yvars,
                      xlines=NULL, ylines=NULL,
@@ -10,10 +16,12 @@ bigraph <- function (type, xvars, yvars,
                      xrange, yrange,
                      style=NULL, color=NULL, size=NULL,
                      output="screen", resolution="480x480",
-                     file)
+                     file, ...)
 {
-  if (!isloaded())
-    stop("Data not loaded.")
+  assert_loaded()
+  
+  xvars <- varlist(xvars, type="vector")
+  yvars <- varlist(yvars, type="vector")
   
   if (!is.null(xlines))
   {
@@ -73,6 +81,28 @@ bigraph <- function (type, xvars, yvars,
   {
     size <- strsplit(size, " ")[[1]]
   }
+
+
+  n <- length(type)
+
+  if (length(xvars) != n || length(yvars) != n ||
+      (!is.null(size) && length(size) != n) ||
+      (!is.null(style) && length(style) != n) ||
+      (!is.null(color) && length(color) != n))
+  {
+    stop("type, xvars, yvars, size, style, and color do not all have the same length")
+  }
+
+  if (output == "png" && missing(file))
+  {
+    stop("file must be specified when output is png")
+  }
+
+  if (!grepl("[0-9]+x[0-9]+", resolution))
+  {
+    stop("resolution must be in format WIDTHxHEIGHT.")
+  }
+  
   
   form <- as.formula(paste0(paste0(yvars, collapse="+"),"~",
                             paste0(xvars, collapse="+")))

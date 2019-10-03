@@ -13,25 +13,4 @@
 ## along with genvar.  If not, see <https://www.gnu.org/licenses/>.
 
 
-
-#' Counts how many observations (optionally, satisfying a condition)
-#' @param ifstmt an optional argument which gives an condition that must be met for the observation to be counted
-#' @return returns NULL, invisibly
-#' @examples
-#' use(cars, clear=TRUE)
-#' count()
-#' count("speed <= 20")
-#' @export
-count <- function (ifstmt=NULL)
-{
-  assert_loaded()
-  if (is.null(ifstmt))
-    eval(substitute({nrow(data)}), envir=data.env)
-  else
-    eval(substitute({
-      with(data, sum(eval(parse(text=ifstmt))))}),
-      envir=data.env)
-
-  invisible(NULL)
-}
-
+ret.cache <- new.env()

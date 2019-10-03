@@ -4,10 +4,12 @@
 \alias{restore}
 \title{restore a dataset from a previous preserve to be currently used}
 \usage{
-restore(envir)
+restore(envir, replace = FALSE)
 }
 \arguments{
 \item{envir}{a previous preserve value.}
+
+\item{replace}{if TRUE, restore even if another dataset is in memory.  If FALSE, do not.}
 }
 \value{
 the preserved data set

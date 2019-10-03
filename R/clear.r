@@ -14,6 +14,9 @@
 
 #' clears the dataset in memory
 #'
+#' removes a dataset from memory, errors if no dataset is loaded
+#' 
+#' @return returns NULL invisibly
 #' @examples
 #' use(cars, clear=TRUE)
 #' listif()
@@ -22,7 +25,10 @@
 #' @export
 clear <- function ()
 {
-  if (isloaded())
-    rm("data", envir=data.env)
+  assert_loaded()
+  rm("data", envir=data.env)
+  data.env <- new.env()
+
+  invisible(NULL)
 }
 

@@ -27,6 +27,7 @@
 #' @export
 pred <- function ()
 {
+  assert_loaded()
   eval(substitute({
     model <- model.frame(last_estimates$rhs, data=data, na.action=NULL)
     matrix <- model.matrix(last_estimates$rhs, data=data)
