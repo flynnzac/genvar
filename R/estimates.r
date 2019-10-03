@@ -16,40 +16,50 @@
 #' store \code{genvar} estimates
 #'
 #' @param name name to use to store current estimates from a \code{genvar} estimation function like \code{reg}, \code{logit}, or \code{probit}.
+#' @return returns NULL, invisibly
 #' @export
 estimates_store <- function (name)
 {
   eval(substitute({ assign(name,last_estimates) }),
        envir=data.env)
+
+  invisible(NULL)
 }
 
 #' save \code{genvar} estimates
 #'
 #' @param file file to save current estimates to.
+#' @return returns NULL, invisibly
 #' @export
 estimates_save <- function (file)
 {
   save("last_estimates", file=file, envir=data.env)
+  invisible(NULL)
 }
 
 #' restore \code{genvar} estimates
 #'
 #' @param name name of estimates to be restored
+#' @return returns NULL, invisibly
 #' @export
 estimates_restore <- function (name)
 {
   eval(substitute({
     last_estimates <- get(name)
   }), envir=data.env)
+
+  invisible(NULL)
 }
 
 #' loads \code{genvar} estimates from file
 #'
 #' @param file file to load estimates from.
+#' @return returns NULL, invisibly
 #' @export
 estimates_use <- function (file)
 {
   load(file, envir=data.env)
+
 }
 
 #' display estimation results

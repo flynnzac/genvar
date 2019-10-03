@@ -16,6 +16,7 @@
 #' drops rows from the dataset
 #'
 #' @param x a condition like (ex: "var1==2") describing the observations that should be removed from the data set.
+#' @return returns NULL, invisibly
 #' @examples
 #' use(cars, clear=TRUE)
 #' listif()
@@ -29,10 +30,12 @@ dropif <- function (x)
     rows <- with(data, which(eval(parse(text=x))))
     data <- data[-rows,]}), envir=data.env)
   postuse()
+  invisible(NULL)
 }
 
 #' drops variables in varlist format from the dataset
 #' @param x a varlist either in "var1 var2 var3" format or ~var1+var2+var3 format.
+#' @return returns NULL, invisibly
 #' @examples
 #' use(cars, clear=TRUE)
 #' listif()
@@ -54,12 +57,14 @@ dropvar <- function (x)
   vars <- attr(terms(formula(form,lhs=0,rhs=1)), "term.labels")
   eval(substitute({data[,vars] <- NULL}),envir=data.env)
   postuse()
+  invisible(NULL)
 }
 
 #' keeps some rows in the dataset and drops the rest
 #'
 #'
 #' @param x a condition like: "var1==2" in which case observations that satisfy the condition are kept and all others are removed.
+#' @return returns NULL, invisibly
 #' @examples
 #' use(cars, clear=TRUE)
 #' keepif("speed <= 20")
@@ -72,11 +77,13 @@ keepif <- function (x)
                envir=data.env)
   eval(substitute({data <- data[rows,]}), envir=data.env)
   postuse()
+  invisible(NULL)
 }
 
 #' keeps some variables in the dataset and drops the others
 #'
 #' @param x a varlist either of the form "var1 var2 var3" or in the form ~var1+var2+var3.
+#' @return returns NULL, invisibly
 #' @examples
 #' use(cars, clear=TRUE)
 #' keepvar("speed")
@@ -97,4 +104,5 @@ keepvar <- function (x)
 
   eval(substitute({data <- as.data.frame(data[,vars])}),envir=data.env)
   postuse()
+  invisible(NULL)
 }

@@ -75,6 +75,8 @@ destring <- function (varlist)
 
   }
 
+  invisible(NULL)
+
 }
 
 
