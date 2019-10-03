@@ -77,7 +77,7 @@ gen("empmedian", "emp > median(emp)")
 
 r = logit("empmedian", "unemp")
 
-<<<<<<< HEAD
+
 ## Show a graph of fraction employment over time
 
 ### Prepare data
@@ -91,7 +91,10 @@ destring("year")
 ### Plot data
 
 bigraph("connected", xvars="year", yvars="empfrac", title="Employment Percentage over Time", style="solid", color="black", size="3")
-=======
+
 data = getdata()
 
->>>>>>> 47a2d706a67729bfcfb6faec89714e58e5f7e55d
+
+
+
+
