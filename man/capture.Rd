@@ -12,14 +12,12 @@ capture(expr, silent = FALSE)
 \item{silent}{if TRUE,  suppress error messages from printing (default: FALSE)}
 }
 \value{
-FALSE if the expression successfully ran and TRUE otherwise also sets getret("error") to TRUE or FALSE as well
+FALSE if the expression successfully ran and TRUE otherwise
 }
 \description{
 captures an expression, setting \code{getret("error")} to TRUE if there was an error and FALSE otherwise
 }
 \examples{
 capture({log(1)})
-getret("error")
 capture({log(-1)})
-getret("error")
 }

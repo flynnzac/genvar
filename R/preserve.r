@@ -22,7 +22,7 @@
 #' p <- preserve()
 #' collapse("mean(dist)", "speed")
 #' list()
-#' restore(p)
+#' restore(p, replace=TRUE)
 #' list()
 #' @export
 preserve <- function (data=NULL)
@@ -47,7 +47,7 @@ preserve <- function (data=NULL)
 #' p <- preserve()
 #' collapse("mean(dist)","speed")
 #' list()
-#' restore(p)
+#' restore(p, replace=TRUE)
 #' list()
 #' @export
 restore <- function (envir, replace=FALSE)

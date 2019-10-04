@@ -16,18 +16,14 @@
 #'
 #' @param expr an expression to be evaluated
 #' @param silent if TRUE,  suppress error messages from printing (default: FALSE)
-#' @return FALSE if the expression successfully ran and TRUE otherwise also sets getret("error") to TRUE or FALSE as well
+#' @return FALSE if the expression successfully ran and TRUE otherwise 
 #' @examples
 #' capture({log(1)})
-#' getret("error")
 #' capture({log(-1)})
-#' getret("error")
 #' @export
 capture <- function (expr, silent=FALSE)
 {
   val <- eval(substitute(try(expr,silent=silent)), envir=data.env)
-  setret("error", class(val)=="try-error")
-
   class(val)=="try-error"
 }
 

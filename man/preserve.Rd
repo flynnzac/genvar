@@ -21,6 +21,6 @@ use(cars, clear=TRUE)
 p <- preserve()
 collapse("mean(dist)", "speed")
 list()
-restore(p)
+restore(p, replace=TRUE)
 list()
 }

@@ -16,6 +16,32 @@ bigraph(type, xvars, yvars, xlines = NULL, ylines = NULL,
 
 \item{yvars}{a varlist in "y1 y2 y3" form giving the variables to plot on the vertical axis}
 
+\item{xlines}{a list of numbers in the form "1 2 3" which gives the location on the x-axis to draw vertical lines}
+
+\item{ylines}{a list of numbers in the form "1 2 3" which gives the location on the y-axis to draw horizontal lines}
+
+\item{title}{the title of the graph}
+
+\item{xlabel}{the label to use for the horizontal axis}
+
+\item{ylabel}{the label to use for the vertical axis}
+
+\item{xrange}{a list of numbers in the form "0 1" which gives the left and right end points of the horizontal axis.  If omitted, the end points will be selected automatically to fit the data.}
+
+\item{yrange}{a list of numbers in the form "0 1" which gives the bottom and top end points of the vertical axis.  If omitted, the end points will be selected automatically to fit the data.}
+
+\item{style}{a list of style options, one for each line or scatter on the graph, in the form "solid dashed dotted points".  Can be any of the \code{lty} values from \code{plot}, like "solid", "dashed", "dotted", or just "points".  If omitted, "solid" or "points" will be used for all, as appropriate.}
+
+\item{color}{a list of color options, one for each line or scatter on the graph in the form "black red blue".  If omitted, the default option of the \code{lattice} package will be used (a blue color).}
+
+\item{size}{the line width or size of the points in the form "5 10 2".  If omitted, default size will be used.}
+
+\item{output}{which kind of output to use.  Currently, either "screen" for plotting to the screen or "png" for plotting to a png graphics file.}
+
+\item{resolution}{the resolution to use for the plot in the form "WxH" where W is width and H is height.  The default is "480x480" for 480 pixels by 480 pixels.}
+
+\item{file}{the file to write to if using \code{output="png"}.}
+
 \item{...}{other options passed to directly to \code{xyplot} from the \code{lattice} package}
 }
 \value{

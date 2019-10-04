@@ -16,7 +16,7 @@ returns NULL, invisibly
 convert a variable with string type into a numeric value
 }
 \examples{
-use(cars, replace=TRUE)
+use(cars, clear=TRUE)
 tostring("speed")
 listif()
 describe()

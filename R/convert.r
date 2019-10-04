@@ -44,7 +44,7 @@ tostring <- function (varlist)
 #' @param varlist variables to convert, either in the form "var1 var2 var3" or in the form ~var1+var2+var3.
 #' @return returns NULL, invisibly
 #' @examples
-#' use(cars, replace=TRUE)
+#' use(cars, clear=TRUE)
 #' tostring("speed")
 #' listif()
 #' describe()

@@ -11,7 +11,6 @@ addobs(obs)
 \itemize{
 \item An R data frame with the same columns as the current dataset.
 \item A comma-separated string in the following format: "var1=1,var2=2,var3=3" which inputs a single observation.
-\item An integer in which case \code{obs} entirely missing observation are added to the dataset
 }}
 }
 \description{
@@ -20,9 +19,7 @@ Add observations to the data set, similar in functionality to Stata's append com
 \examples{
 library(plm)
 data(Produc)
-use(Produc)
-addobs(10)
-listif()
+use(Produc, clear=TRUE)
 keepvar("state year emp unemp")
 addobs("state='Puerto Rico',year=1990,emp=100,unemp=5")
 listif()

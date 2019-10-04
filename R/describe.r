@@ -17,7 +17,7 @@
 #' lists the names of the variables in the dataset
 #'
 #' @param pattern an optional regular expression which only returns variable names that match the expression
-#' @return A vector of names of variables with an attribute called "type" giving the types of the variables.  The class of the object is "varlist". Sets getret("varlist") to this vector as well.
+#' @return A vector of names of variables with an attribute called "type" giving the types of the variables.  The class of the object is "varlist". 
 #' @examples
 #' use(cars, clear=TRUE)
 #' describe()
@@ -30,12 +30,11 @@ describe <- function(pattern=NULL)
   attr(names, "type") <- eval(substitute({sapply(1:ncol(data), function (i) typeof(data[,i]))}),envir=data.env)
   class(names) <- "varlist"
   if (is.null(pattern))
-    setret("varlist", names)
+    names
   else
   {
     toret <- attr(terms(varlist(pattern)),"term.labels")
-    setret("varlist", subset(names,toret))
+    subset(names,toret)
   }
 
-  getret("varlist")
 }

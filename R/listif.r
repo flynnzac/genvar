@@ -21,7 +21,9 @@
 #' @export
 listif <- function (cond=NULL, vars=NULL, ...)
 {
-  assert_loaded()
+  if (!is_loaded())
+    return(invisible(NULL))
+  
   cond <- cond
   vars <- vars
   if (is.null(vars))
