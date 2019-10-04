@@ -13,6 +13,9 @@ addobs(obs)
 \item A comma-separated string in the following format: "var1=1,var2=2,var3=3" which inputs a single observation.
 }}
 }
+\value{
+returns NULL, invisibly
+}
 \description{
 Add observations to the data set, similar in functionality to Stata's append command
 }

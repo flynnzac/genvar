@@ -20,6 +20,7 @@
 #' \item An R data frame with the same columns as the current dataset.
 #' \item A comma-separated string in the following format: "var1=1,var2=2,var3=3" which inputs a single observation.
 #' }
+#' @return returns NULL, invisibly
 #' @examples
 #' library(plm)
 #' data(Produc)
@@ -35,6 +36,7 @@ addobs <- function (obs)
 {
   assert_loaded()
   UseMethod("addobs",obs)
+  invisible(NULL)
 }
 
 #' @export

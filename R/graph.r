@@ -1,6 +1,6 @@
 #' command to graph bivariate relationships
 #'
-#' bigraph plots bivariate relationships.  it can plot multiple relationships on the same graph.
+#' bigraph plots bivariate relationships.  it can plot multiple relationships on the same graph.  It's a very simple command designed to make it easy to get basic plots up and going in a similar way to the other \code{genvar} commands.  For more advanced graphics, use either \code{lattice} or \code{ggplot2}.
 #' @param type a quoted list of plot types ("line" for line graphs, "connected" for line graphs with points indicating data points, and "scatter" for graphs with points for the data points).  For example, to plot two lines and one scatter plot on the same graph: "line line scatter".
 #' @param xvars a varlist in "x1 x2 x3" form giving the variables to plot on the horizontal axis.
 #' @param yvars a varlist in "y1 y2 y3" form giving the variables to plot on the vertical axis
@@ -11,7 +11,7 @@
 #' @param ylabel the label to use for the vertical axis
 #' @param xrange a list of numbers in the form "0 1" which gives the left and right end points of the horizontal axis.  If omitted, the end points will be selected automatically to fit the data.
 #' @param yrange a list of numbers in the form "0 1" which gives the bottom and top end points of the vertical axis.  If omitted, the end points will be selected automatically to fit the data.
-#' @param style a list of style options, one for each line or scatter on the graph, in the form "solid dashed dotted points".  Can be any of the \code{lty} values from \code{plot}, like "solid", "dashed", "dotted", or just "points".  If omitted, "solid" or "points" will be used for all, as appropriate. 
+#' @param style a list of style options, one for each line or scatter on the graph, in the form "solid dashed dotted points".  Can be any of the \code{lty} values from \code{plot}, like "solid", "dashed", "dotted", or just "points".  If omitted, "solid" or "points" will be used for all, as appropriate.
 #' @param color a list of color options, one for each line or scatter on the graph in the form "black red blue".  If omitted, the default option of the \code{lattice} package will be used (a blue color).
 #' @param size the line width or size of the points in the form "5 10 2".  If omitted, default size will be used.
 #' @param output which kind of output to use.  Currently, either "screen" for plotting to the screen or "png" for plotting to a png graphics file.
@@ -33,10 +33,10 @@ bigraph <- function (type, xvars, yvars,
                      file, ...)
 {
   assert_loaded()
-  
+
   xvars <- varlist(xvars, type="vector")
   yvars <- varlist(yvars, type="vector")
-  
+
   if (!is.null(xlines))
   {
     if (inherits(xlines, "character"))
@@ -84,7 +84,7 @@ bigraph <- function (type, xvars, yvars,
   if (!is.null(style))
   {
     style <- strsplit(style, " ")[[1]]
-  } 
+  }
 
   if (!is.null(color))
   {
@@ -116,8 +116,8 @@ bigraph <- function (type, xvars, yvars,
   {
     stop("resolution must be in format WIDTHxHEIGHT.")
   }
-  
-  
+
+
   form <- as.formula(paste0(paste0(yvars, collapse="+"),"~",
                             paste0(xvars, collapse="+")))
 
@@ -153,7 +153,7 @@ bigraph <- function (type, xvars, yvars,
                        cex=ifelse(is.null(size), quote(expr =), size[tp]),
                        col=ifelse(is.null(color), quote(expr =), color[tp]))
         }
-                       
+
       }
 
       if (!is.null(xlines))
@@ -191,10 +191,10 @@ bigraph <- function (type, xvars, yvars,
       dev.off()
     }
 
-    
+
   }), envir=data.env)
 
   invisible(NULL)
-  
+
 }
 

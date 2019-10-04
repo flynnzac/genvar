@@ -48,5 +48,5 @@ bigraph(type, xvars, yvars, xlines = NULL, ylines = NULL,
 returns NULL, invisibly
 }
 \description{
-bigraph plots bivariate relationships.  it can plot multiple relationships on the same graph.
+bigraph plots bivariate relationships.  it can plot multiple relationships on the same graph.  It's a very simple command designed to make it easy to get basic plots up and going in a similar way to the other \code{genvar} commands.  For more advanced graphics, use either \code{lattice} or \code{ggplot2}.
 }
