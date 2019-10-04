@@ -9,6 +9,9 @@ dropif(x)
 \arguments{
 \item{x}{a condition like (ex: "var1==2") describing the observations that should be removed from the data set.}
 }
+\value{
+returns NULL, invisibly
+}
 \description{
 drops rows from the dataset
 }

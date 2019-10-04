@@ -18,6 +18,7 @@
 #'
 #'
 #' Operates on the loaded estimation object, see \code{estimates_use}.
+#' @return returns predictions from model
 #' @examples
 #' use(cars, clear=TRUE)
 #' listif()

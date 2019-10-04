@@ -9,6 +9,9 @@ estimates_restore(name)
 \arguments{
 \item{name}{name of estimates to be restored}
 }
+\value{
+returns NULL, invisibly
+}
 \description{
 restore \code{genvar} estimates
 }

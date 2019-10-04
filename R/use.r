@@ -24,6 +24,7 @@
 #' @importFrom foreign "read.dta"
 #' @importFrom utils "read.csv"
 #' @importFrom utils "read.table"
+#' @return returns NULL invisibly
 #' @examples
 #' library(plm)
 #' data(Produc)
@@ -42,6 +43,8 @@ use <- function (x,clear=FALSE, type=NULL, ...)
   }
 
   UseMethod("use", x)
+
+  invisible(NULL)
 }
 
 

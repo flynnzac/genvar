@@ -13,6 +13,9 @@ forvar(varlist, action, macro = "\%var")
 
 \item{macro}{an expression that will be replaced in \code{action} for each variable, by default \%var.}
 }
+\value{
+returns NULL, invisibly
+}
 \description{
 apply a function to each of a list of variables
 }

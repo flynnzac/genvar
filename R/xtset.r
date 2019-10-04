@@ -17,6 +17,7 @@
 #' prepares a panel dataset for lag operations.  The lag function in R is simply "lag(var,numlags)".  After calling \code{xtset}, this lag function will work on the panel in the way you would expect.
 #' @param timevar the name of the variable to for the time dimension
 #' @param obsvar the name of the variable to use for the observation dimension
+#' @return returns NULL, invisibly
 #' @examples
 #' library(plm)
 #' data(Produc)
@@ -37,5 +38,6 @@ xtset <- function (timevar, obsvar)
   eval(substitute({attr(data,"timevar") <- timevar}), envir=data.env)
   eval(substitute({attr(data, "obsvar") <- obsvar}), envir=data.env)
   postuse()
+  invisible(NULL)
 }
 

@@ -6,6 +6,9 @@
 \usage{
 assert_loaded()
 }
+\value{
+returns NULL, invisibly
+}
 \description{
 assert a dataset is loaded in genvar and error otherwise
 }

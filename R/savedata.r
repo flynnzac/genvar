@@ -16,7 +16,7 @@
 #'
 #' @param file a file name to save the current data to
 #' @param rds whether to save the file to an RDS file (default: FALSE)
-#' @return returns \code{NULL}
+#' @return returns NULL, invisibly
 #' @examples
 #' use(cars, clear=TRUE)
 #' savedata(file.path(tempdir(), "cars.csv"))
@@ -32,6 +32,6 @@ savedata <- function (file, rds=FALSE)
     eval(substitute({ write.csv(data, file=file, row.names=FALSE) }),
          envir=data.env)
 
-  NULL
+  invisible(NULL)
 }
 

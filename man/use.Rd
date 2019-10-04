@@ -15,6 +15,9 @@ use(x, clear = FALSE, type = NULL, ...)
 
 \item{...}{other options to pass to \code{read.csv} in case x is a csv file or to \code{read.dta} or \code{read.dta13} depending on the type of file being loaded}
 }
+\value{
+returns NULL invisibly
+}
 \description{
 uses a dataset, marking it as the active dataset
 }

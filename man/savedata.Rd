@@ -12,7 +12,7 @@ savedata(file, rds = FALSE)
 \item{rds}{whether to save the file to an RDS file (default: FALSE)}
 }
 \value{
-returns \code{NULL}
+returns NULL, invisibly
 }
 \description{
 saves data to a CSV or RDS file

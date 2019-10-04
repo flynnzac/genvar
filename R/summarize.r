@@ -17,6 +17,7 @@
 #'
 #' @param varlist a variable list either in "var1 var2 x*" form or ~var1+var2+x1+x2+x3 form.
 #' @param detail if TRUE, provide a more detailed output for each variable
+#' @return returns NULL, invisibly
 #' @export
 summarize <- function (varlist, detail=FALSE)
 {
@@ -48,6 +49,7 @@ summarize <- function (varlist, detail=FALSE)
       cat(out)
     }), envir=data.env)
   }
+  invisible(NULL)
 }
 
 

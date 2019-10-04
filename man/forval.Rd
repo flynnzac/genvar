@@ -13,6 +13,9 @@ forval(values, expr, macro = "\%val")
 
 \item{macro}{a word to replace in the quoted expression with the values we are looping over (default: "\%val")}
 }
+\value{
+returns NULL, invisibly
+}
 \description{
 Execute code in the datasets environment for all values of a vector, replacing a macro with the value in each iteration
 }

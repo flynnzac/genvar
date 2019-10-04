@@ -9,6 +9,9 @@ taildata(num)
 \arguments{
 \item{num}{how many of the last few observations to get}
 }
+\value{
+returns last \code{num} rows of data
+}
 \description{
 get last few observations
 }

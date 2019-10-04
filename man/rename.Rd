@@ -11,6 +11,9 @@ rename(var, newvar)
 
 \item{newvar}{the new name of the variable}
 }
+\value{
+returns NULL, invisibly
+}
 \description{
 renames variables in the dataset
 }

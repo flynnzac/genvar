@@ -21,6 +21,9 @@ The variables (id1,id2,...,byvar1,byvar2,...) should uniqely identify observatio
 
 \item{direction}{either "long" or "wide" to indicate the direction to reorient the data set}
 }
+\value{
+returns NULL, invisibly
+}
 \description{
 reshapes a data set from wide to long or from long to wide formats
 }

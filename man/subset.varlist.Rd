@@ -13,6 +13,9 @@
 
 \item{...}{currently ignored}
 }
+\value{
+returns the subset of variable names with attibute "type" giving the types.  The vector is of class "varlist"
+}
 \description{
 generate a varlist that is a subset of another
 }

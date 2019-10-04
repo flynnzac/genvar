@@ -17,6 +17,7 @@
 #' @param varlist a list of variables in the format ~var1+var2+var3+... or as a vector of names like "var1 var2 var3".
 #' @param action a quoted expression to apply to each variable where the variable is represented in the expression by \code{macro}.
 #' @param macro an expression that will be replaced in \code{action} for each variable, by default \%var.
+#' @return returns NULL, invisibly
 #' @examples
 #' use(cars, clear=TRUE)
 #' forvar("speed dist", "gen('%var2', '%var^2')")
@@ -38,4 +39,6 @@ forvar <- function (varlist, action, macro="%var")
     eval(parse(text=expr),
          envir=data.env)
   }
+
+  invisible(NULL)
 }

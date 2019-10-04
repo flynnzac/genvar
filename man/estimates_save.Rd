@@ -9,6 +9,9 @@ estimates_save(file)
 \arguments{
 \item{file}{file to save current estimates to.}
 }
+\value{
+returns NULL, invisibly
+}
 \description{
 save \code{genvar} estimates
 }

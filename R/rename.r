@@ -17,6 +17,7 @@
 #'
 #' @param var the name of the variable to rename
 #' @param newvar the new name of the variable
+#' @return returns NULL, invisibly
 #' @examples
 #' use(cars, clear=TRUE)
 #' listif()
@@ -29,6 +30,8 @@ rename <- function (var, newvar)
   eval(substitute({
     names(data)[names(data)==var] <- newvar
   }), envir=data.env)
+
+  invisible(NULL)
 }
 
 

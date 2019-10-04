@@ -6,6 +6,9 @@
 \usage{
 pred()
 }
+\value{
+returns predictions from model
+}
 \description{
 Gets fitted values from a genvar regression object.  For panel models, this predicts the non-fixed effects part of the regression.
 }

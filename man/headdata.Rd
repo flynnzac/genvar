@@ -9,6 +9,9 @@ headdata(num)
 \arguments{
 \item{num}{how many of the first observations to get}
 }
+\value{
+returns the first \code{num} rows of data
+}
 \description{
 get first few observations
 }

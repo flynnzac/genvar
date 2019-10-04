@@ -5,6 +5,7 @@
 #' @param xvars a varlist in "x1 x2 x3" form giving the variables to plot on the horizontal axis.
 #' @param yvars a varlist in "y1 y2 y3" form giving the variables to plot on the vertical axis
 #' @param ... other options passed to directly to \code{xyplot} from the \code{lattice} package
+#' @return returns NULL, invisibly
 #' @importFrom lattice xyplot
 #' @importFrom lattice panel.lines
 #' @importFrom lattice panel.points
@@ -179,6 +180,8 @@ bigraph <- function (type, xvars, yvars,
 
     
   }), envir=data.env)
+
+  invisible(NULL)
   
 }
 

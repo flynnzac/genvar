@@ -9,6 +9,9 @@ estimates_store(name)
 \arguments{
 \item{name}{name to use to store current estimates from a \code{genvar} estimation function like \code{reg}, \code{logit}, or \code{probit}.}
 }
+\value{
+returns NULL, invisibly
+}
 \description{
 store \code{genvar} estimates
 }

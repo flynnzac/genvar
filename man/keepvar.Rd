@@ -9,6 +9,9 @@ keepvar(x)
 \arguments{
 \item{x}{a varlist either of the form "var1 var2 var3" or in the form ~var1+var2+var3.}
 }
+\value{
+returns NULL, invisibly
+}
 \description{
 keeps some variables in the dataset and drops the others
 }

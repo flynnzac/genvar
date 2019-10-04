@@ -9,6 +9,9 @@ estimates_use(file)
 \arguments{
 \item{file}{file to load estimates from.}
 }
+\value{
+returns NULL, invisibly
+}
 \description{
 loads \code{genvar} estimates from file
 }

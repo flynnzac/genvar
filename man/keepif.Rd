@@ -9,6 +9,9 @@ keepif(x)
 \arguments{
 \item{x}{a condition like: "var1==2" in which case observations that satisfy the condition are kept and all others are removed.}
 }
+\value{
+returns NULL, invisibly
+}
 \description{
 keeps some rows in the dataset and drops the rest
 }

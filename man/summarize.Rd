@@ -11,6 +11,9 @@ summarize(varlist, detail = FALSE)
 
 \item{detail}{if TRUE, provide a more detailed output for each variable}
 }
+\value{
+returns NULL, invisibly
+}
 \description{
 summarize a variable list, giving basic descriptive statistics
 }

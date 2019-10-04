@@ -22,6 +22,7 @@ is_loaded <- function ()
 }
 
 #' assert a dataset is loaded in genvar and error otherwise
+#' @return returns NULL, invisibly
 #' @export
 assert_loaded <- function ()
 {
@@ -29,5 +30,6 @@ assert_loaded <- function ()
   {
     stop("Dataset not loaded.")
   }
+  invisible(NULL)
 }
 

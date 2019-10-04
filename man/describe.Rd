@@ -10,7 +10,7 @@ describe(pattern = NULL)
 \item{pattern}{an optional regular expression which only returns variable names that match the expression}
 }
 \value{
-A vector of names of variables with an attribute called "type" giving the types of the variables.  The class of the object is "varlist".
+A vector of names of variables with an attribute called "type" giving the types of the variables.  The class of the object is "varlist". Sets getret("varlist") to this vector as well.
 }
 \description{
 lists the names of the variables in the dataset

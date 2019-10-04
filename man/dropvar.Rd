@@ -9,6 +9,9 @@ dropvar(x)
 \arguments{
 \item{x}{a varlist either in "var1 var2 var3" format or ~var1+var2+var3 format.}
 }
+\value{
+returns NULL, invisibly
+}
 \description{
 drops variables in varlist format from the dataset
 }

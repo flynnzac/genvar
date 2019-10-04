@@ -13,6 +13,9 @@ L(x, k = 1, ...)
 
 \item{...}{other options to pass to \code{plm::lag}, does not need to be specified}
 }
+\value{
+returns lag of the variable as a data frame
+}
 \description{
 a function to take lags and leads with panel data, mostly a wrapper for \code{plm}'s lag function.
 }

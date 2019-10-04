@@ -17,6 +17,9 @@ gen(var, value, byvar = NULL, subset = NULL, replace = FALSE)
 
 \item{replace}{either TRUE or FALSE.  If FALSE (default), the code refuses to alter the variable if the variable already exists.  Otherwise, if replace=TRUE, then the values will be replaced.}
 }
+\value{
+returns NULL, invisibly
+}
 \description{
 generates a new variable that is a transformation of existing variables in the dataset or replaces one
 }

@@ -18,6 +18,9 @@ bigraph(type, xvars, yvars, xlines = NULL, ylines = NULL,
 
 \item{...}{other options passed to directly to \code{xyplot} from the \code{lattice} package}
 }
+\value{
+returns NULL, invisibly
+}
 \description{
 bigraph plots bivariate relationships.  it can plot multiple relationships on the same graph.
 }

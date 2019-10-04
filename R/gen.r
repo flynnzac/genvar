@@ -20,6 +20,7 @@
 #' @param byvar apply the value for each level of the by variables, specified either as a formula, like ~byvar1+byvar2+... or as a varlist "byvar1 byvar2 byvar3...".
 #' @param subset only generate values if the condition provided in subset is true.  Make sure to enclose the expression in quotes, like so: subset="female==1 & highschool==1" to generate the values only for women who graduated from highschool.  This option is used like the "if" in Stata.
 #' @param replace either TRUE or FALSE.  If FALSE (default), the code refuses to alter the variable if the variable already exists.  Otherwise, if replace=TRUE, then the values will be replaced.
+#' @return returns NULL, invisibly
 #' @importFrom stats "formula"
 #' @importFrom stats "model.frame"
 #' @importFrom stats "terms"
@@ -74,4 +75,5 @@ gen <- function (var, value, byvar=NULL, subset=NULL, replace=FALSE)
 
   }), envir=data.env)
 
+  invisible(NULL)
 }

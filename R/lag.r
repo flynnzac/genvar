@@ -18,6 +18,7 @@
 #' @param x variable to lag
 #' @param k how many lags to take?  If a negative number, leads will be generated.
 #' @param ... other options to pass to \code{plm::lag}, does not need to be specified
+#' @return returns lag of the variable as a data frame
 #' @examples
 #' library(plm)
 #' data(Produc)
