@@ -50,3 +50,16 @@ returns NULL, invisibly
 \description{
 bigraph plots bivariate relationships.  it can plot multiple relationships on the same graph.  It's a very simple command designed to make it easy to get basic plots up and going in a similar way to the other \code{genvar} commands.  For more advanced graphics, use either \code{lattice} or \code{ggplot2}.
 }
+\examples{
+library(plm)
+data(Produc)
+use(Produc, clear=TRUE)
+gen("laborforce", "emp/(1-unemp/100)")
+empfrac = function (emp, laborforce) sum(emp)/sum(laborforce)
+collapse("empfrac(emp,laborforce)", "year")
+rename("empfrac(emp, laborforce)", "empfrac")
+destring("year")
+bigraph("connected", xvars="year", yvars="empfrac",
+title="Employment Percentage Over Time", style="solid",
+color="black", size="3")
+}
