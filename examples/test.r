@@ -89,8 +89,8 @@ rename("empfrac(emp, laborforce)", "empfrac")
 destring("year")
 
 ### Plot data
-
-bigraph("connected", xvars="year", yvars="empfrac", title="Employment Percentage over Time", style="solid", color="black", size="3")
+gvplot(year, empfrac, type="b", main="Employment Percentage over Time",
+       xlab="Year", ylab="Employment Percentage", pch=19)
 
 data = getdata()
 
