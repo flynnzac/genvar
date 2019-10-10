@@ -2,7 +2,7 @@
 % Please edit documentation in R/capture.r
 \name{capture}
 \alias{capture}
-\title{captures an expression, setting \code{getret("error")} to TRUE if there was an error and FALSE otherwise}
+\title{captures an expression, returning TRUE if there was an error and FALSE otherwise}
 \usage{
 capture(expr, silent = FALSE)
 }
@@ -15,7 +15,7 @@ capture(expr, silent = FALSE)
 FALSE if the expression successfully ran and TRUE otherwise
 }
 \description{
-captures an expression, setting \code{getret("error")} to TRUE if there was an error and FALSE otherwise
+captures an expression, returning TRUE if there was an error and FALSE otherwise
 }
 \examples{
 capture({log(1)})

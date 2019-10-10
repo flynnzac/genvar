@@ -12,7 +12,11 @@ There were no notes except the Maintainer note:
 NOTE
 Maintainer: Zach Flynn <zlflynn@gmail.com>
 
-Revision: finally found where Produc.csv was being created in one of the examples
+Revision: 
+
+- Added examples for any function missing one which should hopefully make it clearer how the functions work.
+- Added a return value for all functions that didn't have one documented. Many functions in the package only return NULL, invisibly. They are more "commands" than functions.
+- Added more error checking and a couple convenience functions
 
 
 

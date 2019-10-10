@@ -7,7 +7,7 @@
 collapse(values, byvar = NULL)
 }
 \arguments{
-\item{values}{an argument with the form \code{"fun1(var1) fun2(var2) fun3(var3,var4)"} describe the aggregations to be performed where fun1, fun2, fun3 are most likely aggregation functions like "sum", "mean", "max", "median", etc. But could also be "reg" to perform regressions on different subsets, for example.}
+\item{values}{an argument with the form \code{"fun1(var1) fun2(var2) fun3(var3,var4)"} describe the aggregations to be performed where fun1, fun2, fun3 are most likely aggregation functions like "sum", "mean", "max", "median", etc. But the function could be anything that returns a scalar.}
 
 \item{byvar}{a variable list giving the variables to collapse by.  The resulting dataset will have as many rows as there are unique levels of the \code{byvar} variable list.}
 }
