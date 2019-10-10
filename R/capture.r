@@ -12,11 +12,11 @@
 ## You should have received a copy of the GNU General Public License
 ## along with genvar.  If not, see <https://www.gnu.org/licenses/>.
 
-#' captures an expression, setting \code{getret("error")} to TRUE if there was an error and FALSE otherwise
+#' captures an expression, returning TRUE if there was an error and FALSE otherwise
 #'
 #' @param expr an expression to be evaluated
 #' @param silent if TRUE,  suppress error messages from printing (default: FALSE)
-#' @return FALSE if the expression successfully ran and TRUE otherwise 
+#' @return FALSE if the expression successfully ran and TRUE otherwise
 #' @examples
 #' capture({log(1)})
 #' capture({log(-1)})
