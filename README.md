@@ -2,7 +2,13 @@
 
 ## Installation
 
-To install `genvar` type, at the R console,
+`genvar` is now on CRAN! To install latest CRAN release, run the following from R:
+
+```R
+install.packages("genvar", dependencies=TRUE)
+```
+
+To install latest development version from Github, run the following from R:
 ```R
 install.packages("devtools", dependencies=TRUE)
 library(devtools)
