@@ -12,7 +12,7 @@ To install latest development version from Github, run the following from R:
 ```R
 install.packages("devtools", dependencies=TRUE)
 library(devtools)
-install_github("flynnzac/genvar")
+install_github("flynnzac/genvar", ref="dev")
 library(genvar)
 ```
 
