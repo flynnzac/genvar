@@ -101,6 +101,7 @@ keepvar <- function (x)
   vars <- attr(terms(formula(form,lhs=0,rhs=1)), "term.labels")
 
   eval(substitute({data <- as.data.frame(data[,vars])}),envir=data.env)
+  eval(substitute({names(data) <- vars }),envir=data.env)
   postuse()
   invisible(NULL)
 }
