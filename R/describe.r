@@ -16,23 +16,25 @@
 
 #' lists the names of the variables in the dataset
 #'
-#' @param pattern an optional regular expression which only returns variable names that match the expression
+#' @param pattern an optional regular expression which only returns variable names that match the expression. Can be unquoted if it is just a variable name.
 #' @return A vector of names of variables with an attribute called "type" giving the types of the variables.  The class of the object is "varlist". 
 #' @examples
 #' use(cars, clear=TRUE)
 #' describe()
 #' describe("s*")
+#' describe(speed)
 #' @export
-describe <- function(pattern=NULL)
+describe <- function(pattern)
 {
   assert_loaded()
   names <- eval(substitute({attr(data,"names")}),envir=data.env)
   attr(names, "type") <- eval(substitute({sapply(1:ncol(data), function (i) typeof(data[,i]))}),envir=data.env)
   class(names) <- "varlist"
-  if (is.null(pattern))
+  if (missing(pattern))
     names
   else
   {
+    pattern <- gvcharexpr(enquo(pattern))
     toret <- attr(terms(varlist(pattern)),"term.labels")
     subset(names,toret)
   }

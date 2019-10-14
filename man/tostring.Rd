@@ -7,7 +7,7 @@
 tostring(varlist)
 }
 \arguments{
-\item{varlist}{variables to convert, either in the form "var1 var2 var3" or in the form ~var1+var2+var3.}
+\item{varlist}{variables to convert, in the form "var1 var2 var3", or if a single variable, var1 (unquoted) will work as well}
 }
 \value{
 returns NULL, invisibly
@@ -17,6 +17,6 @@ convert a variable of another type into a string variable
 }
 \examples{
 use(cars, clear=TRUE)
-tostring("speed")
+tostring(speed)
 listif()
 }

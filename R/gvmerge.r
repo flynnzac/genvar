@@ -12,6 +12,7 @@ gvmerge <- function (data, on, kind="left", ...)
   UseMethod("gvmerge", data)
 }
 
+#' @export
 gvmerge.data.frame <- function (data, on, kind="left", ...)
 {
 
@@ -24,7 +25,8 @@ gvmerge.data.frame <- function (data, on, kind="left", ...)
   invisible(NULL)
 }
 
-gvmerge.character <- function (data, on, kind="left")
+#' @export
+gvmerge.character <- function (data, on, kind="left", ...)
 {
   type <- file_ext(data)
 

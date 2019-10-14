@@ -3,6 +3,8 @@
 S3method(addobs,character)
 S3method(addobs,data.frame)
 S3method(coef,genvar_est)
+S3method(gvmerge,character)
+S3method(gvmerge,data.frame)
 S3method(print,genvar_est)
 S3method(subset,varlist)
 S3method(use,"function")
