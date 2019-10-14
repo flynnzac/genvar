@@ -26,6 +26,9 @@
 #' @export
 rename <- function (var, newvar)
 {
+  var <- gvcharexpr(enquo(var))
+  newvar <- gvcharexpr(enquo(newvar))
+  
   assert_loaded()
   eval(substitute({
     names(data)[names(data)==var] <- newvar

@@ -33,19 +33,9 @@ gen <- function (var, value, byvar=NULL, subset=NULL, replace=FALSE)
 {
   assert_loaded()
 
-  
-  ischarvar <- tryCatch(is.character(var), error=function(e) FALSE)
-  ischarval <- tryCatch(is.character(value), error=function(e) FALSE)
 
-  if (!ischarvar)
-    var <- paste(enquo(var))[2]
-
-  if (!ischarval)
-    value <- paste(enquo(value))[2]
-
-  print(var)
-  print(value)
-  
+  var <- gvcharexpr(enquo(var))
+  value <- gvcharexpr(enquo(value))
   
   if (replace==FALSE && var %in% describe())
   {

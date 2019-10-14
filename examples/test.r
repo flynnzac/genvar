@@ -15,7 +15,7 @@ p = preserve()
 describe()
 
 ## sum over emp by year
-collapse("sum(emp)", "year")
+collapse("sum(emp) sum(unemp)", year)
 listif()
 
 ## restore original data

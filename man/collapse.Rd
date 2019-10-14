@@ -4,7 +4,7 @@
 \alias{collapse}
 \title{collapses a data set by variables using arbitrary aggregation functions}
 \usage{
-collapse(values, byvar = NULL)
+collapse(values, byvar)
 }
 \arguments{
 \item{values}{an argument with the form \code{"fun1(var1) fun2(var2) fun3(var3,var4)"} describe the aggregations to be performed where fun1, fun2, fun3 are most likely aggregation functions like "sum", "mean", "max", "median", etc. But the function could be anything that returns a scalar.}

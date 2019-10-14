@@ -27,16 +27,16 @@
 #' listif()
 #' @importFrom Formula "as.Formula"
 #' @export
-collapse <- function(values, byvar=NULL)
+collapse <- function(values, byvar)
 {
   assert_loaded()
-  if (!inherits(values, "formula"))
-  {
-    values <- varlist(values)
-  }
 
-  if (!inherits(byvar, "formula"))
+  values <- gvcharexpr(enquo(values))
+  values <- varlist(values)
+  
+  if (!missing(byvar))
   {
+    byvar <- gvcharexpr(enquo(byvar))
     byvar <- varlist(byvar)
   }
 
@@ -48,7 +48,11 @@ collapse <- function(values, byvar=NULL)
     int <- interaction(by.data)
     s <- split(data,int)
     res <- sapply(s, function (u)
-      with (u, sapply(collapse.exp, function (expr) eval(parse(text=expr)))))
+      with (u,
+            sapply(collapse.exp,
+                   function (expr)
+                     eval(parse(text=expr)))))
+    
     res <- as.matrix(res)
     if (min(dim(res))==1)
       res <- t(res)
