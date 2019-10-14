@@ -15,23 +15,26 @@
 
 
 #' Counts how many observations (optionally, satisfying a condition)
-#' @param ifstmt an optional argument which gives an condition that must be met for the observation to be counted
-#' @return returns NULL, invisibly
+#' @param ifstmt an optional argument which gives an condition that must be met for the observation to be counted 
+#' @return returns the count 
 #' @examples
 #' use(cars, clear=TRUE)
 #' count()
-#' count("speed <= 20")
+#' count(speed <= 20)
 #' @export
-count <- function (ifstmt=NULL)
+count <- function (ifstmt)
 {
   assert_loaded()
-  if (is.null(ifstmt))
+
+  if (missing(ifstmt))
+  {
     eval(substitute({nrow(data)}), envir=data.env)
-  else
+  } else {
+    ifstmt <- gvcharexpr(enquo(ifstmt))
     eval(substitute({
       with(data, sum(eval(parse(text=ifstmt))))}),
       envir=data.env)
+  }
 
-  invisible(NULL)
 }
 

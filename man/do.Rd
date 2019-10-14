@@ -4,20 +4,20 @@
 \alias{do}
 \title{Executes R code on the dataset}
 \usage{
-do(expr, by = NULL)
+do(expr, by)
 }
 \arguments{
-\item{expr}{an R expression which can use any of the variable names in the current dataset}
+\item{expr}{an R expression which can use any of the variable names in the current dataset.  It can be quoted or unquoted.}
 
-\item{by}{a variable list in either "var1 var2 var3" format or in ~var1+var2+var3 format.  The R expression will be applied separately for the data subsetted to each level of the variable list.}
+\item{by}{a variable list in "var1 var2 var3" format or, if a single variable, it can be unquoted (var1).  The R expression will be applied separately for the data subsetted to each level of the variable list.}
 }
 \value{
-returns whatever the expression \code{expr} returns
+returns whatever the expression \code{expr} returns.  If \code{by} is specified, it will be a list of the result for applying the expression to each section of the data
 }
 \description{
 Executes an R expression using variables from the dataset, possibly separately for each level of a given varlist (like the \code{by} prefix in Stata).
 }
 \examples{
 use(cars, clear=TRUE)
-do("{coef(lm(speed~dist))}")
+do(coef(lm(speed~dist)))
 }

@@ -7,7 +7,7 @@
 destring(varlist)
 }
 \arguments{
-\item{varlist}{variables to convert, either in the form "var1 var2 var3" or in the form ~var1+var2+var3.}
+\item{varlist}{variables to convert, in the form "var1 var2 var3" or, if a single variable, an unquoted variable will work as well (i.e. var1).}
 }
 \value{
 returns NULL, invisibly
@@ -17,10 +17,10 @@ convert a variable with string type into a numeric value
 }
 \examples{
 use(cars, clear=TRUE)
-tostring("speed")
+tostring(speed)
 listif()
 describe()
-destring("speed")
+destring(speed)
 listif()
 describe()
 }

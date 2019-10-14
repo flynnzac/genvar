@@ -15,16 +15,19 @@
 
 #' convert a variable of another type into a string variable
 #'
-#' @param varlist variables to convert, either in the form "var1 var2 var3" or in the form ~var1+var2+var3.
+#' @param varlist variables to convert, in the form "var1 var2 var3", or if a single variable, var1 (unquoted) will work as well
 #' @return returns NULL, invisibly
 #' @examples
 #' use(cars, clear=TRUE)
-#' tostring("speed")
+#' tostring(speed)
 #' listif()
 #' @export
 tostring <- function (varlist)
 {
   assert_loaded()
+
+  varlist <- gvcharexpr(enquo(varlist))
+  
   if (!inherits(varlist,"formula"))
   {
     varlist <- varlist(varlist)
@@ -41,20 +44,21 @@ tostring <- function (varlist)
 
 #' convert a variable with string type into a numeric value
 #'
-#' @param varlist variables to convert, either in the form "var1 var2 var3" or in the form ~var1+var2+var3.
+#' @param varlist variables to convert, in the form "var1 var2 var3" or, if a single variable, an unquoted variable will work as well (i.e. var1).
 #' @return returns NULL, invisibly
 #' @examples
 #' use(cars, clear=TRUE)
-#' tostring("speed")
+#' tostring(speed)
 #' listif()
 #' describe()
-#' destring("speed")
+#' destring(speed)
 #' listif()
 #' describe()
 #' @export
 destring <- function (varlist)
 {
   assert_loaded()
+  varlist <- gvcharexpr(enquo(varlist))
   if (!inherits(varlist,"formula"))
   {
     varlist <- varlist(varlist)
@@ -69,9 +73,8 @@ destring <- function (varlist)
       tostring(vars[v])
     }
 
-    gen(vars[v],
-        paste("as.numeric(as.character(", vars[v], "))",sep=""),
-        replace=TRUE)
+    val <- paste("as.numeric(as.character(", vars[v], "))",sep="")
+    gen(vars[v], val, replace=TRUE)
 
   }
 
