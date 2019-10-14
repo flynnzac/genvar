@@ -1,4 +1,5 @@
 #' @importFrom rlang "eval_tidy"
+#' @importFrom rlang "quo_text"
 gvcharexpr <- function (u)
 {
   ischar <- tryCatch(is.character(eval_tidy(u)),
@@ -12,7 +13,7 @@ gvcharexpr <- function (u)
   
   if (!ischar)
   {
-    u <- paste(u)[2]
+    u <- quo_text(u)
   } else {
     u <- eval_tidy(u)
   }

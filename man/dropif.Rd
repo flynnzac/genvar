@@ -7,7 +7,7 @@
 dropif(x)
 }
 \arguments{
-\item{x}{a condition like (ex: "var1==2") describing the observations that should be removed from the data set.}
+\item{x}{a condition like \code{var1==2} describing the observations that should be removed from the data set.}
 }
 \value{
 returns NULL, invisibly
@@ -18,6 +18,6 @@ drops rows from the dataset
 \examples{
 use(cars, clear=TRUE)
 listif()
-dropif("speed <= 20")
+dropif(speed <= 20)
 listif()
 }

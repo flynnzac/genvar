@@ -7,7 +7,7 @@
 keepvar(x)
 }
 \arguments{
-\item{x}{a varlist either of the form "var1 var2 var3" or in the form ~var1+var2+var3.}
+\item{x}{a varlist either of the form "var1 var2 var3" or, if a single variable, it can be unquoted.}
 }
 \value{
 returns NULL, invisibly
@@ -17,9 +17,6 @@ keeps some variables in the dataset and drops the others
 }
 \examples{
 use(cars, clear=TRUE)
-keepvar("speed")
-listif()
-use(cars, clear=TRUE)
-keepvar(~speed)
+keepvar(speed)
 listif()
 }

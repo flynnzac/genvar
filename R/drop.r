@@ -15,17 +15,18 @@
 
 #' drops rows from the dataset
 #'
-#' @param x a condition like (ex: "var1==2") describing the observations that should be removed from the data set.
+#' @param x a condition like \code{var1==2} describing the observations that should be removed from the data set.
 #' @return returns NULL, invisibly
 #' @examples
 #' use(cars, clear=TRUE)
 #' listif()
-#' dropif("speed <= 20")
+#' dropif(speed <= 20)
 #' listif()
 #'@export
 dropif <- function (x)
 {
   assert_loaded()
+  x <- gvcharexpr(enquo(x))
   eval(substitute({
     rows <- with(data, which(eval(parse(text=x))))
     data <- data[-rows,]}), envir=data.env)
@@ -34,20 +35,18 @@ dropif <- function (x)
 }
 
 #' drops variables in varlist format from the dataset
-#' @param x a varlist either in "var1 var2 var3" format or ~var1+var2+var3 format.
+#' @param x a varlist in "var1 var2 var3" format or unquoted if a single variable
 #' @return returns NULL, invisibly
 #' @examples
 #' use(cars, clear=TRUE)
 #' listif()
-#' dropvar("speed")
-#' listif()
-#' use(cars, clear=TRUE)
-#' dropvar(~speed)
+#' dropvar(speed)
 #' listif()
 #' @export
 dropvar <- function (x)
 {
   assert_loaded()
+  x <- gvcharexpr(enquo(x))
   if (!inherits(x,"formula"))
   {
     x <- varlist(x)
@@ -63,16 +62,17 @@ dropvar <- function (x)
 #' keeps some rows in the dataset and drops the rest
 #'
 #'
-#' @param x a condition like: "var1==2" in which case observations that satisfy the condition are kept and all others are removed.
+#' @param x a condition like: \code{var1==2} in which case observations that satisfy the condition are kept and all others are removed.
 #' @return returns NULL, invisibly
 #' @examples
 #' use(cars, clear=TRUE)
-#' keepif("speed <= 20")
+#' keepif(speed <= 20)
 #' listif()
 #' @export
 keepif <- function (x)
 {
   assert_loaded()
+  x <- gvcharexpr(enquo(x))
   rows <- eval(substitute(with(data, which(eval(parse(text=x))))),
                envir=data.env)
   eval(substitute({data <- data[rows,]}), envir=data.env)
@@ -82,19 +82,17 @@ keepif <- function (x)
 
 #' keeps some variables in the dataset and drops the others
 #'
-#' @param x a varlist either of the form "var1 var2 var3" or in the form ~var1+var2+var3.
+#' @param x a varlist either of the form "var1 var2 var3" or, if a single variable, it can be unquoted.
 #' @return returns NULL, invisibly
 #' @examples
 #' use(cars, clear=TRUE)
-#' keepvar("speed")
-#' listif()
-#' use(cars, clear=TRUE)
-#' keepvar(~speed)
+#' keepvar(speed)
 #' listif()
 #'@export
 keepvar <- function (x)
 {
   assert_loaded()
+  x <- gvcharexpr(enquo(x))
   if (!inherits(x,"formula"))
   {
     x <- varlist(x)

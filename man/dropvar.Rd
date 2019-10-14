@@ -7,7 +7,7 @@
 dropvar(x)
 }
 \arguments{
-\item{x}{a varlist either in "var1 var2 var3" format or ~var1+var2+var3 format.}
+\item{x}{a varlist in "var1 var2 var3" format or unquoted if a single variable}
 }
 \value{
 returns NULL, invisibly
@@ -18,9 +18,6 @@ drops variables in varlist format from the dataset
 \examples{
 use(cars, clear=TRUE)
 listif()
-dropvar("speed")
-listif()
-use(cars, clear=TRUE)
-dropvar(~speed)
+dropvar(speed)
 listif()
 }
