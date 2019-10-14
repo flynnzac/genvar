@@ -26,10 +26,16 @@
 #' @importFrom stats "terms"
 #' @importFrom stats "as.formula"
 #' @importFrom stats "na.omit"
+#' @importFrom rlang "ensym"
+#' @importFrom rlang "enquo"
 #' @export
 gen <- function (var, value, byvar=NULL, subset=NULL, replace=FALSE)
 {
   assert_loaded()
+
+  var <- paste(ensym(var))
+  value <- paste(enquo(value))[2]
+  
   if (replace==FALSE && var %in% describe())
   {
     stop(paste("replace=FALSE and variable ", var, " already in data. Call with option replace=TRUE to replace data.",sep=""))
