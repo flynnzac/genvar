@@ -69,9 +69,8 @@ destring <- function (varlist)
       tostring(vars[v])
     }
 
-    gen(vars[v],
-        paste("as.numeric(as.character(", vars[v], "))",sep=""),
-        replace=TRUE)
+    val <- paste("as.numeric(as.character(", vars[v], "))",sep="")
+    gen(vars[v], val, replace=TRUE)
 
   }
 

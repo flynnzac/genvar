@@ -41,7 +41,9 @@ destring("year")
 
 
 ## generate emp*year for no reason
-gen("empyear", "emp*year")
+gen(empyear, emp*year)
+listif()
+
 
 listif()
 
