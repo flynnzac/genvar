@@ -23,9 +23,9 @@
 #' library(plm)
 #' data(Produc)
 #' use(Produc, clear=TRUE)
-#' xtset("year", "state")
-#' gen("Lemp", "L(emp)")
-#' gen("L2emp", "L(emp,2)")
+#' xtset(year, state)
+#' gen(Lemp, L(emp))
+#' gen(L2emp, L(emp,2))
 #' headdata(10)
 #' @importFrom "plm" lag
 #' @export

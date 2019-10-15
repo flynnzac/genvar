@@ -21,11 +21,11 @@ and yvar in the genvar enviroment.
 library(plm)
 data(Produc)
 use(Produc, clear=TRUE)
-gen("laborforce", "emp/(1-unemp/100)")
+gen(laborforce, emp/(1-unemp/100))
 empfrac = function (emp, laborforce) sum(emp)/sum(laborforce)
-collapse("empfrac(emp,laborforce)", "year")
-rename("empfrac(emp, laborforce)", "empfrac")
-destring("year")
+collapse("empfrac(emp,laborforce)", year)
+rename(empfrac(emp, laborforce), empfrac)
+destring(year)
 gvplot(year, empfrac, type="b", main="Employment Percentage over Time",
 xlab="Year", ylab="Employment Percentage", pch=19)
 }

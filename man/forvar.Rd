@@ -7,9 +7,9 @@
 forvar(varlist, action, macro = "\%var")
 }
 \arguments{
-\item{varlist}{a list of variables in the format ~var1+var2+var3+... or as a vector of names like "var1 var2 var3".}
+\item{varlist}{a list of variables in the format "var1 var2 var3" (or, if a single variable, it may be unquoted).}
 
-\item{action}{a quoted expression to apply to each variable where the variable is represented in the expression by \code{macro}.}
+\item{action}{a quoted expression (must be quoted) to apply to each variable where the variable is represented in the expression by \code{macro}.}
 
 \item{macro}{an expression that will be replaced in \code{action} for each variable, by default \%var.}
 }
@@ -21,6 +21,6 @@ apply a function to each of a list of variables
 }
 \examples{
 use(cars, clear=TRUE)
-forvar("speed dist", "gen('\%var2', '\%var^2')")
+forvar("speed dist", "gen(\%var2, \%var^2)")
 listif()
 }

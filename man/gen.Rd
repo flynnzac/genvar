@@ -23,3 +23,8 @@ returns NULL, invisibly
 \description{
 generates a new variable that is a transformation of existing variables in the dataset or replaces one
 }
+\examples{
+use(cars, clear=TRUE)
+gen(speeddist, speed*dist)
+listif()
+}

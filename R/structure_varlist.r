@@ -14,12 +14,17 @@
 
 #' creates a formula object from a varlist, mostly for internal use.
 #'
-#' A varlist in \code{genvar} is either a space-separated string with wildcard characters, "var1 var2 var3 x*", or an R formula object ~var1+var2+var3+x1+x2....  This function converts from the more user-friendly space-separated string format to the formula format or to a vector of strings.
+#' A varlist in \code{genvar} is a space-separated string potentially with wildcard characters, "var1 var2 var3 x*".  This function converts a varlist to a formula or to a vector.
 #' @param x the varlist to be converted in "var1 var2 var3" format.  Can be specified using the \emph{globbing} characters "*" (match zero or more of any character) or "?" (match any single character) like "var*" or "var?" for "var1 var2 var3" or using regular expressions if \code{regex=TRUE} ("var[0-9]+" = "var1 var2 var3").
 #' @param type if "formula", return a varlist in formula format; if "vector", return a varlist in character vector format.
 #' @return a formula object which can be passed to \code{model.frame} or a character vector giving the name of each variable
+#' @examples
+#' use(cars, clear=TRUE)
+#' structure_varlist("speed dist", type="formula")
+#' structure_varlist("speed dist", type="vector")
+#' structure_varlist("*", type="vector")
 #' @export
-varlist <- function (x, type="formula")
+structure_varlist <- function (x, type="formula")
 {
   n <- describe()
   x <- strsplit(x, " ")[[1]]
@@ -27,8 +32,14 @@ varlist <- function (x, type="formula")
   x <- gsub("\\*", "\\.*", x)
   x <- gsub("\\?", "\\.", x)
 
-  x <- sapply(x, function (u)
-    ifelse(grepl("\\.",u), n[grepl(u,n)], u))
+  x <- lapply(x, function (u)
+  {
+    if (grepl("\\.", u))
+      n[grepl(u,n)]
+    else
+      u
+  })
+
 
   x <- unique(unlist(x))
   if (type == "formula")

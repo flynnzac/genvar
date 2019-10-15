@@ -9,7 +9,7 @@ gvmerge(data, on, kind = "left", ...)
 \arguments{
 \item{data}{dataset to merge in, either an R data frame, a csv file name, or a dta (Stata) file name.}
 
-\item{on}{a variable list to merge on with the form "var1 var2 var3".}
+\item{on}{a variable list to merge on with the form "var1 var2 var3" (or possibly unquoted if a single variable).}
 
 \item{kind}{one of "left", "right", "outer", or "inner" (default: "left")}
 

@@ -16,22 +16,29 @@
 #' estimate a logistic regression
 #'
 #' @param y name of the dependent variable
-#' @param x names of the independent variables in varlist format, either "x1 x2 x3" or ~x1+x2+X3 format.
+#' @param x names of the independent variables in varlist format, either "x1 x2 x3" or if it is a single variable it does not need to be quoted.
 #' @param subset conditions to run the command only of a subset of the data (analogous to "if" statements in Stata)
 #' @param weights the name of a variable to use for weights in estimation
 #' @param linkfunc specify the linking function (logit, by default).  Can set to "probit" to do probit estimation or use \code{probit} (which is equivalent).
 #' @param ... other options to pass to \code{glm}
 #' @return b coefficient vector
 #' @return V covariance matrix of coefficients
+#' @examples
+#' library(plm)
+#' data(Produc)
+#' use(Produc, clear=TRUE)
+#' gen(empmedian, emp > median(emp))
+#' r = logit(empmedian, unemp)
+#' r
 #' @export
 logit <- function (y, x, subset=NULL, weights=NULL, linkfunc="logit", ...)
 {
   assert_loaded()
-  
-  if (!inherits(x, "formula"))
-  {
-    x <- varlist(x)
-  }
+
+  x <- gvcharexpr(enquo(x))
+  y <- gvcharexpr(enquo(y))
+
+  x <- structure_varlist(x, type="formula")
 
   form <- as.formula(paste0(y, paste0(x,collapse="")))
 

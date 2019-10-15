@@ -4,7 +4,7 @@
 \alias{listif}
 \title{prints the part of the dataset that satisfies certain conditions}
 \usage{
-listif(cond = NULL, vars = NULL, ...)
+listif(cond, vars, ...)
 }
 \arguments{
 \item{cond}{a conditional expression; only observations that satisfy the condition will be returned.}
@@ -18,4 +18,9 @@ the part of the dataset that satisfies the condition and contains the specified 
 }
 \description{
 prints the part of the dataset that satisfies certain conditions
+}
+\examples{
+use(cars, clear=TRUE)
+listif()
+listif(speed <= 20)
 }

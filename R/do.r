@@ -35,10 +35,8 @@ do <- function(expr, by)
          envir=data.env)
   } else {
     by <- gvcharexpr(enquo(by))
-    if (!inherits(by,"formula"))
-    {
-      by <- varlist(by)
-    }
+    by <- structure_varlist(by, type="formula")
+
     eval(substitute({
       s <- split(data,interaction(model.frame(by)))
       lst <- lapply(s, function (u) with(u, eval(parse(text=expr))))

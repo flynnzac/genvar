@@ -27,13 +27,9 @@ tostring <- function (varlist)
   assert_loaded()
 
   varlist <- gvcharexpr(enquo(varlist))
+  varlist <- structure_varlist(varlist, type="vector")
   
-  if (!inherits(varlist,"formula"))
-  {
-    varlist <- varlist(varlist)
-  }
-  vars <- attr(terms(varlist), "term.labels")
-  for (v in vars)
+  for (v in varlist)
   {
     gen(v,paste("as.character(",v,")",sep=""),
         replace=TRUE)
@@ -59,22 +55,18 @@ destring <- function (varlist)
 {
   assert_loaded()
   varlist <- gvcharexpr(enquo(varlist))
-  if (!inherits(varlist,"formula"))
-  {
-    varlist <- varlist(varlist)
-  }
 
-  vars <- attr(terms(varlist), "term.labels")
-  desc <- subset(describe(), vars)
-  for (v in 1:length(vars))
+  varlist <- structure_varlist(varlist, type="vector")
+  desc <- subset(describe(), varlist)
+  for (v in 1:length(varlist))
   {
     if (attr(desc,"type")[v] == "factor")
     {
-      tostring(vars[v])
+      tostring(varlist[v])
     }
 
-    val <- paste("as.numeric(as.character(", vars[v], "))",sep="")
-    gen(vars[v], val, replace=TRUE)
+    val <- paste("as.numeric(as.character(", varlist[v], "))",sep="")
+    gen(varlist[v], val, replace=TRUE)
 
   }
 

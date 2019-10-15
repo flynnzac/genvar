@@ -7,7 +7,7 @@
 keepif(x)
 }
 \arguments{
-\item{x}{a condition like: "var1==2" in which case observations that satisfy the condition are kept and all others are removed.}
+\item{x}{a condition like: \code{var1==2} in which case observations that satisfy the condition are kept and all others are removed.}
 }
 \value{
 returns NULL, invisibly
@@ -17,6 +17,6 @@ keeps some rows in the dataset and drops the rest
 }
 \examples{
 use(cars, clear=TRUE)
-keepif("speed <= 20")
+keepif(speed <= 20)
 listif()
 }

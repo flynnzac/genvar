@@ -18,26 +18,31 @@
 #' @param vars a variable list; only variables in the list will be returned.
 #' @param ... other options, currently ignored
 #' @return the part of the dataset that satisfies the condition and contains the specified columns
+#' @examples
+#' use(cars, clear=TRUE)
+#' listif()
+#' listif(speed <= 20)
 #' @export
-listif <- function (cond=NULL, vars=NULL, ...)
+listif <- function (cond, vars, ...)
 {
   if (!is_loaded())
     return(invisible(NULL))
-  
-  cond <- cond
-  vars <- vars
-  if (is.null(vars))
+
+  if (missing(vars))
     vars <- describe()
   else
   {
-    if (!inherits(vars,"formula"))
-      vars <- varlist(vars)
-    vars <- attr(terms(vars), "term.labels")
+    vars <- gvcharexpr(enquo(vars))
+    vars <- structure_varlist(vars, type="vector")
   }
-  if (is.null(cond))
+  if (missing(cond))
+  {
     eval(substitute({data[,vars]}), envir=data.env)
-  else
+  }  else {
+    cond <- gvcharexpr(enquo(cond))
+    
     eval(substitute({subset(data[,vars],with(data,eval(parse(text=cond))))}), envir=data.env)
+  }
 
 }
 

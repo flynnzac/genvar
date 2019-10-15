@@ -22,16 +22,18 @@
 #' library(plm)
 #' data(Produc)
 #' use(Produc, clear=TRUE)
-#' xtset("year", "state")
-#' gen("Lemp", "lag(emp)")
+#' xtset(year, state)
+#' gen(Lemp, L(emp))
 #' listif(vars="emp Lemp")
-#' reg("emp", "unemp", effect="twoway")
-#' reg("emp", "unemp", effect="individual")
-#' reg("emp", "unemp", effect="time")
+#' reg(emp, unemp, effect="twoway")
+#' reg(emp, unemp, effect="individual")
+#' reg(emp, unemp, effect="time")
 #' @importFrom "plm" pdata.frame
 #' @export
 xtset <- function (timevar, obsvar)
 {
+  timevar <- gvcharexpr(enquo(timevar))
+  obsvar <- gvcharexpr(enquo(obsvar))
   assert_loaded()
   eval(substitute({data <- pdata.frame(data, index=c(obsvar,timevar))}),
        envir=data.env)

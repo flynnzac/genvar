@@ -32,12 +32,12 @@ collapse <- function(values, byvar)
   assert_loaded()
 
   values <- gvcharexpr(enquo(values))
-  values <- varlist(values)
+  values <- structure_varlist(values, type="formula")
   
   if (!missing(byvar))
   {
     byvar <- gvcharexpr(enquo(byvar))
-    byvar <- varlist(byvar)
+    byvar <- structure_varlist(byvar, type="formula")
   }
 
   eval(substitute({

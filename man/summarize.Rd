@@ -7,7 +7,7 @@
 summarize(varlist, detail = FALSE)
 }
 \arguments{
-\item{varlist}{a variable list either in "var1 var2 x*" form or ~var1+var2+x1+x2+x3 form.}
+\item{varlist}{a variable list either in "var1 var2 x*" form or, optionally, unquoted.}
 
 \item{detail}{if TRUE, provide a more detailed output for each variable}
 }
@@ -16,4 +16,9 @@ returns NULL, invisibly
 }
 \description{
 summarize a variable list, giving basic descriptive statistics
+}
+\examples{
+use(cars, clear=TRUE)
+summarize(speed)
+summarize("speed dist")
 }

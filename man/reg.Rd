@@ -4,13 +4,13 @@
 \alias{reg}
 \title{regress y on x with robust standard errors, clustered standard errors, HAC standard errors, panel fixed effects, etc}
 \usage{
-reg(y, x, subset = NULL, effect = NULL, robust = TRUE, hac = NULL,
-  cluster = NULL, rtype = 1)
+reg(y, x, subset = NULL, effect = NULL, robust = TRUE, hac, cluster,
+  rtype = 1)
 }
 \arguments{
 \item{y}{name of the dependent variable}
 
-\item{x}{names of the independent variables in either "x1 x2 x3" format or ~x1+x2+x3 format. To include a variable as a categorical variable (when you would use "i.state" to get state dummies in Stata), include it as "factor(state)".}
+\item{x}{names of the independent variables in "x1 x2 x3" format. To include a variable as a categorical variable (when you would use "i.state" to get state dummies in Stata), include it as "factor(state)".}
 
 \item{subset}{conditions to subset the data}
 
@@ -31,4 +31,16 @@ V covariance matrix of coefficients
 }
 \description{
 regress y on x with robust standard errors, clustered standard errors, HAC standard errors, panel fixed effects, etc.
+}
+\examples{
+library(plm)
+data(Produc)
+use(Produc, clear=TRUE)
+r = reg(emp, unemp)
+r
+xtset(year,state)
+r = reg(emp, unemp, hac=year)
+r
+r = reg(emp, unemp, cluster=year)
+r
 }
