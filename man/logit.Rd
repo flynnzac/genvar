@@ -9,7 +9,7 @@ logit(y, x, subset = NULL, weights = NULL, linkfunc = "logit", ...)
 \arguments{
 \item{y}{name of the dependent variable}
 
-\item{x}{names of the independent variables in varlist format, either "x1 x2 x3" or ~x1+x2+X3 format.}
+\item{x}{names of the independent variables in varlist format, either "x1 x2 x3" or if it is a single variable it does not need to be quoted.}
 
 \item{subset}{conditions to run the command only of a subset of the data (analogous to "if" statements in Stata)}
 
@@ -26,4 +26,12 @@ V covariance matrix of coefficients
 }
 \description{
 estimate a logistic regression
+}
+\examples{
+library(plm)
+data(Produc)
+use(Produc, clear=TRUE)
+gen(empmedian, emp > median(emp))
+r = logit(empmedian, unemp)
+r
 }

@@ -16,7 +16,7 @@
 #'
 #' regress y on x with robust standard errors, clustered standard errors, HAC standard errors, panel fixed effects, etc.
 #' @param y name of the dependent variable
-#' @param x names of the independent variables in either "x1 x2 x3" format or ~x1+x2+x3 format. To include a variable as a categorical variable (when you would use "i.state" to get state dummies in Stata), include it as "factor(state)".
+#' @param x names of the independent variables in "x1 x2 x3" format. To include a variable as a categorical variable (when you would use "i.state" to get state dummies in Stata), include it as "factor(state)".
 #' @param subset conditions to subset the data
 #' @param effect either "twoways", "individual", or "time" for fixed effects.  Dataset must already have been \code{xtset}.
 #' @param robust whether to use robust standard errors
@@ -29,23 +29,49 @@
 #' @importFrom sandwich "vcovHAC"
 #' @importFrom clubSandwich "vcovCR"
 #' @importFrom plm "plm"
+#' @examples
+#' library(plm)
+#' data(Produc)
+#' use(Produc, clear=TRUE)
+#' r = reg(emp, unemp)
+#' r
+#' xtset(year,state)
+#' r = reg(emp, unemp, hac=year)
+#' r
+#' r = reg(emp, unemp, cluster=year)
+#' r
 #' @export
-reg <- function (y, x, subset=NULL, effect=NULL, robust=TRUE, hac=NULL,cluster=NULL,rtype=1)
+reg <- function (y, x, subset=NULL, effect=NULL, robust=TRUE,
+                 hac,cluster,rtype=1)
 {
   assert_loaded()
+  x <- gvcharexpr(enquo(x))
   if (!inherits(x, "formula"))
   {
     x <- varlist(x)
   }
 
+  y <- gvcharexpr(enquo(y))
+
   form <- as.formula(paste0(y, paste0(x,collapse="")))
 
-  if (robust & is.null(hac) & is.null(cluster))
+  if (!missing(hac))
+  {
+    hac <- gvcharexpr(enquo(hac))
+  }
+
+  if (!missing(cluster))
+  {
+    cluster <- gvcharexpr(enquo(cluster))
+  }
+
+  if (robust & missing(hac) & missing(cluster))
   {
     covtype <- "robust"
   }
 
-  if (!is.null(cluster))
+
+  if (!missing(cluster))
   {
     covtype <- "cluster"
     if (!inherits(cluster,"formula"))
@@ -56,7 +82,7 @@ reg <- function (y, x, subset=NULL, effect=NULL, robust=TRUE, hac=NULL,cluster=N
     cluster <- attr(terms(cluster),"term.labels")
   }
 
-  if (!is.null(hac))
+  if (!missing(hac))
   {
     covtype <- "hac"
   }

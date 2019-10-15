@@ -15,13 +15,14 @@
 
 #' summarize a variable list, giving basic descriptive statistics
 #'
-#' @param varlist a variable list either in "var1 var2 x*" form or ~var1+var2+x1+x2+x3 form.
+#' @param varlist a variable list either in "var1 var2 x*" form or, optionally, unquoted.
 #' @param detail if TRUE, provide a more detailed output for each variable
 #' @return returns NULL, invisibly
 #' @export
 summarize <- function (varlist, detail=FALSE)
 {
   assert_loaded()
+  varlist <- gvcharexpr(enquo(varlist))
   if (!inherits(varlist, "formula"))
   {
     varlist <- varlist(varlist)

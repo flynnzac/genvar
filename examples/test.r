@@ -33,33 +33,30 @@ shape(state~year|emp, direction="long")
 listif()
 
 ## list emp by year just for Wyoming
-listif("state == 'WYOMING'")
+listif(state == "WYOMING")
 
 describe()
 ## year is a character so destring it
-destring("year")
+destring(year)
 
 
 ## generate emp*year for no reason
 gen(empyear, emp*year)
 listif()
 
-
-listif()
-
 count()
-count("emp <= 1000")
+count(emp <= 1000)
 
 ## test out regression
 use(Produc, clear=TRUE)
 
-r = reg("emp", "unemp")
+r = reg(emp, unemp)
 r
 
-xtset(timevar="year", obsvar="state")
-r = reg("emp", "unemp", hac="year")
+xtset(year, state)
+r = reg(emp, unemp, hac=year)
 r
-r = reg("emp", "unemp", cluster="year")
+r = reg(emp, unemp, cluster=year)
 r
 p = preserve()
 keepvar("state year emp unemp")
@@ -68,27 +65,27 @@ keepvar("state year emp unemp")
 addobs("state='Puerto Rico',year=1990,emp=100,unemp=0.05")
 fillin("state year")
 
-r = reg("emp", "unemp", effect="twoways", cluster="year")
+r = reg(emp, unemp, effect="twoways", cluster=year)
 r
 
 restore(p, replace=TRUE)
 
 ## Binary regression
 
-gen("empmedian", "emp > median(emp)")
+gen(empmedian, emp > median(emp))
 
-r = logit("empmedian", "unemp")
+r = logit(empmedian, unemp)
 
 
 ## Show a graph of fraction employment over time
 
 ### Prepare data
 
-gen("laborforce", "emp/(1-unemp/100)")
+gen(laborforce, emp/(1-unemp/100))
 empfrac = function(emp, laborforce) sum(emp)/sum(laborforce)
-collapse("empfrac(emp,laborforce)", "year")
-rename("empfrac(emp, laborforce)", "empfrac")
-destring("year")
+collapse("empfrac(emp,laborforce)", year)
+rename(empfrac(emp, laborforce), empfrac)
+destring(year)
 
 ### Plot data
 gvplot(year, empfrac, type="b", main="Employment Percentage over Time",

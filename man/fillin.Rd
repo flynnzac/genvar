@@ -7,7 +7,7 @@
 fillin(varlist)
 }
 \arguments{
-\item{varlist}{a variable list in "var1 var2 var3 x*" format where "*" matches zero or more of any character and "?" matches one of any character (or a varlist in formula format, ~var1+var2+var3+x1+x2+...).  On exit, the data set will contain one observation for every possible interaction of variables with missing values filled in where appropriate.}
+\item{varlist}{a variable list in "var1 var2 var3 x*" format where "*" matches zero or more of any character and "?" matches one of any character (an unquoted list will work as well with one variable).  On exit, the data set will contain one observation for every possible interaction of variables with missing values filled in where appropriate.}
 }
 \value{
 returns NULL, invisibly
