@@ -1,6 +1,6 @@
 rm(list=ls(all=TRUE))
 library(genvar)
-capture(clear())
+capture(clear(), silent=TRUE)
 library(plm)
 data(Produc)
 
@@ -75,7 +75,7 @@ restore(p, replace=TRUE)
 gen(empmedian, emp > median(emp))
 
 r = logit(empmedian, unemp)
-
+r
 
 ## Show a graph of fraction employment over time
 
@@ -91,6 +91,7 @@ destring(year)
 gvplot(year, empfrac, type="b", main="Employment Percentage over Time",
        xlab="Year", ylab="Employment Percentage", pch=19)
 
+## Can use getdata to pull the data frame from genvar to the R environment
 data = getdata()
 
 
