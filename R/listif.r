@@ -33,9 +33,7 @@ listif <- function (cond, vars, ...)
   else
   {
     vars <- gvcharexpr(enquo(vars))
-    if (!inherits(vars,"formula"))
-      vars <- varlist(vars)
-    vars <- attr(terms(vars), "term.labels")
+    vars <- structure_varlist(vars, type="vector")
   }
   if (missing(cond))
   {

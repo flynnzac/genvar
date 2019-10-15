@@ -62,7 +62,7 @@ p = preserve()
 keepvar("state year emp unemp")
 
 ## add some garbage data to show addobs, not real data
-addobs("state='Puerto Rico',year=1990,emp=100,unemp=0.05")
+addobs("state='Mars',year=1990,emp=100,unemp=4.0")
 fillin("state year")
 
 r = reg(emp, unemp, effect="twoways", cluster=year)

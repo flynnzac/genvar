@@ -46,10 +46,7 @@ reg <- function (y, x, subset=NULL, effect=NULL, robust=TRUE,
 {
   assert_loaded()
   x <- gvcharexpr(enquo(x))
-  if (!inherits(x, "formula"))
-  {
-    x <- varlist(x)
-  }
+  x <- structure_varlist(x, type="formula")
 
   y <- gvcharexpr(enquo(y))
 
@@ -74,12 +71,7 @@ reg <- function (y, x, subset=NULL, effect=NULL, robust=TRUE,
   if (!missing(cluster))
   {
     covtype <- "cluster"
-    if (!inherits(cluster,"formula"))
-    {
-      cluster <- varlist(cluster)
-    }
-
-    cluster <- attr(terms(cluster),"term.labels")
+    cluster <- structure_varlist(cluster, type="vector")
   }
 
   if (!missing(hac))

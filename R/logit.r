@@ -37,11 +37,8 @@ logit <- function (y, x, subset=NULL, weights=NULL, linkfunc="logit", ...)
 
   x <- gvcharexpr(enquo(x))
   y <- gvcharexpr(enquo(y))
-  
-  if (!inherits(x, "formula"))
-  {
-    x <- varlist(x)
-  }
+
+  x <- structure_varlist(x, type="formula")
 
   form <- as.formula(paste0(y, paste0(x,collapse="")))
 

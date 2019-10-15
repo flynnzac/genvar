@@ -15,3 +15,12 @@ returns NULL, invisibly
 \description{
 Make the dataset have one observation for every possible interaction of a list of variables.
 }
+\examples{
+library(plm)
+data(Produc)
+use(Produc, clear=TRUE)
+keepvar("state year emp unemp")
+addobs("state='Mars',year=1990,emp=100,unemp=4.0")
+fillin("state year")
+listif()
+}

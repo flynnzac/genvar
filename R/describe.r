@@ -35,7 +35,7 @@ describe <- function(pattern)
   else
   {
     pattern <- gvcharexpr(enquo(pattern))
-    toret <- attr(terms(varlist(pattern)),"term.labels")
+    toret <- structure_varlist(pattern, type="vector")
     subset(names,toret)
   }
 

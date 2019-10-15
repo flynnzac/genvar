@@ -17,3 +17,8 @@ returns NULL, invisibly
 \description{
 summarize a variable list, giving basic descriptive statistics
 }
+\examples{
+use(cars, clear=TRUE)
+summarize(speed)
+summarize("speed dist")
+}

@@ -47,14 +47,8 @@ dropvar <- function (x)
 {
   assert_loaded()
   x <- gvcharexpr(enquo(x))
-  if (!inherits(x,"formula"))
-  {
-    x <- varlist(x)
-  }
-
-  form <- as.Formula(x)
-  vars <- attr(terms(formula(form,lhs=0,rhs=1)), "term.labels")
-  eval(substitute({data[,vars] <- NULL}),envir=data.env)
+  x <- structure_varlist(x, type="vector")
+  eval(substitute({data[,x] <- NULL}),envir=data.env)
   postuse()
   invisible(NULL)
 }
@@ -93,15 +87,10 @@ keepvar <- function (x)
 {
   assert_loaded()
   x <- gvcharexpr(enquo(x))
-  if (!inherits(x,"formula"))
-  {
-    x <- varlist(x)
-  }
-  form <- as.Formula(x)
-  vars <- attr(terms(formula(form,lhs=0,rhs=1)), "term.labels")
+  x <- structure_varlist(x, type="vector")
 
-  eval(substitute({data <- as.data.frame(data[,vars])}),envir=data.env)
-  eval(substitute({names(data) <- vars }),envir=data.env)
+  eval(substitute({data <- as.data.frame(data[,x])}),envir=data.env)
+  eval(substitute({names(data) <- x }),envir=data.env)
   postuse()
   invisible(NULL)
 }

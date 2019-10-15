@@ -18,20 +18,22 @@
 #' @param varlist a variable list either in "var1 var2 x*" form or, optionally, unquoted.
 #' @param detail if TRUE, provide a more detailed output for each variable
 #' @return returns NULL, invisibly
+#' @examples
+#' use(cars, clear=TRUE)
+#' summarize(speed)
+#' summarize("speed dist")
 #' @export
 summarize <- function (varlist, detail=FALSE)
 {
   assert_loaded()
   varlist <- gvcharexpr(enquo(varlist))
-  if (!inherits(varlist, "formula"))
-  {
-    varlist <- varlist(varlist)
-  }
-  vars <- attr(terms(varlist), "term.labels")
   detail <- detail
+
+  vars <- structure_varlist(varlist, type="vector")
 
   for (i in 1:length(vars))
   {
+    cat(paste0("---", vars[i], "---", "\n"))
     eval(substitute({
       out <- paste0("Mean: ", mean(data[,vars[i]]),
                     "\nMedian: ", median(data[,vars[i]]),

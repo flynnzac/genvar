@@ -26,13 +26,7 @@
 forvar <- function (varlist, action, macro="%var")
 {
   varlist <- gvcharexpr(enquo(varlist))
-  if (!inherits(varlist,"formula"))
-  {
-    varlist <- varlist(varlist)
-  }
-
-  varlist <- as.Formula(varlist)
-  varlist <- attr(terms(formula(varlist,lhs=0,rhs=1)), "term.labels")
+  varlist <- structure_varlist(varlist, type="vector")
 
   for (var in varlist)
   {
