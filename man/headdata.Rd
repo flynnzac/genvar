@@ -15,3 +15,7 @@ returns the first \code{num} rows of data
 \description{
 get first few observations
 }
+\examples{
+use(cars, clear=TRUE)
+headdata(5)
+}

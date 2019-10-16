@@ -15,3 +15,7 @@ returns last \code{num} rows of data
 \description{
 get last few observations
 }
+\examples{
+use(cars, clear=TRUE)
+taildata(5)
+}

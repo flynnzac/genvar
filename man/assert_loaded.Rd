@@ -8,6 +8,10 @@ assert_loaded()
 }
 \value{
 returns NULL, invisibly
+capture(clear())
+assert_loaded()
+use(cars)
+assert_loaded()
 }
 \description{
 assert a dataset is loaded in genvar and error otherwise

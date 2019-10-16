@@ -6,6 +6,8 @@
 #' @param kind one of "left", "right", "outer", or "inner" (default: "left")
 #' @param ... extra options to pass to \code{read.csv} or \code{read.dta} (for old Stata files) or \code{read.dta13} (for newer ones).
 #' @return returns NULL, invisibly
+#' @examples
+#' stop("need to add an example")
 #' @export
 gvmerge <- function (data, on, kind="left", ...)
 {
@@ -45,4 +47,4 @@ gvmerge.character <- function (data, on, kind="left", ...)
 
   gvmerge(data, on, kind)
 }
-      
+

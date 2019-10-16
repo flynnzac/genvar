@@ -15,6 +15,11 @@
 #' a command to determine whether data is loaded
 #'
 #' @return returns TRUE if dataset is loaded in genvar and FALSE otherwise
+#' @examples
+#' capture(clear())
+#' is_loaded()
+#' use(cars)
+#' is_loaded()
 #' @export
 is_loaded <- function ()
 {
@@ -23,6 +28,10 @@ is_loaded <- function ()
 
 #' assert a dataset is loaded in genvar and error otherwise
 #' @return returns NULL, invisibly
+#' capture(clear())
+#' assert_loaded()
+#' use(cars)
+#' assert_loaded()
 #' @export
 assert_loaded <- function ()
 {

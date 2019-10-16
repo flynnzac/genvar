@@ -21,3 +21,6 @@ returns NULL, invisibly
 \description{
 Merges two datasets using either a left (keep all elements in current datasets and replace with missing if not present in new set), right (keep all elements in new dataset), outer (keep all observations in both datasets), or inner join (only keep elements in both datasets)
 }
+\examples{
+stop("need to add an example")
+}

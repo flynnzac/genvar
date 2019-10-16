@@ -16,6 +16,9 @@
 #'
 #' @param num how many of the first observations to get
 #' @return returns the first \code{num} rows of data
+#' @examples
+#' use(cars, clear=TRUE)
+#' headdata(5)
 #'@export
 headdata <- function (num)
 {
@@ -27,6 +30,9 @@ headdata <- function (num)
 #'
 #' @param num how many of the last few observations to get
 #' @return returns last \code{num} rows of data
+#' @examples
+#' use(cars, clear=TRUE)
+#' taildata(5)
 #'@export
 taildata <- function (num)
 {

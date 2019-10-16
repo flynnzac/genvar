@@ -12,3 +12,9 @@ returns TRUE if dataset is loaded in genvar and FALSE otherwise
 \description{
 a command to determine whether data is loaded
 }
+\examples{
+capture(clear())
+is_loaded()
+use(cars)
+is_loaded()
+}

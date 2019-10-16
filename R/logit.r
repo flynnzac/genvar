@@ -50,7 +50,7 @@ logit <- function (y, x, subset=NULL, weights=NULL, linkfunc="logit", ...)
       model <- glm(form, family=binomial(link=linkfunc), data=data,
                    weights=data[,weights], ...)
     }
-    
+
     last_estimates <- list(b=coef(model), V=vcov(model),
                            f=ifelse(linkfunc=="logit",
                                     function (u) 1/(1+exp(-1*u)),
@@ -64,7 +64,6 @@ logit <- function (y, x, subset=NULL, weights=NULL, linkfunc="logit", ...)
 #' estimate a probit regression
 #'
 #' \code{probit(...)} is equivalent to \code{logit(..., linkfunc="probit")}.
-#' @param ... options to pass to \code{logit}
 #' @export
 probit <- function (...)
   logit(..., linkfunc="probit")
