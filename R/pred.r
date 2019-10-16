@@ -22,8 +22,8 @@
 #' @examples
 #' use(cars, clear=TRUE)
 #' listif()
-#' reg("dist", "speed")
-#' gen("fit", "pred()")
+#' reg(dist, speed)
+#' gen(fit, pred())
 #' listif()
 #' @export
 pred <- function ()

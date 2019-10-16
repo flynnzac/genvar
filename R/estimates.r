@@ -36,7 +36,7 @@ estimates_store <- function (name)
 
 #' save \code{genvar} estimates
 #'
-#' @param file file to save current estimates to.
+#' @param estfile file to save current estimates to.
 #' @return returns NULL, invisibly
 #' @examples
 #' use(cars, clear=TRUE)
@@ -47,9 +47,10 @@ estimates_store <- function (name)
 #' estimates_use(fp)
 #' estimates_get()
 #' @export
-estimates_save <- function (file)
+estimates_save <- function (estfile)
 {
-  save(last_estimates, file=file, envir=data.env)
+
+  eval(substitute(save(last_estimates, file=estfile)), envir=data.env)
   invisible(NULL)
 }
 

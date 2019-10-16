@@ -18,7 +18,7 @@ Operates on the loaded estimation object, see \code{estimates_use}.
 \examples{
 use(cars, clear=TRUE)
 listif()
-reg("dist", "speed")
-gen("fit", "pred()")
+reg(dist, speed)
+gen(fit, pred())
 listif()
 }

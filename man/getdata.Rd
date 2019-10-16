@@ -15,7 +15,7 @@ equivalent to calling \code{listif()}, but the name is not as
 intuitive to use for this purpose.
 }
 \examples{
-use(cars)
+use(cars, clear=TRUE)
 getdata()
 all(getdata() == listif())
 }

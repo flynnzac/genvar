@@ -7,7 +7,13 @@
 #' @param ... extra options to pass to \code{read.csv} or \code{read.dta} (for old Stata files) or \code{read.dta13} (for newer ones).
 #' @return returns NULL, invisibly
 #' @examples
-#' stop("need to add an example")
+#' library(plm)
+#' data(Produc)
+#' use(Produc, clear=TRUE)
+#' collapse(mean(emp), year)
+#' rename(mean(emp), avgemp)
+#' gvmerge(Produc, on="year", kind="right")
+#' listif()
 #' @export
 gvmerge <- function (data, on, kind="left", ...)
 {

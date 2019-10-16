@@ -5,7 +5,7 @@
 #' intuitive to use for this purpose.
 #' @return the data frame currently in the genvar environment
 #' @examples
-#' use(cars)
+#' use(cars, clear=TRUE)
 #' getdata()
 #' all(getdata() == listif())
 #' @export

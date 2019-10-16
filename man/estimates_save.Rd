@@ -4,10 +4,10 @@
 \alias{estimates_save}
 \title{save \code{genvar} estimates}
 \usage{
-estimates_save(file)
+estimates_save(estfile)
 }
 \arguments{
-\item{file}{file to save current estimates to.}
+\item{estfile}{file to save current estimates to.}
 }
 \value{
 returns NULL, invisibly

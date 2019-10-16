@@ -6,6 +6,9 @@
 \usage{
 probit(...)
 }
+\arguments{
+\item{...}{options passed to \code{logit}.}
+}
 \description{
 \code{probit(...)} is equivalent to \code{logit(..., linkfunc="probit")}.
 }

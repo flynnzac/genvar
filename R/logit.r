@@ -64,6 +64,7 @@ logit <- function (y, x, subset=NULL, weights=NULL, linkfunc="logit", ...)
 #' estimate a probit regression
 #'
 #' \code{probit(...)} is equivalent to \code{logit(..., linkfunc="probit")}.
+#' @param ... options passed to \code{logit}.
 #' @export
 probit <- function (...)
   logit(..., linkfunc="probit")
