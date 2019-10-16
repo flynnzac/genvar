@@ -27,7 +27,15 @@
 #' id1+id2+...~values1+values2+...|byvar1+byvar2+...
 #'
 #' The variables (id1,id2,...,byvar1,byvar2,...) should uniqely identify observations in the data.  On exit the dataset will contain (id1,id2,...) in addition to values1byvar1.byvar2, values2byvar1.byvar2, ... for each unique value of (byvar1,byvar2,...).  The command behaves like "reshape wide values1 values2 ..., i(id1 id2 ...) j(byvar1...)
-#'
+#' @examples
+#' library(plm)
+#' data(Produc)
+#' use(Produc, clear=TRUE)
+#' listif()
+#' shape(state~emp|year, direction="wide")
+#' listif()
+#' shape(state~year|emp, direction="long")
+#' listif()
 #' @return returns NULL, invisibly
 #' @export
 shape <- function (form, direction="long")

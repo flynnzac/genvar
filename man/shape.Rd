@@ -27,3 +27,13 @@ returns NULL, invisibly
 \description{
 reshapes a data set from wide to long or from long to wide formats
 }
+\examples{
+library(plm)
+data(Produc)
+use(Produc, clear=TRUE)
+listif()
+shape(state~emp|year, direction="wide")
+listif()
+shape(state~year|emp, direction="long")
+listif()
+}
