@@ -39,7 +39,7 @@ Variable lists in `genvar` are specified by quoting the names of variables like,
 
 ## Quoted Expressions
 
-Many `genvar` commands work by using "quoted expressions" which are bits of code provided as arguments to the function that could not be executed in the current R environment but will be properly processed in `genvar`.  They can optionally be enclosed in quotation marks when necessary. For example, to use `genvar`'s `gen` command to generate log wages, you might type `gen(lnwage, log(wage))`. If you want to list the variables of the form `x1,x2,x3,...`, you would use `describe("x*")` to avoid R interpreting the `*` as multiplication.
+Many `genvar` commands work by using "quoted expressions" which are bits of code provided as arguments to the function that could not be executed in the current R environment but will be properly processed in `genvar`.  They can optionally be enclosed in quotation marks when necessary. For example, to use `genvar`'s `gen` command to generate log wages, you might type `gen(lnwage, log(wage))`. If you want to list the variables of the form `x1,x2,x3,...`, you would use `describe("x*")` to avoid R interpreting the `x*` as an incomplete multiplication expression.
 
 # Basic overview of currently available functions
 
