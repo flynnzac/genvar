@@ -1,5 +1,7 @@
 # genvar: an R package for imperative data manipulation and regression (like Stata)
 
+This is the README for this version of `genvar`. It may not apply to the version of `genvar` on CRAN. See the README file on the CRAN page, https://cran.rstudio.com/web/packages/genvar/.
+
 ## Installation
 
 `genvar` is now on CRAN! To install latest CRAN release, run the following from R:
