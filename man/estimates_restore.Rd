@@ -15,3 +15,12 @@ returns NULL, invisibly
 \description{
 restore \code{genvar} estimates
 }
+\examples{
+use(cars, clear=TRUE)
+reg(speed, dist)
+estimates_store("speed_dist")
+reg(dist,speed)
+estimates_get()
+estimates_restore("speed_dist")
+estimates_get()
+}

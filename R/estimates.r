@@ -17,6 +17,14 @@
 #'
 #' @param name name to use to store current estimates from a \code{genvar} estimation function like \code{reg}, \code{logit}, or \code{probit}.
 #' @return returns NULL, invisibly
+#' @examples
+#' use(cars, clear=TRUE)
+#' reg(speed,dist)
+#' estimates_store("speed_dist")
+#' reg(dist,speed)
+#' estimates_store("dist_speed")
+#' estimates_get("speed_dist")
+#' estimates_get("dist_speed")
 #' @export
 estimates_store <- function (name)
 {
@@ -30,10 +38,18 @@ estimates_store <- function (name)
 #'
 #' @param file file to save current estimates to.
 #' @return returns NULL, invisibly
+#' @examples
+#' use(cars, clear=TRUE)
+#' reg(speed,dist)
+#' fp <- file.path(tempdir(), "myest.rdata")
+#' estimates_save(fp)
+#' clear()
+#' estimates_use(fp)
+#' estimates_get()
 #' @export
 estimates_save <- function (file)
 {
-  save("last_estimates", file=file, envir=data.env)
+  save(last_estimates, file=file, envir=data.env)
   invisible(NULL)
 }
 
@@ -41,6 +57,14 @@ estimates_save <- function (file)
 #'
 #' @param name name of estimates to be restored
 #' @return returns NULL, invisibly
+#' @examples
+#' use(cars, clear=TRUE)
+#' reg(speed, dist)
+#' estimates_store("speed_dist")
+#' reg(dist,speed)
+#' estimates_get()
+#' estimates_restore("speed_dist")
+#' estimates_get()
 #' @export
 estimates_restore <- function (name)
 {
@@ -55,6 +79,14 @@ estimates_restore <- function (name)
 #'
 #' @param file file to load estimates from.
 #' @return returns NULL, invisibly
+#' @examples
+#' use(cars, clear=TRUE)
+#' reg(speed,dist)
+#' fp <- file.path(tempdir(), "myest.rdata")
+#' estimates_save(fp)
+#' clear()
+#' estimates_use(fp)
+#' estimates_get()
 #' @export
 estimates_use <- function (file)
 {
@@ -64,9 +96,18 @@ estimates_use <- function (file)
 
 #' display estimation results
 #'
-#' @param name name of estimates to be replaced.  If unspecified, print current estimates.
+#' @param name name of estimates to be returned.  If unspecified, return current estimates.
+#' @return returns a table of the estimated coefficients and standard errors
+#' @examples
+#' use(cars, clear=TRUE)
+#' reg(speed,dist)
+#' estimates_store("speed_dist")
+#' reg(dist,speed)
+#' estimates_store("dist_speed")
+#' estimates_get("speed_dist")
+#' estimates_get("dist_speed")
 #' @export
-estimates_print <- function (name=NULL)
+estimates_get <- function (name=NULL)
 {
   if (is.null(name))
     name <- "last_estimates"

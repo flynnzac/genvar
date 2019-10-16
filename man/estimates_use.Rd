@@ -15,3 +15,12 @@ returns NULL, invisibly
 \description{
 loads \code{genvar} estimates from file
 }
+\examples{
+use(cars, clear=TRUE)
+reg(speed,dist)
+fp <- file.path(tempdir(), "myest.rdata")
+estimates_save(fp)
+clear()
+estimates_use(fp)
+estimates_get()
+}
