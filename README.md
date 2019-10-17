@@ -29,7 +29,7 @@ To get a feel for what `genvar` looks like see the example in examples/test.r. T
 
 ## Bug Reporting
 
-Report any bugs or feature requests  (always willing to add features that you would like to be ported to this environment in R) to the Github repo https://github.com/flynnzac/genvar.
+Report any bugs or feature requests  (always willing to add features that you would like to be ported to this environment in R) to the Github repo https://github.com/flynnzac/genvar/issues.
 
 See below for the basic concepts and the reference manual for a list of commands.
 
