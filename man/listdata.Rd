@@ -12,3 +12,14 @@ returns a data frame of the names of the datasets in memory and basic descriptio
 \description{
 lists datasets currently in memory
 }
+\examples{
+use(cars, clear=TRUE)
+namedata("cars", clear=TRUE)
+library(plm)
+data(Produc)
+use(Produc, clear=TRUE)
+namedata("product", clear=TRUE)
+listdata()
+namedata("cars_new_name", original="cars", clear=TRUE)
+listdata()
+}

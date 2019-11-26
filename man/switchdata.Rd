@@ -17,3 +17,16 @@ returns NULL invisibly
 \description{
 switches data sets among the datasets you have in memory
 }
+\examples{
+use(cars, clear=TRUE)
+namedata("cars", clear=TRUE)
+library(plm)
+data(Produc)
+use(Produc, clear=TRUE)
+listif()
+switchdata("cars")
+listif()
+switchdata()
+listif()
+listdata()
+}

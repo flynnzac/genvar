@@ -19,3 +19,14 @@ returns NULL invisibly
 \description{
 names a data set so that it can be restored by that name later on
 }
+\examples{
+use(cars, clear=TRUE)
+namedata("cars", clear=TRUE)
+library(plm)
+data(Produc)
+use(Produc, clear=TRUE)
+namedata("product", clear=TRUE)
+listdata()
+namedata("cars_new_name", original="cars", clear=TRUE)
+listdata()
+}
