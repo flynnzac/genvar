@@ -75,7 +75,7 @@ restore(p, replace=TRUE)
 gen(empmedian, emp > median(emp))
 
 r = logit(empmedian, unemp)
-
+r
 
 ## Show a graph of fraction employment over time
 
