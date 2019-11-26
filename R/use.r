@@ -16,7 +16,7 @@
 #' uses a dataset, marking it as the active dataset
 #'
 #' @param x usually either a data.frame or a csv/dta filename to be imported.  An R function which returns a data.frame can also be specified.
-#' @param clear if TRUE, erase current data if it already exists (default: FALSE).
+#' @param clear if TRUE, erase current data if it already exists. If FALSE, back up data so that it can be switched to later via \code{switchdata} (default: FALSE).
 #' @param type either "csv" or "dta" for loading csv or dta data set
 #' @param ... other options to pass to \code{read.csv} in case x is a csv file or to \code{read.dta} or \code{read.dta13} depending on the type of file being loaded
 #' @importFrom tools "file_ext"
@@ -34,15 +34,14 @@
 #' @export
 use <- function (x,clear=FALSE, type=NULL, ...)
 {
-  if (exists("data", envir=data.env) & !clear)
+  if (eval(substitute({ is.data.frame(data) }), envir=data.env) && !clear)
   {
-    if (eval(substitute({ is.data.frame(data) }), envir=data.env))
-    {
-      stop("data already exists in memory, will not delete (give option clear=TRUE to overwrite).")
-    }
+    cat("NOTE: Data already exists in memory, will not delete.  You can switch back to the dataset with switchdata using name 'last'.\n")
+    other.data$last <- get("data", envir=data.env)
   }
 
   UseMethod("use", x)
+
 
   invisible(NULL)
 }

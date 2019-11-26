@@ -9,7 +9,7 @@ use(x, clear = FALSE, type = NULL, ...)
 \arguments{
 \item{x}{usually either a data.frame or a csv/dta filename to be imported.  An R function which returns a data.frame can also be specified.}
 
-\item{clear}{if TRUE, erase current data if it already exists (default: FALSE).}
+\item{clear}{if TRUE, erase current data if it already exists. If FALSE, back up data so that it can be switched to later via \code{switchdata} (default: FALSE).}
 
 \item{type}{either "csv" or "dta" for loading csv or dta data set}
 
