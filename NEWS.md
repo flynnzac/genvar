@@ -4,6 +4,8 @@
 - Added gvmerge to merge in data into the environment.
 - Added support for multiple datasets using `switchdata`, `namedata`,
   and `listdata` to manage which dataset is active.
+- Some new examples
+- A bugfix to wildcard expansion
 
 # Version 0.0.1
 
