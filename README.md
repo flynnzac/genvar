@@ -27,6 +27,8 @@ The package implements an environment where there is one active dataset and comm
 
 To get a feel for what `genvar` looks like see the example in examples/test.r. The syntax is more intuitive (well, hopefully) than standard R to people who are used to thinking in the Stata data model and its imperative language.
 
+The long term goal is to create a front-end language to R that implements the imperative approach to statistical programming which will access this package and other packages indirectly.
+
 ## Bug Reporting
 
 Report any bugs or feature requests  (always willing to add features that you would like to be ported to this environment in R) to the Github repo https://github.com/flynnzac/genvar/issues.

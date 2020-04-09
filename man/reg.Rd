@@ -4,8 +4,7 @@
 \alias{reg}
 \title{regress y on x with robust standard errors, clustered standard errors, HAC standard errors, panel fixed effects, etc}
 \usage{
-reg(y, x, subset = NULL, effect = NULL, robust = TRUE, hac, cluster,
-  rtype = 1)
+reg(y, x, subset = NULL, effect = NULL, robust = TRUE, hac, cluster, rtype = 1)
 }
 \arguments{
 \item{y}{name of the dependent variable}
