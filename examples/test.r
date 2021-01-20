@@ -54,6 +54,8 @@ r = reg(emp, unemp)
 r
 
 xtset(year, state)
+xtbalanced()
+
 r = reg(emp, unemp, hac=year)
 r
 r = reg(emp, unemp, cluster=year)
