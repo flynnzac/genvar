@@ -10,7 +10,8 @@ Imports: Formula,
          sandwich,
          plm,
          clubSandwich,
-         rlang
+         rlang,
+         expm
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
